@@ -10,20 +10,21 @@ import java.util.List;
  */
 public class ScrollingMap extends World
 {
-    final int TILESIZE = 86;
-    final int MAPWIDTH = 50 * TILESIZE;
-    final int MAPHEIGHT = 50 * TILESIZE;
-    final int MAPIMGWIDTH = 50;
-    final int MAPIMGHEIGHT = 50;
-    mapData map = new mapData();
-    GreenfootImage mapImg = map.getImage();
-    int[][] feild = new int[50][50];
-    int leftBound = 0;
-    int bottomBound = MAPHEIGHT;
-    int topBound = MAPHEIGHT - getHeight();
-    int rightBound = getWidth();
+    private final int TILESIZE = 86;
+    private final int MAPWIDTH = 50 * TILESIZE;
+    private final int MAPHEIGHT = 50 * TILESIZE;
+    private final int MAPIMGWIDTH = 50;
+    private final int MAPIMGHEIGHT = 50;
+    private mapData map = new mapData();
+    private GreenfootImage mapImg = map.getImage();
+    private int leftBound = 0;
+    private int bottomBound = MAPHEIGHT;
+    private int topBound = MAPHEIGHT - getHeight();
+    private int rightBound = getWidth();
     private List<Tile> blocks = new ArrayList<Tile>();
-    int x = 0,y = 0;
+    private int x = 0,y = 0;
+
+    Tile[][] feild = new Tile[50][50];
     /**
      * Constructor for objects of class ScrollingMap.
      * 
@@ -31,100 +32,94 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(1000, 850, 1, false);
-        makeMap();
-        create();
+        createMap();
+        update();
     }
 
-    public void act() 
-    {
-        if(Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("w")){
-            if(Greenfoot.isKeyDown("s")){
-                y--;
-            }
-            if(Greenfoot.isKeyDown("w")){
-                y++;
-            }
-        } else {
-            if(Greenfoot.isKeyDown("d")){
-                x++;
-            }
-            if(Greenfoot.isKeyDown("a")){
-                x--;
-            }
+    /**
+     * moves the screen in the desired direction by one tile
+     * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
+     */
+    public void move(int dir){
+        if (dir == 1){
+            y = TILESIZE;
+            shiftScreen(x,y);
+            y = 0;
         }
-        shiftScreen(x,y);
+        if (dir == 2){
+            y = -TILESIZE;
+            shiftScreen(x,y);
+            y = 0;
+        }
+        if (dir == 3){
+            x = TILESIZE;
+            shiftScreen(x,y);
+            x = 0;
+        }
+        if (dir == 4){
+            x = -TILESIZE;
+            shiftScreen(x,y);
+            x = 0;
+        }
     }
 
     /**
      * Reads Image File
      */
-    public void makeMap(){
-        for(int x=0;x<MAPIMGWIDTH;x++)
+    private void createMap(){
+        for(int x = 0; x < MAPIMGWIDTH; x++)
         {
-            for(int y=0;y<MAPIMGHEIGHT;y++)
+            for(int y=0;y < MAPIMGHEIGHT;y++)
             {
                 int colorRGB = mapImg.getColorAt(x, y).getRGB();
                 if(colorRGB == Color.BLACK.getRGB())
                 {
-                    feild[x][y] = 1;
+                    blocks.add(feild[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
                 } else if(colorRGB == Color.BLUE.getRGB()){
-                    feild[x][y] = 2;
+                    blocks.add(feild[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
                 } else {
-                    feild[x][y] = 0;
+                    feild[x][y] = null;
                 }
             }
         }
     }
 
     /**
-     * Creates map with tiles placed in their right spots
+     * Shifts the viewport left right up down then calls the update method
      */
-    public void create(){
-        for(int x = 0; x < MAPIMGWIDTH; x++)
-        {
-            for(int y = 0; y < MAPIMGHEIGHT ;y++) 
-            {
-                if(feild[x][y] == 1){
-                    blocks.add(new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
-                } else if(feild[x][y] == 2){
-                    blocks.add(new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2));
-                }
-            }
-        }
-    }
-
-    /**
-     * NOT MY CODE
-     */
-    public void shiftScreen(int changeX, int changeY)   // This method shifts the screen up, down,
-    {                                                   // left and right.
-        leftBound += changeX;                       // Move the left bound by the change in X
-        rightBound += changeX;                      // Move the right bound by the change in X
-        if(leftBound <0)                            // If the left bound goes off the map...
+    private void shiftScreen(int changeX, int changeY)
+    {
+        //horizontal shifting
+        leftBound += changeX;
+        rightBound += changeX;
+        if(leftBound <0)
         {                
-            leftBound =0;                           // ...set it to the left side of the map...
-            rightBound = getWidth();                // ...and move the right bound to the right place.
-        } else if(rightBound >= MAPWIDTH)           // If the right bound goes off the map...
+            leftBound = 0;
+            rightBound = getWidth();
+        } else if(rightBound >= MAPWIDTH)
         {
-            rightBound = MAPWIDTH;                  // ...set right bound to right side of map...
-            leftBound = MAPWIDTH - getWidth();      // ...and move left bound to right place.
+            rightBound = MAPWIDTH;
+            leftBound = MAPWIDTH - getWidth();   
         }
-
-        topBound -= changeY;                        // Move the top bound and the bottom bound
-        bottomBound -= changeY;                // by the change in Y. 
-        if(topBound <0)                             // If the top bound moves off the map...
+        //vertical shifting
+        topBound += changeY;
+        bottomBound += changeY;
+        if(topBound <0)
         {
-            topBound =0;                            //...move the top bound to top of map
-            bottomBound = getHeight();              //...and move the bottom bound to right place.
-        } else if (bottomBound > MAPHEIGHT)         // If the bottom bound goes off the map...
+            topBound =0;
+            bottomBound = getHeight();           
+        } else if (bottomBound > MAPHEIGHT)
         {
-            bottomBound = MAPHEIGHT;                // ...move the bottom bound to bottom of map...
-            topBound = MAPHEIGHT - getHeight();     // ...and move the top bound to right place.
+            bottomBound = MAPHEIGHT;
+            topBound = MAPHEIGHT - getHeight();
         }
         update();
     }
 
-    public void update()
+    /**
+     * Updates the map by dectecting if its currently in the viewport if not remove from world if so add to world
+     */
+    private void update()
     {
         Tile block;
         int thisPlatformX;
@@ -155,8 +150,27 @@ public class ScrollingMap extends World
                 }
             }
         }
-        x = 0;
-        y = 0;
     }
+    
+//     /**
+//      * Manual testing controls
+//      */
+//     public void act() 
+//     {
+//         if(Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("w")){
+//             if(Greenfoot.isKeyDown("s")){
+//                 move(1);
+//             }
+//             if(Greenfoot.isKeyDown("w")){
+//                 move(2);
+//             }
+//         } else {
+//             if(Greenfoot.isKeyDown("d")){
+//                 move(3);
+//             }
+//             if(Greenfoot.isKeyDown("a")){
+//                 move(4);
+//             }
+//         }
+//     }
 }
-
