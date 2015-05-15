@@ -1,0 +1,150 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * Write a description of class ScrollingMap here.
+ * 
+ * @author Ryan Huang
+ * @version MAY 2015
+ */
+public class ScrollingMap extends World
+{
+    final int MAPWIDTH = 50*64;
+    final int MAPHEIGHT = 50*64;
+    final int PLATFORMWIDTH = 64;
+    final int PLATFORMHEIGHT = 64;
+    final int MAPIMGWIDTH = 50;
+    final int MAPIMGHEIGHT = 50;
+    mapData map = new mapData();
+    GreenfootImage mapImg = map.getImage();
+    int[][] feild = new int[50][50];
+    int leftBound = 0;
+    int bottomBound = MAPHEIGHT;
+    int topBound = MAPHEIGHT - getHeight();
+    int rightBound = getWidth();
+    private List<Tile> blocks = new ArrayList<Tile>();
+    int x = 0,y = 0;
+    /**
+     * Constructor for objects of class ScrollingMap.
+     * 
+     */
+    public ScrollingMap()
+    {    
+        super(700, 700, 1, false);
+        makeMap();
+        create();
+    }
+
+    public void act() 
+    {
+        if(Greenfoot.isKeyDown("s")){
+            y--;
+        }
+        if(Greenfoot.isKeyDown("w")){
+            y++;
+        }
+        if(Greenfoot.isKeyDown("d")){
+            x++;
+        }
+        if(Greenfoot.isKeyDown("a")){
+            x--;
+        }
+        shiftScreen(x,y);
+    }
+
+    public void makeMap(){
+        for(int x=0;x<MAPIMGWIDTH;x++)
+        {
+            for(int y=0;y<MAPIMGHEIGHT;y++)
+            {
+                int colorRGB = mapImg.getColorAt(x, y).getRGB();
+                if(colorRGB==Color.BLACK.getRGB())
+                {
+                    feild[x][y] = 1;
+                } else {
+                    feild[x][y] = 0;
+                }
+            }
+        }
+    }
+
+    public void create(){
+        for(int x=0; x < MAPIMGWIDTH; x++)
+        {
+            for(int y=0;y<50;y++) 
+            {
+                if(feild[x][y] == 1){
+                    blocks.add(new Tile(x*64 + 64/2,y*64+64/2));
+                }
+            }
+        }
+    }
+
+    /**
+     * NOT MY CODE
+     */
+    public void shiftScreen(int changeX, int changeY)   // This method shifts the screen up, down,
+    {                                                   // left and right.
+        leftBound += changeX;                       // Move the left bound by the change in X
+        rightBound += changeX;                      // Move the right bound by the change in X
+        if(leftBound <0)                            // If the left bound goes off the map...
+        {                
+            leftBound =0;                           // ...set it to the left side of the map...
+            rightBound = getWidth();                // ...and move the right bound to the right place.
+        } else if(rightBound >= MAPWIDTH)           // If the right bound goes off the map...
+        {
+            rightBound = MAPWIDTH;                  // ...set right bound to right side of map...
+            leftBound = MAPWIDTH - getWidth();      // ...and move left bound to right place.
+        }
+
+        topBound -= changeY;                        // Move the top bound and the bottom bound
+        bottomBound -= changeY;                // by the change in Y. 
+        if(topBound <0)                             // If the top bound moves off the map...
+        {
+            topBound =0;                            //...move the top bound to top of map
+            bottomBound = getHeight();              //...and move the bottom bound to right place.
+        } else if (bottomBound > MAPHEIGHT)         // If the bottom bound goes off the map...
+        {
+            bottomBound = MAPHEIGHT;                // ...move the bottom bound to bottom of map...
+            topBound = MAPHEIGHT - getHeight();     // ...and move the top bound to right place.
+        }
+        update();
+    }
+
+    public void update()
+    {
+        Tile block;
+        int thisPlatformX;
+        int thisPlatformY;
+        int screenX;
+        int screenY;
+
+        for(int i=0; i<blocks.size(); i++)
+        {
+            block = blocks.get(i);
+            thisPlatformX = block.mapX;
+            thisPlatformY = block.mapY;
+
+            if(thisPlatformX+PLATFORMWIDTH>=leftBound && thisPlatformX-PLATFORMWIDTH<=rightBound && thisPlatformY + PLATFORMHEIGHT >=topBound && thisPlatformY -PLATFORMWIDTH<= bottomBound)
+            {
+                screenX = thisPlatformX - leftBound;
+                screenY = thisPlatformY - topBound;
+                if(block.getWorld()==null)
+                {
+                    addObject(block, screenX, screenY);
+                } else {
+                    block.setLocation(screenX, screenY);
+                } 
+            }else {
+                if(block.getWorld()!=null)
+                {
+                    removeObject(block);     
+                }
+            }
+        }
+        x = 0;
+        y = 0;
+    }
+}
+
