@@ -10,10 +10,9 @@ import java.util.List;
  */
 public class ScrollingMap extends World
 {
-    final int MAPWIDTH = 50*64;
-    final int MAPHEIGHT = 50*64;
-    final int PLATFORMWIDTH = 64;
-    final int PLATFORMHEIGHT = 64;
+    final int TILESIZE = 86;
+    final int MAPWIDTH = 50 * TILESIZE;
+    final int MAPHEIGHT = 50 * TILESIZE;
     final int MAPIMGWIDTH = 50;
     final int MAPIMGHEIGHT = 50;
     mapData map = new mapData();
@@ -31,37 +30,45 @@ public class ScrollingMap extends World
      */
     public ScrollingMap()
     {    
-        super(700, 700, 1, false);
+        super(1000, 850, 1, false);
         makeMap();
         create();
     }
 
     public void act() 
     {
-        if(Greenfoot.isKeyDown("s")){
-            y--;
-        }
-        if(Greenfoot.isKeyDown("w")){
-            y++;
-        }
-        if(Greenfoot.isKeyDown("d")){
-            x++;
-        }
-        if(Greenfoot.isKeyDown("a")){
-            x--;
+        if(Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("w")){
+            if(Greenfoot.isKeyDown("s")){
+                y--;
+            }
+            if(Greenfoot.isKeyDown("w")){
+                y++;
+            }
+        } else {
+            if(Greenfoot.isKeyDown("d")){
+                x++;
+            }
+            if(Greenfoot.isKeyDown("a")){
+                x--;
+            }
         }
         shiftScreen(x,y);
     }
 
+    /**
+     * Reads Image File
+     */
     public void makeMap(){
         for(int x=0;x<MAPIMGWIDTH;x++)
         {
             for(int y=0;y<MAPIMGHEIGHT;y++)
             {
                 int colorRGB = mapImg.getColorAt(x, y).getRGB();
-                if(colorRGB==Color.BLACK.getRGB())
+                if(colorRGB == Color.BLACK.getRGB())
                 {
                     feild[x][y] = 1;
+                } else if(colorRGB == Color.BLUE.getRGB()){
+                    feild[x][y] = 2;
                 } else {
                     feild[x][y] = 0;
                 }
@@ -69,13 +76,18 @@ public class ScrollingMap extends World
         }
     }
 
+    /**
+     * Creates map with tiles placed in their right spots
+     */
     public void create(){
-        for(int x=0; x < MAPIMGWIDTH; x++)
+        for(int x = 0; x < MAPIMGWIDTH; x++)
         {
-            for(int y=0;y<50;y++) 
+            for(int y = 0; y < MAPIMGHEIGHT ;y++) 
             {
                 if(feild[x][y] == 1){
-                    blocks.add(new Tile(x*64 + 64/2,y*64+64/2));
+                    blocks.add(new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
+                } else if(feild[x][y] == 2){
+                    blocks.add(new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2));
                 }
             }
         }
@@ -126,7 +138,7 @@ public class ScrollingMap extends World
             thisPlatformX = block.mapX;
             thisPlatformY = block.mapY;
 
-            if(thisPlatformX+PLATFORMWIDTH>=leftBound && thisPlatformX-PLATFORMWIDTH<=rightBound && thisPlatformY + PLATFORMHEIGHT >=topBound && thisPlatformY -PLATFORMWIDTH<= bottomBound)
+            if(thisPlatformX+TILESIZE>=leftBound && thisPlatformX-TILESIZE<=rightBound && thisPlatformY + TILESIZE >=topBound && thisPlatformY -TILESIZE<= bottomBound)
             {
                 screenX = thisPlatformX - leftBound;
                 screenY = thisPlatformY - topBound;
