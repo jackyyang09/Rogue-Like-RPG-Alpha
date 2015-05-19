@@ -11,10 +11,10 @@ import java.util.List;
 public class ScrollingMap extends World
 {
     private final int TILESIZE = 86;
-    private final int MAPWIDTH = 50 * TILESIZE;
-    private final int MAPHEIGHT = 50 * TILESIZE;
-    private final int MAPIMGWIDTH = 50;
-    private final int MAPIMGHEIGHT = 50;
+    private final int MAPWIDTH = 100 * TILESIZE;
+    private final int MAPHEIGHT = 100 * TILESIZE;
+    private final int MAPIMGWIDTH = 100;
+    private final int MAPIMGHEIGHT = 100;
     private mapData map = new mapData();
     private GreenfootImage mapImg = map.getImage();
     private int leftBound = 0;
@@ -24,14 +24,14 @@ public class ScrollingMap extends World
     private List<Tile> blocks = new ArrayList<Tile>();
     private int x = 0,y = 0;
 
-    Tile[][] feild = new Tile[50][50];
+    Tile[][] field = new Tile[100][100];
     /**
      * Constructor for objects of class ScrollingMap.
      * 
      */
     public ScrollingMap()
     {    
-        super(1000, 850, 1, false);
+        super(946, 774, 1, false);
         createMap();
         update();
     }
@@ -69,16 +69,14 @@ public class ScrollingMap extends World
     private void createMap(){
         for(int x = 0; x < MAPIMGWIDTH; x++)
         {
-            for(int y=0;y < MAPIMGHEIGHT;y++)
+            for(int y = 0;y < MAPIMGHEIGHT;y++)
             {
                 int colorRGB = mapImg.getColorAt(x, y).getRGB();
                 if(colorRGB == Color.BLACK.getRGB())
                 {
-                    blocks.add(feild[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
+                    blocks.add(field[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
                 } else if(colorRGB == Color.BLUE.getRGB()){
-                    blocks.add(feild[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
-                } else {
-                    feild[x][y] = null;
+                    blocks.add(field[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2));
                 }
             }
         }
@@ -92,23 +90,23 @@ public class ScrollingMap extends World
         //horizontal shifting
         leftBound += changeX;
         rightBound += changeX;
-        if(leftBound <0)
+        if(leftBound <= 0)
         {                
             leftBound = 0;
             rightBound = getWidth();
         } else if(rightBound >= MAPWIDTH)
         {
             rightBound = MAPWIDTH;
-            leftBound = MAPWIDTH - getWidth();   
+            leftBound = MAPWIDTH - getWidth();
         }
         //vertical shifting
         topBound += changeY;
         bottomBound += changeY;
-        if(topBound <0)
+        if(topBound <= 0)
         {
-            topBound =0;
+            topBound = 0;
             bottomBound = getHeight();           
-        } else if (bottomBound > MAPHEIGHT)
+        } else if (bottomBound >= MAPHEIGHT)
         {
             bottomBound = MAPHEIGHT;
             topBound = MAPHEIGHT - getHeight();
@@ -122,21 +120,21 @@ public class ScrollingMap extends World
     private void update()
     {
         Tile block;
-        int thisPlatformX;
-        int thisPlatformY;
+        int blockX;
+        int blockY;
         int screenX;
         int screenY;
 
         for(int i=0; i<blocks.size(); i++)
         {
             block = blocks.get(i);
-            thisPlatformX = block.mapX;
-            thisPlatformY = block.mapY;
+            blockX = block.mapX;
+            blockY = block.mapY;
 
-            if(thisPlatformX+TILESIZE>=leftBound && thisPlatformX-TILESIZE<=rightBound && thisPlatformY + TILESIZE >=topBound && thisPlatformY -TILESIZE<= bottomBound)
+            if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
             {
-                screenX = thisPlatformX - leftBound;
-                screenY = thisPlatformY - topBound;
+                screenX = blockX - leftBound;
+                screenY = blockY - topBound;
                 if(block.getWorld()==null)
                 {
                     addObject(block, screenX, screenY);
@@ -151,26 +149,23 @@ public class ScrollingMap extends World
             }
         }
     }
-    
-//     /**
-//      * Manual testing controls
-//      */
-//     public void act() 
-//     {
-//         if(Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("w")){
-//             if(Greenfoot.isKeyDown("s")){
-//                 move(1);
-//             }
-//             if(Greenfoot.isKeyDown("w")){
-//                 move(2);
-//             }
-//         } else {
-//             if(Greenfoot.isKeyDown("d")){
-//                 move(3);
-//             }
-//             if(Greenfoot.isKeyDown("a")){
-//                 move(4);
-//             }
-//         }
-//     }
+
+    /**
+     * Manual testing controls
+     */
+    public void act() 
+    {
+            if(Greenfoot.isKeyDown("s")){
+                move(1);
+            }
+            if(Greenfoot.isKeyDown("w")){
+                move(2);
+            }
+            if(Greenfoot.isKeyDown("d")){
+                move(3);
+            }
+            if(Greenfoot.isKeyDown("a")){
+                move(4);
+            }
+    }
 }
