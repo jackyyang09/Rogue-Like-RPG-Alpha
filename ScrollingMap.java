@@ -23,15 +23,20 @@ public class ScrollingMap extends World
     private int rightBound = getWidth();
     private List<Tile> blocks = new ArrayList<Tile>();
     private int x = 0,y = 0;
+    private HUD hud = new HUD();
+
+    private Player player = new Player();
 
     Tile[][] feild = new Tile[58][56];
     /**
      * Constructor for objects of class ScrollingMap.
-     * 
      */
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
+        addObject(hud,473,387);
+        addObject(player, 473, 387);
+        setPaintOrder(HUD.class,Mobs.class, Tile.class);
         createMap();
         update();
     }
@@ -62,6 +67,14 @@ public class ScrollingMap extends World
             x = 0;
         }
     }
+
+//     public int returnPlayerX(){
+// 
+//     }
+// 
+//     public int returnPlayerY(){
+// 
+//     }
 
     /**
      * Reads Image File
