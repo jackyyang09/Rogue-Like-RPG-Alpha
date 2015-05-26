@@ -1,7 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 /**
  * Write a description of class ScrollingMap here.
  * 
@@ -15,28 +13,24 @@ public class ScrollingMap extends World
     private final int MAPHEIGHT = 56 * TILESIZE;
     private final int MAPIMGWIDTH = 58;
     private final int MAPIMGHEIGHT = 56;
+    private final int MAPDEPTH = 3;
     private mapData map = new mapData();
     private GreenfootImage mapImg = map.getImage();
     private int leftBound = 0;
     private int bottomBound = MAPHEIGHT;
     private int topBound = MAPHEIGHT - getHeight();
     private int rightBound = getWidth();
-    private List<Tile> blocks = new ArrayList<Tile>();
     private int x = 0,y = 0;
     private HUD hud = new HUD();
 
-    private Player player = new Player();
-
-    Tile[][] feild = new Tile[58][56];
+    Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     /**
      * Constructor for objects of class ScrollingMap.
      */
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        addObject(hud,473,387);
-        addObject(player, 473, 387);
-        setPaintOrder(HUD.class,Mobs.class, Tile.class);
+        setPaintOrder(Mobs.class, Tile.class);
         createMap();
         update();
     }
@@ -68,13 +62,17 @@ public class ScrollingMap extends World
         }
     }
 
-//     public int returnPlayerX(){
-// 
-//     }
-// 
-//     public int returnPlayerY(){
-// 
-//     }
+    /**
+     * State an object at a X and Y coordinate to be added on to the map state the depth too
+     */
+    public void inputObject(int object, int xC, int yC, int d){
+        if(object == 1){
+            int xCo = xC * TILESIZE + TILESIZE/2;
+            int yCo = yC * TILESIZE + TILESIZE/2;
+            field[xC][yC][d] = new Player(xCo, yCo);
+        }
+        update();
+    }
 
     /**
      * Reads Image File
@@ -85,13 +83,18 @@ public class ScrollingMap extends World
             for(int y=0;y < MAPIMGHEIGHT;y++)
             {
                 int colorRGB = mapImg.getColorAt(x, y).getRGB();
+                int xCoord = x * TILESIZE + TILESIZE/2;
+                int yCoord = y * TILESIZE + TILESIZE/2;
                 if(colorRGB == Color.BLACK.getRGB())
                 {
-                    blocks.add(feild[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1));
+                    field[x][y][0] = new Tile(xCoord, yCoord, 1);
                 } else if(colorRGB == Color.BLUE.getRGB()){
-                    blocks.add(feild[x][y] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2));
+                    field[x][y][0] = new Tile(xCoord, yCoord, 2);
+                    field[x][y][1] = new Player(xCoord , yCoord);
                 } else {
-                    feild[x][y] = null;
+                    for(int i = 0; i < MAPDEPTH; i++){
+                        field[x][y][i] = null;
+                    }
                 }
             }
         }
@@ -134,32 +137,41 @@ public class ScrollingMap extends World
      */
     private void update()
     {
-        Tile block;
+        Actor block;
         int blockX;
         int blockY;
         int screenX;
         int screenY;
-
-        for(int i=0; i<blocks.size(); i++)
-        {
-            block = blocks.get(i);
-            blockX = block.mapX;
-            blockY = block.mapY;
-
-            if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
-            {
-                screenX = blockX - leftBound;
-                screenY = blockY - topBound;
-                if(block.getWorld()==null)
+        for(int x = 0; x < MAPIMGWIDTH; x++){
+            for(int y = 0; y < MAPIMGHEIGHT; y++){
+                for(int i = 0; i < MAPDEPTH; i++)
                 {
-                    addObject(block, screenX, screenY);
-                } else {
-                    block.setLocation(screenX, screenY);
-                } 
-            }else {
-                if(block.getWorld()!=null)
-                {
-                    removeObject(block);     
+                    if(field[x][y][i] != null){
+                        block = field[x][y][i];
+                        if(i == 0){
+                            blockX = ((Tile)field[x][y][i]).mapX;
+                            blockY = ((Tile)field[x][y][i]).mapY;
+                        } else {
+                            blockX = ((Player)field[x][y][i]).mapX;
+                            blockY = ((Player)field[x][y][i]).mapY;
+                        }
+                        if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
+                        {
+                            screenX = blockX - leftBound;
+                            screenY = blockY - topBound;
+                            if(block.getWorld() == null)
+                            {
+                                addObject(block, screenX, screenY);
+                            } else {
+                                block.setLocation(screenX, screenY);
+                            } 
+                        }else {
+                            if(block.getWorld()!=null)
+                            {
+                                removeObject(block);     
+                            }
+                        }
+                    }
                 }
             }
         }
