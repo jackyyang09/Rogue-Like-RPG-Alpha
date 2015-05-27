@@ -8,8 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Mobs
 {
-    int mapX;
-    int mapY;
     private Items[] equips;
     private Items[] items;
     private int itemCount = 0;
@@ -18,8 +16,8 @@ public class Player extends Mobs
         baseAtt = 10;
         baseDef = 5;
         baseMov = 2;
-        equips = new Items[1];
-        items = new Items[1];
+        equips = new Items[2];
+        items = new Items[10];
         mapX = getMapX;
         mapY = getMapY;
         begin();
@@ -27,8 +25,8 @@ public class Player extends Mobs
 
     public void begin()
     {
-        GreenfootImage image = new GreenfootImage(115, 86);
-        image.drawImage(getImage(), 0, 0);
+        GreenfootImage image = new GreenfootImage(144, 86);
+        image.drawImage(getImage(), 29, 0);
         setImage(image);
     }
 
@@ -38,16 +36,43 @@ public class Player extends Mobs
         update();
     }
 
+    /**
+     * Things happen when the Player walks over an item
+     */
     public void pickupItem()
     {
         if (this.isTouching(Items.class))
         {
-            if (itemCount < 1)
+            if (itemCount < 10)
             {
-                items[itemCount] = (Items)getOneIntersectingObject(Items.class);
-                if (items[itemCount].getEquippable() == true)
+                Items drop = (Items)getOneIntersectingObject(Items.class);
+                if (drop.getEquipType() == 1)
                 {
-                    equips[0] = items[itemCount];
+                    if (equips[0] == null)
+                    {
+                        equips[0] = drop;
+                        itemCount--;
+                    }
+                    else
+                    {
+                        items[itemCount] = drop;
+                    }
+                }
+                else if (drop.getEquipType() == 2)
+                {
+                    if (equips[1] == null)
+                    {
+                        equips[1] = drop;
+                        itemCount--;
+                    }
+                    else
+                    {
+                        items[itemCount] = drop;
+                    }
+                }
+                else
+                {
+                    items[itemCount] = drop;
                 }
                 itemCount++;
             }
@@ -57,12 +82,23 @@ public class Player extends Mobs
 
     public void update()
     {
+        GreenfootImage image = new GreenfootImage(144, 86);
+        GreenfootImage player = new GreenfootImage("player2.png");
+        image.drawImage(player, 29, 0);
         if (equips[0] != null)
         {
-            GreenfootImage image = new GreenfootImage(115, 86);
-            image.drawImage(getImage(), 0, 0);
-            image.drawImage(equips[0].getImage(), 0, 0);
-            setImage(image);
+            image.drawImage(equips[0].getImage(), 29, 0);
         }
+        setImage(image);
+    }
+
+    public Items[] getItems()
+    {
+        return items;
+    }
+
+    public Items[] getEquips()
+    {
+        return equips;
     }
 }
