@@ -19,10 +19,10 @@ public class Mobs extends Actor
     protected double attack;
     protected double defense;
     protected double dexterity;
-    protected double hp;
+    protected double maxHp;
     protected double luck;
     protected int move;
-
+    protected double currentHp;
     /**
      * 
      */
@@ -44,7 +44,15 @@ public class Mobs extends Actor
      */
     public double getHP() 
     {
-        return hp;
+        return currentHp;
+    }
+
+    /**
+     * 
+     */
+    public double getMaxHP() 
+    {
+        return maxHp;
     }
 
     /**
@@ -63,28 +71,56 @@ public class Mobs extends Actor
         return move;
     }
 
-        /**
+    /**
      * 
      */
-    public double getDexterity() 
+    public double getLuk() 
     {
-        return dexterity;
+        return luck;
     }
-    
-     /**
+
+    /**
      * 
      */
     public int getLevel() 
     {
         return level;
     }
-    
+
     /**
      * 
      */
     public void levelUp() 
     {
-        
+
+    }
+
+    /**
+     * 
+     */
+    public void hurtMe(double dmg) 
+    {
+        if(dmg<=currentHp){
+            currentHp -=  dmg;
+        }
+        else
+        {
+            currentHp = 0; 
+        }
+    }
+
+    /**
+     * 
+     */
+    public void healMe(double heal) 
+    {
+        if(heal + currentHp <=maxHp){
+            currentHp +=  heal;
+        }
+        else
+        {
+            currentHp = maxHp; 
+        }
     }
 
     /**
