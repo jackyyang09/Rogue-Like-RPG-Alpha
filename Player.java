@@ -8,16 +8,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Mobs
 {
+    int mapX;
+    int mapY;
     private Items[] equips;
     private Items[] items;
     private int itemCount = 0;
-    public Player(){
+    public Player(int mapX, int mapY){
         baseHp = 100;
         baseAtt = 10;
         baseDef = 5;
         baseMov = 2;
         equips = new Items[1];
         items = new Items[1];
+        mapX = getMapX;
+        mapY = getMapY;
         begin();
     }
 
