@@ -64,12 +64,16 @@ public class ScrollingMap extends World
 
     /**
      * State an object at a X and Y coordinate to be added on to the map state the depth too
+     * Note: DO NOT PUT OBJECTS IN THE SAME DEPTH
      */
     public void inputObject(int object, int xC, int yC, int d){
+        int xCo = xC * TILESIZE + TILESIZE/2;
+        int yCo = yC * TILESIZE + TILESIZE/2;
         if(object == 1){
-            int xCo = xC * TILESIZE + TILESIZE/2;
-            int yCo = yC * TILESIZE + TILESIZE/2;
             field[xC][yC][d] = new Player(xCo, yCo);
+        }
+        if(object == 2){
+            field[xC][yC][d] = new Enemy(xCo, yCo);
         }
         update();
     }
@@ -80,7 +84,7 @@ public class ScrollingMap extends World
     private void createMap(){
         for(int x = 0; x < MAPIMGWIDTH; x++)
         {
-            for(int y=0;y < MAPIMGHEIGHT;y++)
+            for(int y = 0;y < MAPIMGHEIGHT;y++)
             {
                 int colorRGB = mapImg.getColorAt(x, y).getRGB();
                 int xCoord = x * TILESIZE + TILESIZE/2;
@@ -90,7 +94,6 @@ public class ScrollingMap extends World
                     field[x][y][0] = new Tile(xCoord, yCoord, 1);
                 } else if(colorRGB == Color.BLUE.getRGB()){
                     field[x][y][0] = new Tile(xCoord, yCoord, 2);
-                    field[x][y][1] = new Player(xCoord , yCoord);
                 } else {
                     for(int i = 0; i < MAPDEPTH; i++){
                         field[x][y][i] = null;
@@ -151,9 +154,12 @@ public class ScrollingMap extends World
                         if(i == 0){
                             blockX = ((Tile)field[x][y][i]).mapX;
                             blockY = ((Tile)field[x][y][i]).mapY;
-                        } else {
+                        } else if (i == 1){
                             blockX = ((Player)field[x][y][i]).mapX;
                             blockY = ((Player)field[x][y][i]).mapY;
+                        } else {
+                            blockX = ((Enemy)field[x][y][i]).mapX;
+                            blockY = ((Enemy)field[x][y][i]).mapY;
                         }
                         if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
                         {
