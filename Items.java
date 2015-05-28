@@ -15,6 +15,7 @@ public class Items extends Actor
     private int defBuff;
     private boolean begin;
     private boolean inventory;
+    private int prevX, prevY;
     public Items()
     {
         //Inventory
@@ -42,11 +43,11 @@ public class Items extends Actor
             prevX = getX();
             prevY = getY();
         }
-        if (Greenfoot.mousePressed())
+        if (Greenfoot.mousePressed(this))
         {
             setLocation(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
         }
-        if (Greenfoot.mouseClicked())
+        if (Greenfoot.mouseClicked(this))
         {
             if (checkLoc())
             {
@@ -67,7 +68,7 @@ public class Items extends Actor
         defBuff = defVar;
     }
 
-    private int checkLoc()
+    private boolean checkLoc()
     {
         if (prevX != getX() || prevY != getY()){return true;}
         return false;
