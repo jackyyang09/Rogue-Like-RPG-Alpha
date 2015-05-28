@@ -138,7 +138,7 @@ public class ScrollingMap extends World
     /**
      * Updates the map by dectecting if its currently in the viewport if not remove from world if so add to world
      */
-    private void update()
+    public void update()
     {
         Actor block;
         int blockX;
@@ -200,5 +200,9 @@ public class ScrollingMap extends World
         if(Greenfoot.isKeyDown("a")){
             move(4);
         }
+    }
+    
+    public Actor[][][] getField(){
+        return field;
     }
 }
