@@ -18,8 +18,8 @@ public class Player extends Mobs
         baseMov = 2;
         equips = new Items[2];
         items = new Items[10];
-        mapX = getMapX;
-        mapY = getMapY;
+        this.mapX = mapX;
+        this.mapY = mapY;
         begin();
     }
 
