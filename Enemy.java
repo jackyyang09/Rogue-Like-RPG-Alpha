@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy extends Mobs
 {
     BFSPathFinding bfs = new BFSPathFinding();
-    int mapX;
-    int mapY;
+    int middle;
+    String moveTo;
     public Enemy(int getMapX, int getMapY){
         setImage("chest.png");
         baseHp = 100;
@@ -22,24 +22,24 @@ public class Enemy extends Mobs
     }
 
     public void act(){
-        convertToPixel();
-        Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
+        convertToTile();
+        //Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
         //int playerX = grid[0][0][2].getMapX();
         //int playerY = grid[0][0][2].getMapY();
-        String moveTo = bfs.main(mapX, mapY, 3, 4);
-        int middle = moveTo.indexOf('x');
+        moveTo = bfs.main(mapX, mapY, 3, 4);
+        middle = moveTo.indexOf('x');
         mapX = Integer.parseInt(moveTo.substring(0,middle));
         mapY = Integer.parseInt(moveTo.substring(middle + 1));
-        convertToTile();
+        convertToPixel();
         ((ScrollingMap)getWorld()).update();
     }
 
-    public void convertToPixel(){
+    public void convertToTile(){
         mapX = (mapX - 43) / 86;
         mapY = (mapY - 43) / 86;
     }
     
-    public void convertToTile(){
+    public void convertToPixel(){
         mapX = (mapX * 86) + 43;
         mapY = (mapY * 86) + 43;
     }
