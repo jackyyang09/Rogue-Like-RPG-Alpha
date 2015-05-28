@@ -135,4 +135,22 @@ public class Mobs extends Actor
             levelUp();
         }
     } 
+    
+    public void convertToTile(){
+        mapX = (mapX - 43) / 86;
+        mapY = (mapY - 43) / 86;
+    }
+    
+    public void convertToPixel(){
+        mapX = (mapX * 86) + 43;
+        mapY = (mapY * 86) + 43;
+    }
+    
+    public int getMapX(){
+        return this.mapX;
+    }
+    
+    public int getMapY(){
+        return this.mapY;
+    }
 }
