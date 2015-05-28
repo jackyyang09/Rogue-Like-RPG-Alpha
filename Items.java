@@ -73,6 +73,11 @@ public class Items extends Actor
         if (prevX != getX() || prevY != getY()){return true;}
         return false;
     }
+    
+    public int getItemID()
+    {
+        return id;
+    }
 
     public int getEquipType()
     {
