@@ -26,7 +26,7 @@ public class Tile extends Actor
         } else if(tileCode == 2){
             mapX = getMapX;
             mapY = getMapY;
-            setImage("dirt.jpg");
+            //setImage("dirt.jpg");
         }
     }
 }
