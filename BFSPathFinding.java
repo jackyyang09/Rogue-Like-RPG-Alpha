@@ -12,8 +12,9 @@ public class BFSPathFinding {
     static boolean [][] vis = new boolean[MAXR+2][MAXC+2];
     static final int [][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
     static Scanner scan = new Scanner(System.in);
+    static LinkedList<Point> path;
 
-    public static String main(int startX, int startY, int endX, int endY){
+    public static String BFSPathFinding(int startX, int startY, int endX, int endY){
         //System.out.println("Enter grid size (X by Y, MAX 1000x1000): ");
         C = 58;
         R = 56;
@@ -24,7 +25,7 @@ public class BFSPathFinding {
         gX = endX;
         gY = endY;
         //System.out.println("Enter grid (0 for wall, 1 for empty space): ");
-        int input;
+        //int input;
         for (int i = 1; i <= R; i++){
             for (int j = 1; j <= C; j++){
                 //input = scan.nextInt();
@@ -35,7 +36,7 @@ public class BFSPathFinding {
         }
         bfs();
         Point cur = new Point(gX,gY);
-        LinkedList<Point> path = new LinkedList<Point>();
+        path = new LinkedList<Point>();
         for (int i = dist[gY][gX]; i >= 0; i--){
             for (int j = 0; j < 4; j++){
                 int nextX = cur.x + dir[j][0];
@@ -52,6 +53,15 @@ public class BFSPathFinding {
             //path.removeFirst();
         }
         return "";
+    }
+    
+    public void reset(){
+        path.removeFirst();
+        R = 0;
+        C = 0;
+        grid = new boolean[MAXR+2][MAXC+2];
+        dist = new int[MAXR+2][MAXC+2];
+        vis = new boolean[MAXR+2][MAXC+2];
     }
 
     private static void bfs(){
