@@ -23,6 +23,8 @@ public class Mobs extends Actor
     protected double luck;
     protected int move;
     protected double currentHp;
+    protected int mapX;
+    protected int mapY;
     /**
      * 
      */
