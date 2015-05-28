@@ -22,6 +22,8 @@ public class ScrollingMap extends World
     private int rightBound = getWidth();
     private int x = 0,y = 0;
     private HUD hud = new HUD();
+    
+    Generate generate = new Generate();
 
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     /**
@@ -31,7 +33,7 @@ public class ScrollingMap extends World
     {    
         super(946, 774, 1, false);
         setPaintOrder(Mobs.class, Tile.class);
-        createMap();
+        createMap(generate.generateBorder());
         update();
     }
 
@@ -88,19 +90,17 @@ public class ScrollingMap extends World
     /**
      * Reads Image File
      */
-    private void createMap(){
+    private void createMap(String[][][] data){
         for(int x = 0; x < MAPIMGWIDTH; x++)
         {
             for(int y = 0;y < MAPIMGHEIGHT;y++)
             {
-                int colorRGB = mapImg.getColorAt(x, y).getRGB();
-                int xCoord = x * TILESIZE + TILESIZE/2;
-                int yCoord = y * TILESIZE + TILESIZE/2;
-                if(colorRGB == Color.BLACK.getRGB())
-                {
-                    field[x][y][0] = new Tile(xCoord, yCoord, 1);
-                } else if(colorRGB == Color.BLUE.getRGB()){
-                    field[x][y][0] = new Tile(xCoord, yCoord, 2);
+                for(int d = 0; d < MAPDEPTH; d++){
+                    if(data[x][y][d] != null){
+                        if(data[x][y][d].equals("border")){
+                            field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                        }
+                    }
                 }
             }
         }
@@ -135,10 +135,6 @@ public class ScrollingMap extends World
             bottomBound = MAPHEIGHT;
             topBound = MAPHEIGHT - getHeight();
         }
-        System.out.println("topBound: " + topBound);
-        System.out.println("bottomBound: " + bottomBound);
-        System.out.println("leftBound" + leftBound);
-        System.out.println("rightBound" + rightBound);
         update();
     }
 
