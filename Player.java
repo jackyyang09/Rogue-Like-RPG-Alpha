@@ -101,4 +101,12 @@ public class Player extends Mobs
     {
         return equips;
     }
+    
+        public int getMapX(){
+        return mapX;
+    }
+    
+    public int getMapY(){
+        return mapY;
+    }
 }
