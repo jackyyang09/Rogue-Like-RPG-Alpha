@@ -126,8 +126,8 @@ public class Player extends Mobs
                 placeHolder = (Items)Array.get(items, slot2);
                 Array.set(items, slot2, Array.get(items, slot1));
             }
-            if (slot2 == 10 && currentItem.getEquipType() == 1){Array.set(equips, slot2, Array.get(items, slot1));}
-            if (slot2 == 11 && currentItem.getEquipType() == 2){Array.set(equips, slot2, Array.get(items, slot1));}
+            //             if (slot2 == 10 && currentItem.getEquipType() == 1){Array.set(equips, slot2 - 10, Array.get(items, slot1));}
+            //             if (slot2 == 11 && currentItem.getEquipType() == 2){Array.set(equips, slot2 - 10, Array.get(items, slot1));}
         }
         if (slot1 == 10 || slot1 == 11 && slot2 < 10)
         {
@@ -148,12 +148,12 @@ public class Player extends Mobs
     {
         return equips;
     }
-    
+
     public int getMapX()
     {
         return mapX;
     }
-    
+
     public int getMapY()
     {
         return mapY;
