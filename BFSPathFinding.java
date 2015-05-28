@@ -36,7 +36,7 @@ public class BFSPathFinding {
         bfs();
         Point cur = new Point(gX,gY);
         LinkedList<Point> path = new LinkedList<Point>();
-        for (int i = dist[gY][gX]; i >= 1; i--){
+        for (int i = dist[gY][gX]; i >= 0; i--){
             for (int j = 0; j < 4; j++){
                 int nextX = cur.x + dir[j][0];
                 int nextY = cur.y + dir[j][1];
