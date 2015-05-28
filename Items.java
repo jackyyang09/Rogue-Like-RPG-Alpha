@@ -10,7 +10,7 @@ public class Items extends Actor
 {
     private int id;
     private String name;
-    private String fileName
+    private String fileName;
     private int equipType;
     private int atkBuff;
     private int defBuff;
@@ -22,7 +22,7 @@ public class Items extends Actor
             name = "Beam Blade";
             equipType = 1;
             setImage("beamblade1.png");
-            fileName = "beamblade3.png");
+            fileName = ("beamblade3.png");
             atkBuff = 2;
             defBuff = 0;
         }
