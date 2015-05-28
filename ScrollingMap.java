@@ -62,6 +62,13 @@ public class ScrollingMap extends World
         }
     }
 
+    public void spawnPlayer(){
+        int xCo = 30 * TILESIZE + TILESIZE/2;
+        int yCo = 30 * TILESIZE + TILESIZE/2;
+        field[30][30][1] = new Player(xCo, yCo);
+        update();
+    }
+
     /**
      * State an object at a X and Y coordinate to be added on to the map state the depth too
      * Note: DO NOT PUT OBJECTS IN THE SAME DEPTH
@@ -94,10 +101,6 @@ public class ScrollingMap extends World
                     field[x][y][0] = new Tile(xCoord, yCoord, 1);
                 } else if(colorRGB == Color.BLUE.getRGB()){
                     field[x][y][0] = new Tile(xCoord, yCoord, 2);
-                } else {
-                    for(int i = 0; i < MAPDEPTH; i++){
-                        field[x][y][i] = null;
-                    }
                 }
             }
         }
@@ -132,7 +135,29 @@ public class ScrollingMap extends World
             bottomBound = MAPHEIGHT;
             topBound = MAPHEIGHT - getHeight();
         }
+        System.out.println("topBound: " + topBound);
+        System.out.println("bottomBound: " + bottomBound);
+        System.out.println("leftBound" + leftBound);
+        System.out.println("rightBound" + rightBound);
         update();
+    }
+
+    public void centerOnPlayer(){
+        int pMapX, pMapY;
+        for(int i = 0; i < 58; i++){
+            for(int j = 0; j < 56; j++){
+                if(field[i][j][1] != null){
+                    pMapX = ((Player)field[i][j][1]).getMapX();
+                    pMapY = ((Player)field[i][j][1]).getMapY();
+                    topBound = pMapY - (getHeight()/2);
+                    bottomBound = pMapY + (getHeight()/2);
+                    leftBound = pMapX - (getWidth()/2);
+                    rightBound = pMapX + (getWidth()/2);
+                    update();
+                    break;
+                }
+            }
+        }        
     }
 
     /**
@@ -201,7 +226,7 @@ public class ScrollingMap extends World
             move(4);
         }
     }
-    
+
     public Actor[][][] getField(){
         return field;
     }
