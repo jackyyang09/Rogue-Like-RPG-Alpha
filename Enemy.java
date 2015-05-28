@@ -11,8 +11,6 @@ public class Enemy extends Mobs
     BFSPathFinding bfs = new BFSPathFinding();
     int mapX;
     int mapY;
-    int tempX;
-    int tempY;
     public Enemy(int getMapX, int getMapY){
         setImage("chest.png");
         baseHp = 100;
@@ -30,8 +28,9 @@ public class Enemy extends Mobs
         //int playerY = grid[0][0][2].getMapY();
         String moveTo = bfs.main(mapX, mapY, 3, 4);
         int middle = moveTo.indexOf('x');
-        tempX = Integer.parseInt(moveTo.substring(0,middle));
-        tempY = Integer.parseInt(moveTo.substring(middle + 1));
+        mapX = Integer.parseInt(moveTo.substring(0,middle));
+        mapY = Integer.parseInt(moveTo.substring(middle + 1));
+        convertToTile();
         ((ScrollingMap)getWorld()).update();
     }
 
