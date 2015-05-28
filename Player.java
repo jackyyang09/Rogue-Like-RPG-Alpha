@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.lang.reflect.Array;
+import java.util.List;
 /**
  * Player
  * 
@@ -8,8 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Mobs
 {
-    private Items[] equips;
-    private Items[] items;
+    private Items[] equips, items;
     private int itemCount = 0;
     public Player(int mapX, int mapY){
         baseHp = 100;
@@ -76,6 +76,8 @@ public class Player extends Mobs
                 }
                 itemCount++;
             }
+            List<Inventory> inv = getWorld().getObjects(Inventory.class);
+            for (Inventory i :inv){i.update();}
             removeTouching(Items.class);
         }
     }
@@ -92,6 +94,51 @@ public class Player extends Mobs
         setImage(image);
     }
 
+    public int checkInv()
+    {
+        return itemCount; 
+    }
+
+    /**
+     * Deposit an item directly into the inventory
+     * Probably only used with chests
+     */
+    public void addItemInv(Items item)
+    {
+
+    }
+
+    /**
+     * Switch an item with a different one in a different slot
+     * The slot for the item to go into 0 - 9, 10 and 11 are the weapon and armor slots
+     * 
+     * @param slot1 The current slot
+     * @param slot2 The destination slot
+     */ 
+    public void switchSlots(int slot1, int slot2)
+    {
+        Items placeHolder = new Items();
+        if (slot1 < 10)
+        {
+            Items currentItem = (Items)Array.get(items, slot1);
+            if (slot2 < 10)
+            {
+                placeHolder = (Items)Array.get(items, slot2);
+                Array.set(items, slot2, Array.get(items, slot1));
+            }
+            if (slot2 == 10 && currentItem.getEquipType() == 1){Array.set(equips, slot2, Array.get(items, slot1));}
+            if (slot2 == 11 && currentItem.getEquipType() == 2){Array.set(equips, slot2, Array.get(items, slot1));}
+        }
+        if (slot1 == 10 || slot1 == 11 && slot2 < 10)
+        {
+            placeHolder = (Items)Array.get(items, slot2);
+            if (slot2 < 10){Array.set(items, slot2, Array.get(equips, slot1 - 10));}
+            Array.set(equips, slot1 - 10, placeHolder);
+        }
+        List<Inventory> inv = getWorld().getObjects(Inventory.class);
+        for (Inventory i :inv){i.update();}
+    }
+
     public Items[] getItems()
     {
         return items;
@@ -102,11 +149,13 @@ public class Player extends Mobs
         return equips;
     }
     
-        public int getMapX(){
+    public int getMapX()
+    {
         return mapX;
     }
     
-    public int getMapY(){
+    public int getMapY()
+    {
         return mapY;
     }
 }
