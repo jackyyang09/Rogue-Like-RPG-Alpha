@@ -38,30 +38,33 @@ public class ScrollingMap extends World
     }
 
     /**
-     * moves the screen in the desired direction by one tile
+     * moves the player in the desired direction by one tile
      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
      */
-    public void move(int dir){
+    public void movePlayer(int dir){
+        int playerX = -1;
+        int playerY = -1;
+        for(int i = 0; i < 58; i++){
+            for(int j = 0; j < 56; j++){
+                if(field[x][y][1] != null){
+                    playerX = i;
+                    playerY = j;
+                }
+            }
+        }
         if (dir == 1){
-            y = TILESIZE;
-            shiftScreen(x,y);
-            y = 0;
+            playerY += 1;
         }
         if (dir == 2){
-            y = -TILESIZE;
-            shiftScreen(x,y);
-            y = 0;
+            playerY -= 1;
         }
         if (dir == 3){
-            x = TILESIZE;
-            shiftScreen(x,y);
-            x = 0;
+            playerX += 1;
         }
         if (dir == 4){
-            x = -TILESIZE;
-            shiftScreen(x,y);
-            x = 0;
+            playerX -= 1;
         }
+        update();
     }
 
     public void spawnPlayer(){
