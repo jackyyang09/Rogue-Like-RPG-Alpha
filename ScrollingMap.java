@@ -33,12 +33,13 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        setPaintOrder(Mobs.class, Tile.class);
+        setPaintOrder(Items.class, Inventory.class, ValueBox.class, Button.class, HUD.class, Mobs.class, Tile.class);
         createMap(generate.generateBorder());
         //addObject(c,0,0);
         spawnPlayer();
         centerOnPlayer();
         update();
+        prepare();
     }
 
     /**
@@ -297,5 +298,15 @@ public class ScrollingMap extends World
 
     public Actor[][][] getField(){
         return field;
+    }
+    
+     /**
+     * Prepare the world for the start of the program. That is: create the initial
+     * objects and add them to the world.
+     */
+    private void prepare()
+    {
+        HUD hud = new HUD();
+        addObject(hud, 473, 689);
     }
 }
