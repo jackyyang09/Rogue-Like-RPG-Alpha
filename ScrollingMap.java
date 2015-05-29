@@ -20,8 +20,9 @@ public class ScrollingMap extends World
     private int rightBound = getWidth();
     private int x = 0,y = 0;
     private HUD hud = new HUD();
-    
-    Generate generate = new Generate();
+
+    private Generate generate = new Generate();
+    //private Control c = new Control();
 
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     /**
@@ -32,6 +33,9 @@ public class ScrollingMap extends World
         super(946, 774, 1, false);
         setPaintOrder(Mobs.class, Tile.class);
         createMap(generate.generateBorder());
+        //addObject(c,0,0);
+        spawnPlayer();
+        centerOnPlayer();
         update();
     }
 
@@ -40,35 +44,59 @@ public class ScrollingMap extends World
      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
      */
     public void movePlayer(int dir){
-        int playerX = -1;
-        int playerY = -1;
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
-                if(field[x][y][1] != null){
-                    playerX = i;
-                    playerY = j;
-                }
+                if(field[i][j][1] != null){
+                    if (dir == 1){
+                        ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
+                    }
+                    if (dir == 2){
+                        ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
+                    }
+                    if (dir == 3){
+                        ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
+                    }
+                    if (dir == 4){
+                        ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
+                    }
+                    centerOnPlayer();
+                } 
             }
-        }
-        if (dir == 1){
-            playerY += 1;
-        }
-        if (dir == 2){
-            playerY -= 1;
-        }
-        if (dir == 3){
-            playerX += 1;
-        }
-        if (dir == 4){
-            playerX -= 1;
         }
         update();
     }
 
+    /**
+     * moves the screen in the desired direction by one tile
+     * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
+     */
+    public void move(int dir){
+        if (dir == 1){
+            y = TILESIZE;
+            shiftScreen(x,y);
+            y = 0;
+        }
+        if (dir == 2){
+            y = -TILESIZE;
+            shiftScreen(x,y);
+            y = 0;
+        }
+        if (dir == 3){
+            x = TILESIZE;
+            shiftScreen(x,y);
+            x = 0;
+        }
+        if (dir == 4){
+            x = -TILESIZE;
+            shiftScreen(x,y);
+            x = 0;
+        }
+    }
+
     public void spawnPlayer(){
-        int xCo = 30 * TILESIZE + TILESIZE/2;
-        int yCo = 30 * TILESIZE + TILESIZE/2;
-        field[30][30][1] = new Player(xCo, yCo);
+        int xCo = 2 * TILESIZE + TILESIZE/2;
+        int yCo = 2 * TILESIZE + TILESIZE/2;
+        field[2][2][1] = new Player(xCo, yCo);
         update();
     }
 
@@ -210,6 +238,7 @@ public class ScrollingMap extends World
      */
     public void act() 
     {
+        //movePlayer(1);
         if(Greenfoot.isKeyDown("s")){
             move(1);
         }
@@ -222,6 +251,21 @@ public class ScrollingMap extends World
         if(Greenfoot.isKeyDown("a")){
             move(4);
         }
+
+        if(Greenfoot.isKeyDown("k")){
+            movePlayer(1);
+        }
+        if(Greenfoot.isKeyDown("i")){
+            movePlayer(2);
+        }
+        if(Greenfoot.isKeyDown("l")){
+            movePlayer(3);
+        }
+        if(Greenfoot.isKeyDown("j")){
+            movePlayer(4);
+        }
+
+        update();
     }
 
     public Actor[][][] getField(){
