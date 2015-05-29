@@ -134,9 +134,12 @@ public class ScrollingMap extends World
     
     public void inputItem(Items item, int xC, int yC)
     {
-        field[xC][yC][2] = item;
+        xC = (xC - 43) / 86;
+        yC = (yC - 43) / 86;
+        field[xC][yC][3] = item;
         item.setMapLoc(xC, yC);
     }
+
 
     /**
      * Reads Image File
