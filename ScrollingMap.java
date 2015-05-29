@@ -20,6 +20,8 @@ public class ScrollingMap extends World
     private int rightBound = getWidth();
     private int x = 0,y = 0;
     private HUD hud = new HUD();
+    private int playerX = 2;
+    private int playerY = 2;
 
     private Generate generate = new Generate();
     //private Control c = new Control();
@@ -49,17 +51,30 @@ public class ScrollingMap extends World
                 if(field[i][j][1] != null){
                     if (dir == 1){
                         ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
+                        field[playerX][playerY+1][1] = field[playerX][playerY][1];
+                        field[playerX][playerY][1] = null;
+                        playerY++;
                     }
                     if (dir == 2){
                         ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
+                        field[playerX][playerY-1][1] = field[playerX][playerY][1];
+                        field[playerX][playerY][1] = null;
+                        playerY--;
                     }
                     if (dir == 3){
                         ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
+                        field[playerX+1][playerY][1] = field[playerX][playerY][1];
+                        field[playerX][playerY][1] = null;
+                        playerX++;
                     }
                     if (dir == 4){
                         ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
+                        field[playerX-1][playerY][1] = field[playerX][playerY][1];
+                        field[playerX][playerY][1] = null;
+                        playerX--;
                     }
                     centerOnPlayer();
+                    dir = 0;
                 } 
             }
         }
@@ -94,9 +109,9 @@ public class ScrollingMap extends World
     }
 
     public void spawnPlayer(){
-        int xCo = 2 * TILESIZE + TILESIZE/2;
-        int yCo = 2 * TILESIZE + TILESIZE/2;
-        field[2][2][1] = new Player(xCo, yCo);
+        int xCo = playerX * TILESIZE + TILESIZE/2;
+        int yCo = playerY * TILESIZE + TILESIZE/2;
+        field[playerX][playerY][1] = new Player(xCo, yCo);
         update();
     }
 
