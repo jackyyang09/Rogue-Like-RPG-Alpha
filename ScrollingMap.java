@@ -238,9 +238,12 @@ public class ScrollingMap extends World
                         } else if (i == 1){
                             blockX = ((Player)field[x][y][i]).mapX;
                             blockY = ((Player)field[x][y][i]).mapY;
-                        } else {
+                        } else if (i == 2){
                             blockX = ((Enemy)field[x][y][i]).mapX;
                             blockY = ((Enemy)field[x][y][i]).mapY;
+                        } else if (i == 3){
+                            blockX = ((Items)field[x][y][i]).mapX;
+                            blockY = ((Items)field[x][y][i]).mapY;
                         }
                         if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
                         {
