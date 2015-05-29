@@ -13,7 +13,7 @@ public class ScrollingMap extends World
     private final int MAPHEIGHT = 56 * TILESIZE;
     private final int MAPIMGWIDTH = 58;
     private final int MAPIMGHEIGHT = 56;
-    private final int MAPDEPTH = 3;
+    private final int MAPDEPTH = 4;
     private int leftBound = 0;
     private int bottomBound = MAPHEIGHT;
     private int topBound = MAPHEIGHT - getHeight();
