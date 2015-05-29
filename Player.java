@@ -149,13 +149,19 @@ public class Player extends Mobs
         return equips;
     }
 
-    public int getMapX()
-    {
+    public void setMapX(int newMapX){
+        mapX = newMapX;
+    }
+    
+    public void setMapY(int newMapY){
+        mapY = newMapY;
+    }
+    
+    public int getMapX(){
         return mapX;
     }
-
-    public int getMapY()
-    {
+    
+    public int getMapY(){
         return mapY;
     }
 }
