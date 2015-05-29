@@ -150,6 +150,12 @@ public class ScrollingMap extends World
                         if(data[x][y][d].equals("border")){
                             field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                         }
+                        if(data[x][y][d].equals("floorTile")){
+                            field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
+                        }
+                        if(data[x][y][d].equals("wall")){
+                            field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
+                        }
                     }
                 }
             }
