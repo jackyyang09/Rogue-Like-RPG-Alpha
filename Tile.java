@@ -10,7 +10,6 @@ public class Tile extends Actor
 {
     int mapX;
     int mapY;
-    int randFloor;
     public Tile(int getMapX, int getMapY, int tileCode)
     {
         if(tileCode == 1){
@@ -22,5 +21,7 @@ public class Tile extends Actor
         if(tileCode == 3){
             setImage("wall.png");
         }
+        mapX = getMapX;
+        mapY = getMapY;
     }
 }
