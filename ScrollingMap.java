@@ -14,8 +14,6 @@ public class ScrollingMap extends World
     private final int MAPIMGWIDTH = 58;
     private final int MAPIMGHEIGHT = 56;
     private final int MAPDEPTH = 3;
-    private mapData map = new mapData();
-    private GreenfootImage mapImg = map.getImage();
     private int leftBound = 0;
     private int bottomBound = MAPHEIGHT;
     private int topBound = MAPHEIGHT - getHeight();
