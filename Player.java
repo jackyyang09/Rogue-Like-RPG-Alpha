@@ -17,7 +17,7 @@ public class Player extends Mobs
         baseDef = 5;
         baseMov = 2;
         equips = new Items[2];
-        items = new Items[10];
+        items = new Items[9];
         this.mapX = mapX;
         this.mapY = mapY;
         begin();
@@ -32,7 +32,7 @@ public class Player extends Mobs
 
     public void act()
     {
-        pickupItem();
+        if (Greenfoot.isKeyDown("z")){pickupItem();}
         update();
     }
 
@@ -43,42 +43,26 @@ public class Player extends Mobs
     {
         if (this.isTouching(Items.class))
         {
-            if (itemCount < 10)
+            Items drop = (Items)getOneIntersectingObject(Items.class);
+            if (drop.getInventory() == false)
             {
-                Items drop = (Items)getOneIntersectingObject(Items.class);
-                if (drop.getEquipType() == 1)
+                if (equips[0] == null && drop.getEquipType() == 1){equips[0] = drop;}
+                else if (equips[1] == null && drop.getEquipType() == 2){equips[1] = drop;}
+                else if (equips[0] != null || equips[1] != null || drop.getEquipType() == 0)
                 {
-                    if (equips[0] == null)
+                    for (int i = 0; i < Array.getLength(items); i++)
                     {
-                        equips[0] = drop;
-                        itemCount--;
-                    }
-                    else
-                    {
-                        items[itemCount] = drop;
+                        if (items[i] == null)
+                        {
+                            items[i] = drop;
+                            i = Array.getLength(items);
+                        }
                     }
                 }
-                else if (drop.getEquipType() == 2)
-                {
-                    if (equips[1] == null)
-                    {
-                        equips[1] = drop;
-                        itemCount--;
-                    }
-                    else
-                    {
-                        items[itemCount] = drop;
-                    }
-                }
-                else
-                {
-                    items[itemCount] = drop;
-                }
-                itemCount++;
+                List<Inventory> inv = getWorld().getObjects(Inventory.class);
+                for (Inventory i :inv){i.update();}
+                removeTouching(Items.class);
             }
-            List<Inventory> inv = getWorld().getObjects(Inventory.class);
-            for (Inventory i :inv){i.update();}
-            removeTouching(Items.class);
         }
     }
 
@@ -118,25 +102,49 @@ public class Player extends Mobs
     public void switchSlots(int slot1, int slot2)
     {
         Items placeHolder = new Items();
-        if (slot1 < 10)
+        if (slot1 < 9)
         {
             Items currentItem = (Items)Array.get(items, slot1);
-            if (slot2 < 10)
+            if (slot2 < 9)
             {
                 placeHolder = (Items)Array.get(items, slot2);
                 Array.set(items, slot2, Array.get(items, slot1));
             }
-            //             if (slot2 == 10 && currentItem.getEquipType() == 1){Array.set(equips, slot2 - 10, Array.get(items, slot1));}
-            //             if (slot2 == 11 && currentItem.getEquipType() == 2){Array.set(equips, slot2 - 10, Array.get(items, slot1));}
+            if (slot2 == 9 && currentItem.getEquipType() == 1){Array.set(equips, slot2 - 10, Array.get(items, slot1));}
+            if (slot2 == 10 && currentItem.getEquipType() == 2){Array.set(equips, slot2 - 10, Array.get(items, slot1));}
+            Array.set(items, slot1, placeHolder);
         }
-        if (slot1 == 10 || slot1 == 11 && slot2 < 10)
+        if (slot1 == 9 || slot1 == 10)
         {
-            placeHolder = (Items)Array.get(items, slot2);
-            if (slot2 < 10){Array.set(items, slot2, Array.get(equips, slot1 - 10));}
-            Array.set(equips, slot1 - 10, placeHolder);
+            if (slot2 < 9)
+            {
+                placeHolder = (Items)Array.get(items, slot2);
+                Array.set(items, slot2, Array.get(equips, slot1 - 9));
+                Array.set(equips, slot1 - 9, placeHolder);
+            }
+            List<Inventory> inv = getWorld().getObjects(Inventory.class);
+            for (Inventory i :inv){i.update();}
         }
-        List<Inventory> inv = getWorld().getObjects(Inventory.class);
-        for (Inventory i :inv){i.update();}
+    }
+
+    public void dropItem(Items item)
+    {
+        ScrollingMap map = (ScrollingMap)getWorld();
+        for (int i = 0; i < 9; i++)
+        {
+            if (items[i] == item)
+            {
+                items[i] = null;
+            }
+            if (i < 2)
+            {
+                if (equips[i] == item)
+                {
+                    equips[i] = null;
+                }
+            }
+        }
+        map.inputItem(item, mapX, mapY);
     }
 
     public Items[] getItems()
@@ -152,15 +160,15 @@ public class Player extends Mobs
     public void setMapX(int newMapX){
         mapX = newMapX;
     }
-    
+
     public void setMapY(int newMapY){
         mapY = newMapY;
     }
-    
+
     public int getMapX(){
         return mapX;
     }
-    
+
     public int getMapY(){
         return mapY;
     }
