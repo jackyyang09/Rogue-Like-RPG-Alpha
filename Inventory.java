@@ -11,7 +11,7 @@ public class Inventory extends Actor
 {
     private Items[] items;
     private Items[] equips;
-    private Items[] slots;
+    private ItemInventory[] slots;
     private boolean update;
     public Inventory()
     {
@@ -33,7 +33,7 @@ public class Inventory extends Actor
     public void update()
     {
         clear();
-        slots = new Items[11];
+        slots = new ItemInventory[11];
         List<Player> Playerlist = getWorld().getObjects(Player.class);
         for(Player P : Playerlist)
         {
@@ -41,9 +41,9 @@ public class Inventory extends Actor
             equips = P.getEquips();
             for (int i = 0; i < Array.getLength(items); i++)
             {
-                Items newItem = null;
-                if (items[i] != null){newItem = new Items(items[i].getItemID(), true);}
-                else if (items[i] == null){newItem = new Items();}
+                ItemInventory newItem = null;
+                if (items[i] != null){newItem = new ItemInventory(items[i].getItemID());}
+                else if (items[i] == null){newItem = new ItemInventory(0);}
                 if (i == 0){getWorld().addObject(newItem, 582, 115);}
                 if (i == 1){getWorld().addObject(newItem, 705, 115);}
                 if (i == 2){getWorld().addObject(newItem, 828, 115);}
@@ -57,9 +57,9 @@ public class Inventory extends Actor
             }
             for (int i = 0; i < Array.getLength(equips); i++)
             {
-                Items newItem = null;
-                if (equips[i] != null){newItem = new Items(equips[i].getItemID(), true);}
-                if (equips[i] == null){newItem = new Items();}
+                ItemInventory newItem = null;
+                if (equips[i] != null){newItem = new ItemInventory(equips[i].getItemID());}
+                if (equips[i] == null){newItem = new ItemInventory(0);}
                 if (i == 0){getWorld().addObject(newItem, 582, 503);}
                 if (i == 1){getWorld().addObject(newItem, 705, 503);}
                 slots[i + 9] = newItem;
@@ -75,7 +75,7 @@ public class Inventory extends Actor
      * @param item2 The item it's touching
      * @return boolean Only used by Items
      */
-    public boolean switchSlot(Items item1, Items item2)
+    public boolean switchSlot(ItemInventory item1, ItemInventory item2)
     {
         int slot1 = 0;
         int slot2 = 0;
@@ -121,12 +121,28 @@ public class Inventory extends Actor
         return false;
     }
 
+    public void dropItem(ItemInventory item)
+    {
+        int index = 0;
+        for (int i = 0; i < Array.getLength(slots); i++)
+        {
+            if (slots[i] == item)
+            {
+                index = i;
+                i = Array.getLength(slots);
+            }
+        }
+        List<Player> player = getWorld().getObjects(Player.class);
+        for (Player p :player){p.dropItem(index);}
+        update();
+    }
+
     public void clear()
     {
-        List<Items> ItemList = getIntersectingObjects(Items.class);
-        for (Items item : ItemList)
+        List<ItemInventory> ItemList = getIntersectingObjects(ItemInventory.class);
+        for (ItemInventory item : ItemList)
         {
-            removeTouching(Items.class);
+            removeTouching(ItemInventory.class);
         }
     }
 
