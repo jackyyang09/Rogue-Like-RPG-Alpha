@@ -33,7 +33,7 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        setPaintOrder(Items.class, Inventory.class, ValueBox.class, Button.class, HUD.class, Mobs.class, Tile.class);
+        setPaintOrder(Button.class, ItemInventory.class, HUD.class, Inventory.class, Items.class, ValueBox.class, Mobs.class, Tile.class);
         createMap(generate.generateBorder());
         //addObject(c,0,0);
         spawnPlayer();
