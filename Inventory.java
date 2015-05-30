@@ -134,7 +134,7 @@ public class Inventory extends Actor
         }
         List<Player> player = getWorld().getObjects(Player.class);
         for (Player p :player){p.dropItem(index);}
-        update();
+        update = false;
     }
 
     public void clear()
