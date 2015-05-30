@@ -132,15 +132,21 @@ public class ScrollingMap extends World
         update();
     }
     
-    public void inputItem(Items item, int xC, int yC)
+    public void inputItem(int xC, int yC)
+    {
+        int xCo = xC * TILESIZE + TILESIZE/2;
+        int yCo = yC * TILESIZE + TILESIZE/2;
+        field[xC][yC][3] = new Items(1, xCo, yCo);
+        update();
+    }
+
+    public void removeItem(int xC, int yC)
     {
         xC = (xC - 43) / 86;
         yC = (yC - 43) / 86;
-        field[xC][yC][3] = item;
-        item.setMapLoc(xC, yC);
+        field[xC][yC][3] = null;
     }
-
-
+    
     /**
      * Reads Image File
      */
@@ -150,15 +156,15 @@ public class ScrollingMap extends World
             for(int y = 0;y < MAPIMGHEIGHT;y++)
             {
                 for(int d = 0; d < MAPDEPTH; d++){
-                    if(data[x][y][d] != null){
-                        if(data[x][y][d].equals("border")){
-                            field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    if(data[x][y][0] != null){
+                        if(data[x][y][0].equals("border")){
+                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                         }
-                        if(data[x][y][d].equals("floorTile")){
-                            field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
+                        if(data[x][y][0].equals("floorTile")){
+                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
                         }
-                        if(data[x][y][d].equals("wall")){
-                            field[x][y][d] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
+                        if(data[x][y][0].equals("wall")){
+                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                         }
                     }
                 }
@@ -241,9 +247,9 @@ public class ScrollingMap extends World
                         } else if (i == 2){
                             blockX = ((Enemy)field[x][y][i]).mapX;
                             blockY = ((Enemy)field[x][y][i]).mapY;
-                        } else if (i == 3){
-                            blockX = ((Items)field[x][y][i]).mapX;
-                            blockY = ((Items)field[x][y][i]).mapY;
+                        } else {
+                            blockX = ((Items)field[x][y][i]).getMapX();
+                            blockY = ((Items)field[x][y][i]).getMapY();
                         }
                         if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
                         {
