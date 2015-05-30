@@ -44,26 +44,25 @@ public class Player extends Mobs
         if (this.isTouching(Items.class))
         {
             Items drop = (Items)getOneIntersectingObject(Items.class);
-            if (drop.getInventory() == false)
+            if (equips[0] == null && drop.getEquipType() == 1){equips[0] = drop;}
+            else if (equips[1] == null && drop.getEquipType() == 2){equips[1] = drop;}
+            else if (equips[0] != null || equips[1] != null || drop.getEquipType() == 0)
             {
-                if (equips[0] == null && drop.getEquipType() == 1){equips[0] = drop;}
-                else if (equips[1] == null && drop.getEquipType() == 2){equips[1] = drop;}
-                else if (equips[0] != null || equips[1] != null || drop.getEquipType() == 0)
+                for (int i = 0; i < Array.getLength(items); i++)
                 {
-                    for (int i = 0; i < Array.getLength(items); i++)
+                    if (items[i] == null)
                     {
-                        if (items[i] == null)
-                        {
-                            items[i] = drop;
-                            i = Array.getLength(items);
-                        }
+                        items[i] = drop;
+                        i = Array.getLength(items);
                     }
                 }
-                List<Inventory> inv = getWorld().getObjects(Inventory.class);
-                for (Inventory i :inv){i.update();}
-                removeTouching(Items.class);
             }
+            List<Inventory> inv = getWorld().getObjects(Inventory.class);
+            for (Inventory i :inv){i.update();}
+            removeTouching(Items.class);
+            ((ScrollingMap)getWorld()).removeItem(mapX, mapY);
         }
+
     }
 
     public void update()
@@ -127,24 +126,16 @@ public class Player extends Mobs
         }
     }
 
-    public void dropItem(Items item)
+    public void dropItem(int item)
     {
         ScrollingMap map = (ScrollingMap)getWorld();
-        for (int i = 0; i < 9; i++)
-        {
-            if (items[i] == item)
-            {
-                items[i] = null;
-            }
-            if (i < 2)
-            {
-                if (equips[i] == item)
-                {
-                    equips[i] = null;
-                }
-            }
-        }
-        map.inputItem(item, mapX, mapY);
+        if (item < 9){items[item] = null;}
+        else{equips[item - 9] = null;}
+        mapX = (mapX - 43) / 86;
+        mapY = (mapY - 43) / 86;
+        map.inputItem(mapX, mapY);
+        mapX = (mapX * 86) + 43;
+        mapY = (mapY * 86) + 43;
     }
 
     public Items[] getItems()
