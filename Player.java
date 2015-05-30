@@ -41,11 +41,20 @@ public class Player extends Mobs
      */
     public void pickupItem()
     {
+        boolean pickup = false;
         if (this.isTouching(Items.class))
         {
             Items drop = (Items)getOneIntersectingObject(Items.class);
-            if (equips[0] == null && drop.getEquipType() == 1){equips[0] = drop;}
-            else if (equips[1] == null && drop.getEquipType() == 2){equips[1] = drop;}
+            if (equips[0] == null && drop.getEquipType() == 1)
+            {
+                equips[0] = drop;
+                pickup = true;
+            }
+            else if (equips[1] == null && drop.getEquipType() == 2)
+            {
+                equips[1] = drop;
+                pickup = true;
+            }
             else if (equips[0] != null || equips[1] != null || drop.getEquipType() == 0)
             {
                 for (int i = 0; i < Array.getLength(items); i++)
@@ -54,15 +63,18 @@ public class Player extends Mobs
                     {
                         items[i] = drop;
                         i = Array.getLength(items);
+                        pickup = true;
                     }
                 }
             }
-            List<Inventory> inv = getWorld().getObjects(Inventory.class);
-            for (Inventory i :inv){i.update();}
-            removeTouching(Items.class);
-            ((ScrollingMap)getWorld()).removeItem(mapX, mapY);
+            if (pickup)
+            {
+                List<Inventory> inv = getWorld().getObjects(Inventory.class);
+                for (Inventory i :inv){i.update();}
+                removeTouching(Items.class);
+                ((ScrollingMap)getWorld()).removeItem(mapX, mapY);
+            }
         }
-
     }
 
     public void update()
