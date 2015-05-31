@@ -20,9 +20,9 @@ public class ScrollingMap extends World
     private int rightBound = getWidth();
     private int x = 0,y = 0;
     private HUD hud = new HUD();
-    
-    private int playerX = 2; // Starting
-    private int playerY = 2; // Coords
+
+    private int playerX = 30; // Starting
+    private int playerY = 30; // Coords
 
     private Generate generate = new Generate();
     private Control c = new Control();
@@ -51,29 +51,31 @@ public class ScrollingMap extends World
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
                 if(field[i][j][1] != null){
-                    if (dir == 1){
-                        ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
-                        field[playerX][playerY+1][1] = field[playerX][playerY][1];
-                        field[playerX][playerY][1] = null;
-                        playerY++;
-                    }
-                    if (dir == 2){
-                        ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
-                        field[playerX][playerY-1][1] = field[playerX][playerY][1];
-                        field[playerX][playerY][1] = null;
-                        playerY--;
-                    }
-                    if (dir == 3){
-                        ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
-                        field[playerX+1][playerY][1] = field[playerX][playerY][1];
-                        field[playerX][playerY][1] = null;
-                        playerX++;
-                    }
-                    if (dir == 4){
-                        ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
-                        field[playerX-1][playerY][1] = field[playerX][playerY][1];
-                        field[playerX][playerY][1] = null;
-                        playerX--;
+                    if(((Tile)field[i][j][0]) != null){
+                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isWall){
+                            ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
+                            field[playerX][playerY+1][1] = field[playerX][playerY][1];
+                            field[playerX][playerY][1] = null;
+                            playerY++;
+                        }
+                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isWall){
+                            ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
+                            field[playerX][playerY-1][1] = field[playerX][playerY][1];
+                            field[playerX][playerY][1] = null;
+                            playerY--;
+                        }
+                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isWall){
+                            ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
+                            field[playerX+1][playerY][1] = field[playerX][playerY][1];
+                            field[playerX][playerY][1] = null;
+                            playerX++;
+                        }
+                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isWall){
+                            ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
+                            field[playerX-1][playerY][1] = field[playerX][playerY][1];
+                            field[playerX][playerY][1] = null;
+                            playerX--;
+                        }
                     }
                     centerOnPlayer();
                     dir = 0;
@@ -279,31 +281,18 @@ public class ScrollingMap extends World
      */
     public void act() 
     {
-        //         if(Greenfoot.isKeyDown("s")){
-        //             move(1);
-        //         }
-        //         if(Greenfoot.isKeyDown("w")){
-        //             move(2);
-        //         }
-        //         if(Greenfoot.isKeyDown("d")){
-        //             move(3);
-        //         }
-        //         if(Greenfoot.isKeyDown("a")){
-        //             move(4);
-        //         }
-
-        //         if(Greenfoot.isKeyDown("k")){
-        //             movePlayer(1);
-        //         }
-        //         if(Greenfoot.isKeyDown("i")){
-        //             movePlayer(2);
-        //         }
-        //         if(Greenfoot.isKeyDown("l")){
-        //             movePlayer(3);
-        //         }
-        //         if(Greenfoot.isKeyDown("j")){
-        //             movePlayer(4);
-        //         }
+        if(Greenfoot.isKeyDown("k")){
+            move(1);
+        }
+        if(Greenfoot.isKeyDown("i")){
+            move(2);
+        }
+        if(Greenfoot.isKeyDown("l")){
+            move(3);
+        }
+        if(Greenfoot.isKeyDown("j")){
+            move(4);
+        }
     }
 
     public Actor[][][] getField(){
