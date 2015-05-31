@@ -14,11 +14,13 @@ public class Mobs extends Actor
     protected double baseAtt;
     protected double baseDef;
     protected double baseDex;
+    protected double baseHit;
     protected double baseLuk;
     protected int baseMov;
     protected double attack;
     protected double defense;
     protected double dexterity;
+    protected double hit;
     protected double maxHp;
     protected double luck;
     protected int move;
@@ -64,7 +66,15 @@ public class Mobs extends Actor
     {
         return dexterity;
     } 
-
+    
+    /**
+     * 
+     */
+    public double getHit() 
+    {
+        return hit;
+    } 
+    
     /**
      * 
      */
