@@ -33,10 +33,6 @@ public class Generate
         height = getRandHeight();
         xPlace = getRandX(width);
         yPlace = getRandY(height);
-        System.out.println(width);
-        System.out.println(height);
-        System.out.println(xPlace);
-        System.out.println(yPlace);
         for(int i = xPlace; i < xPlace + width + 1; i++){
             array[i][yPlace][0] = "wall";
             array[i][yPlace+height+1][0] = "wall";
