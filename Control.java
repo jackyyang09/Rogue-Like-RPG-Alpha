@@ -25,7 +25,6 @@ public class Control extends Actor
         if(Greenfoot.isKeyDown("a")){
             ((ScrollingMap)getWorld()).movePlayer(4);
         }
-
         ((ScrollingMap)getWorld()).update();
     }
 }
