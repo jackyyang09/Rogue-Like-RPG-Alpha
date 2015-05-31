@@ -20,11 +20,12 @@ public class ScrollingMap extends World
     private int rightBound = getWidth();
     private int x = 0,y = 0;
     private HUD hud = new HUD();
-    private int playerX = 2;
-    private int playerY = 2;
+    
+    private int playerX = 2; // Starting
+    private int playerY = 2; // Coords
 
     private Generate generate = new Generate();
-    //private Control c = new Control();
+    private Control c = new Control();
 
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     /**
@@ -35,7 +36,7 @@ public class ScrollingMap extends World
         super(946, 774, 1, false);
         setPaintOrder(Button.class, ItemInventory.class, HUD.class, Inventory.class, Items.class, ValueBox.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
-        //addObject(c,0,0);
+        addObject(c,0,0);
         spawnPlayer();
         centerOnPlayer();
         update();
@@ -131,7 +132,7 @@ public class ScrollingMap extends World
         }
         update();
     }
-    
+
     public void inputItem(int xC, int yC)
     {
         int xCo = xC * TILESIZE + TILESIZE/2;
@@ -146,7 +147,7 @@ public class ScrollingMap extends World
         yC = (yC - 43) / 86;
         field[xC][yC][3] = null;
     }
-    
+
     /**
      * Reads Image File
      */
@@ -278,41 +279,38 @@ public class ScrollingMap extends World
      */
     public void act() 
     {
-        //movePlayer(1);
-        if(Greenfoot.isKeyDown("s")){
-            move(1);
-        }
-        if(Greenfoot.isKeyDown("w")){
-            move(2);
-        }
-        if(Greenfoot.isKeyDown("d")){
-            move(3);
-        }
-        if(Greenfoot.isKeyDown("a")){
-            move(4);
-        }
+        //         if(Greenfoot.isKeyDown("s")){
+        //             move(1);
+        //         }
+        //         if(Greenfoot.isKeyDown("w")){
+        //             move(2);
+        //         }
+        //         if(Greenfoot.isKeyDown("d")){
+        //             move(3);
+        //         }
+        //         if(Greenfoot.isKeyDown("a")){
+        //             move(4);
+        //         }
 
-        if(Greenfoot.isKeyDown("k")){
-            movePlayer(1);
-        }
-        if(Greenfoot.isKeyDown("i")){
-            movePlayer(2);
-        }
-        if(Greenfoot.isKeyDown("l")){
-            movePlayer(3);
-        }
-        if(Greenfoot.isKeyDown("j")){
-            movePlayer(4);
-        }
-
-        update();
+        //         if(Greenfoot.isKeyDown("k")){
+        //             movePlayer(1);
+        //         }
+        //         if(Greenfoot.isKeyDown("i")){
+        //             movePlayer(2);
+        //         }
+        //         if(Greenfoot.isKeyDown("l")){
+        //             movePlayer(3);
+        //         }
+        //         if(Greenfoot.isKeyDown("j")){
+        //             movePlayer(4);
+        //         }
     }
 
     public Actor[][][] getField(){
         return field;
     }
-    
-     /**
+
+    /**
      * Prepare the world for the start of the program. That is: create the initial
      * objects and add them to the world.
      */
