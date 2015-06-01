@@ -84,7 +84,7 @@ public class Player extends Mobs
         image.drawImage(player, 29, 0);
         if (equips[0] != null)
         {
-            image.drawImage(equips[0].getImage(), 29, 0);
+            image.drawImage(new GreenfootImage(equips[0].getFileName()), 29, 0);
         }
         setImage(image);
     }
@@ -143,11 +143,9 @@ public class Player extends Mobs
         ScrollingMap map = (ScrollingMap)getWorld();
         if (item < 9){items[item] = null;}
         else{equips[item - 9] = null;}
-        mapX = (mapX - 43) / 86;
-        mapY = (mapY - 43) / 86;
-        map.inputItem(mapX, mapY);
-        mapX = (mapX * 86) + 43;
-        mapY = (mapY * 86) + 43;
+        int valX = (mapX - 43) / 86;
+        int valY = (mapY - 43) / 86;
+        map.inputItem(valX, valY);
     }
 
     public Items[] getItems()
