@@ -34,7 +34,7 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        setPaintOrder(Button.class, ItemInventory.class, HUD.class, Inventory.class, Items.class, ValueBox.class, Mobs.class, Tile.class);
+        setPaintOrder(Button.class, ItemInventory.class, HUD.class, Inventory.class, Player.class, Items.class, ValueBox.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
         addObject(c,0,0);
         spawnPlayer();
@@ -140,6 +140,7 @@ public class ScrollingMap extends World
         int xCo = xC * TILESIZE + TILESIZE/2;
         int yCo = yC * TILESIZE + TILESIZE/2;
         field[xC][yC][3] = new Items(1, xCo, yCo);
+        field[xC][yC][3].setImage("beamblade4.png");
         update();
     }
 
