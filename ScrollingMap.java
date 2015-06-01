@@ -306,4 +306,14 @@ public class ScrollingMap extends World
         HUD hud = new HUD();
         addObject(hud, 473, 689);
     }
+    
+    public boolean[][] getTopField(){
+       for(int i = 0; i < 58; i++){
+           for(int j = 0; i < 56; j++){
+               if(((Tile)field[i][j][0]).isAWall())
+               grid[i][j] = true;
+            }
+        }
+       return grid;
+    }
 }
