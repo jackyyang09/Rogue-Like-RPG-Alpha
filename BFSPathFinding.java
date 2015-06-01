@@ -14,10 +14,10 @@ public class BFSPathFinding {
     static Scanner scan = new Scanner(System.in);
     static LinkedList<Point> path;
 
-    public static String BFSPathFinding(int startX, int startY, int endX, int endY){
+    public static String BFSPathFinding(int startX, int startY, int endX, int endY, int[][] grid){
         //System.out.println("Enter grid size (X by Y, MAX 1000x1000): ");
-        C = 58;
-        R = 56;
+        C = 56;
+        R = 58;
         //System.out.println("Enter start coordinates (top left is (1,1)): ");
         sX = startX;
         sY = startY;
@@ -26,18 +26,18 @@ public class BFSPathFinding {
         gY = endY;
         //System.out.println("Enter grid (0 for wall, 1 for empty space): ");
         //int input;
-        for (int i = 1; i <= R; i++){
-            for (int j = 1; j <= C; j++){
+        //for (int i = 1; i <= R; i++){
+          //  for (int j = 1; j <= C; j++){
                 //input = scan.nextInt();
                 //if (input == 0) grid[i][j] = false;
                 //else 
-                grid[i][j] = true;
-            }
-        }
+            //    grid[i][j] = true;
+            //}
+        //}
         bfs();
         Point cur = new Point(gX,gY);
         path = new LinkedList<Point>();
-        for (int i = dist[gY][gX]; i >= 0; i--){
+        for (int i = dist[gY][gX]; i >= 1; i--){
             for (int j = 0; j < 4; j++){
                 int nextX = cur.x + dir[j][0];
                 int nextY = cur.y + dir[j][1];
@@ -54,9 +54,9 @@ public class BFSPathFinding {
         }
         return "";
     }
-    
+
     public void reset(){
-        path.removeFirst();
+        //path.removeFirst();
         R = 0;
         C = 0;
         grid = new boolean[MAXR+2][MAXC+2];
@@ -76,9 +76,9 @@ public class BFSPathFinding {
                 int nextY = cur.y + dir[i][1];
                 int nextX = cur.x + dir[i][0];
                 if (nextX < 1 || nextX > C || nextY < 1 || nextY > R) continue;
-                if (!vis[nextY][nextX] && grid[nextY][nextX]){
+                if (vis[nextY][nextX] && !grid[nextY][nextX]){
                     dist[nextY][nextX] = dist[cur.y][cur.x] + 1;
-                    vis[nextY][nextX] = true;
+                    vis[nextY][nextX] = false;
                     q.addLast(new Point(nextX,nextY));
                 }
             }
