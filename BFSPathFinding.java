@@ -14,7 +14,7 @@ public class BFSPathFinding {
     static Scanner scan = new Scanner(System.in);
     static LinkedList<Point> path;
 
-    public static String BFSPathFinding(int startX, int startY, int endX, int endY, int[][] grid){
+    public static String BFSPathFinding(int startX, int startY, int endX, int endY, boolean[][] grid){
         //System.out.println("Enter grid size (X by Y, MAX 1000x1000): ");
         C = 56;
         R = 58;
