@@ -146,6 +146,32 @@ public class Mobs extends Actor
         }
     } 
     
+     public void attack(Mobs enemy)
+    {
+        double chance = enemy.getDexterity() - hit;
+        if (Greenfoot.getRandomNumber(100) + 1 <= chance)
+        {
+            System.out.println("Miss!");
+        }
+        else
+        {
+            double lucky = attack;
+            if (Greenfoot.getRandomNumber(100) + 1 <= luck)
+            {
+               lucky = 2*attack;
+                System.out.println("Critical!");
+            } 
+            if(lucky > enemy.getDefense())
+            {
+                enemy.hurtMe(lucky-enemy.getDefense());
+            }
+            else
+            {
+                System.out.println("Too weak");
+            }
+        }
+    }
+    
     public void convertToTile(){
         mapX = (mapX - 43) / 86;
         mapY = (mapY - 43) / 86;
