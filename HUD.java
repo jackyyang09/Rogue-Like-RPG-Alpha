@@ -29,8 +29,8 @@ public class HUD extends Actor
     public void begin()
     {
         bp.setImage("Sack.png");
-        getWorld().addObject(bp, getX() + 200, getY());
-        getWorld().addObject(box, 413, 631);
+        getWorld().addObject(bp, 105, 644);
+        getWorld().addObject(box, 253, 735);
         begin = true;
     }
 
