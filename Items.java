@@ -12,6 +12,7 @@ public class Items extends Actor
     private int equipType;
     private int atkBuff, defBuff;
     private boolean begin;
+    private String fileName;
     private int mapX, mapY;
     public Items()
     {
@@ -27,6 +28,7 @@ public class Items extends Actor
             name = "Beam Blade";
             equipType = 1;
             setImage("beamblade1.png");
+            fileName = "beamblade1.png";
             atkBuff = 2;
             defBuff = 0;
         }
@@ -35,6 +37,7 @@ public class Items extends Actor
             name = "Chest";
             equipType = 2;
             setImage("chest2.png");
+            fileName = "chest2.png";
             atkBuff = 2;
             defBuff = 0;
         }
@@ -48,6 +51,7 @@ public class Items extends Actor
             name = "Beam Blade";
             equipType = 1;
             setImage("beamblade1.png");
+            fileName = "beamblade1.png";
             atkBuff = 2;
             defBuff = 0;
         }
@@ -56,6 +60,7 @@ public class Items extends Actor
             name = "Chest";
             equipType = 2;
             setImage("chest2.png");
+            fileName = "chest2.png";
             atkBuff = 2;
             defBuff = 0;
         }
@@ -88,6 +93,11 @@ public class Items extends Actor
     public int getEquipType()
     {
         return equipType;
+    }
+    
+    public String getFileName()
+    {
+        return fileName;
     }
 
     public void setMapLoc(int x, int y)
