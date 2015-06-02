@@ -10,21 +10,21 @@ public class Tile extends Actor
 {
     int mapX;
     int mapY;
-    boolean isWall;
+    boolean isAWall;
     
     public Tile(int getMapX, int getMapY, int tileCode)
     {
         if(tileCode == 1){
             setImage("floorTile.png");
-            isWall = false;
+            isAWall = false;
         }
         if(tileCode == 2){
             setImage("floorTile2.png");
-            isWall = false;
+            isAWall = false;
         }
         if(tileCode == 3){
             setImage("wall.png");
-            isWall = true;
+            isAWall = true;
         }
         mapX = getMapX;
         mapY = getMapY;
