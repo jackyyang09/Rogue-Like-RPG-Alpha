@@ -10,8 +10,6 @@ public class Enemy extends Mobs
 {
     BFSPathFinding bfs = new BFSPathFinding();
     int middle;
-    int playerX;
-    int playerY;
     String moveTo;
 
     public Enemy(int getMapX, int getMapY){
@@ -19,7 +17,7 @@ public class Enemy extends Mobs
         baseHp = 100;
         baseAtt = 10;
         baseDef = 5;
-        baseMov = 2;
+        baseMove = 2;
         mapX = getMapX;
         mapY = getMapY;
     }
@@ -27,19 +25,19 @@ public class Enemy extends Mobs
     public void act(){
         convertToTile();
         Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
+        boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
                 if(grid[i][j][1] != null){
                     playerX = i;//((Player)grid[i][j][1]).getMapX();
                     playerY = j;//((Player)grid[i][j][1]).getMapY();
-
                     //convertToTilePlayer();
                 }
             }
         }
         //int playerX = grid[0][0][2].getMapX();
         //int playerY = grid[0][0][2].getMapY();
-        moveTo = bfs.BFSPathFinding(mapX, mapY, playerX, playerY);
+        moveTo = bfs.BFSPathFinding(mapX, mapY, playerX, playerY, grid2);
         bfs.reset();
         middle = moveTo.indexOf('x');
         mapX = Integer.parseInt(moveTo.substring(0,middle));
