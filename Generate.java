@@ -59,7 +59,6 @@ public class Generate
                 array[k][l][0] = "floorTile";
             }
         }
-        System.out.println(" ");
     }
 
     public void generateEndRoom(){
@@ -68,10 +67,6 @@ public class Generate
             heightED = getRandHeight();
             xPlaceED = getRandX(widthED);
             yPlaceED = getRandY(heightED);
-            System.out.println(widthED-1);
-            System.out.println(heightED);
-            System.out.println(xPlaceED);
-            System.out.println(yPlaceED);
             noSpace = checkSpaces(widthED, heightED, xPlaceED, yPlaceED);
             if(noSpace == false){
                 for(int i = xPlaceED; i < xPlaceED + widthED + 1; i++){
@@ -88,7 +83,6 @@ public class Generate
                     }
                 }
                 doneOnce = true;
-                System.out.println(" ");
             }
         }
         while(noSpace == false && doneOnce == false);
@@ -100,10 +94,6 @@ public class Generate
             coor[1] = getRandHeight();
             coor[2] = getRandX(coor[0]);
             coor[3] = getRandY(coor[1]);
-            System.out.println(coor[0]-1);
-            System.out.println(coor[1]);
-            System.out.println(coor[2]);
-            System.out.println(coor[3]);
             noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
             if(noSpace == false){
                 for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
@@ -121,7 +111,6 @@ public class Generate
                 }
                 doneOnce = true;
                 rooms.add(coor);
-                System.out.println(" ");
             }
         }
         while(noSpace == false && doneOnce == false);
