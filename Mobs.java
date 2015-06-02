@@ -16,7 +16,7 @@ public class Mobs extends Actor
     protected double baseDex;
     protected double baseHit;
     protected double baseLuk;
-    protected int baseMov;
+    protected int baseMove;
     protected double attack;
     protected double defense;
     protected double dexterity;
@@ -27,6 +27,18 @@ public class Mobs extends Actor
     protected double currentHp;
     protected int mapX;
     protected int mapY;
+    protected int playerX;
+    protected int playerY;
+
+    public void decreaseMove(){
+        move--;
+        System.out.println(move);
+    }
+
+    public void resetMove(){
+        move = baseMove;
+    }
+
     /**
      * 
      */
@@ -66,7 +78,7 @@ public class Mobs extends Actor
     {
         return dexterity;
     } 
-    
+
     /**
      * 
      */
@@ -74,7 +86,7 @@ public class Mobs extends Actor
     {
         return hit;
     } 
-    
+
     /**
      * 
      */
@@ -145,8 +157,8 @@ public class Mobs extends Actor
             levelUp();
         }
     } 
-    
-     public void attack(Mobs enemy)
+
+    public void attack(Mobs enemy)
     {
         double chance = enemy.getDexterity() - hit;
         if (Greenfoot.getRandomNumber(100) + 1 <= chance)
@@ -158,7 +170,7 @@ public class Mobs extends Actor
             double lucky = attack;
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
-               lucky = 2*attack;
+                lucky = 2*attack;
                 System.out.println("Critical!");
             } 
             if(lucky > enemy.getDefense())
@@ -171,21 +183,21 @@ public class Mobs extends Actor
             }
         }
     }
-    
+
     public void convertToTile(){
         mapX = (mapX - 43) / 86;
         mapY = (mapY - 43) / 86;
     }
-    
+
     public void convertToPixel(){
         mapX = (mapX * 86) + 43;
         mapY = (mapY * 86) + 43;
     }
-    
+
     public int getMapX(){
         return this.mapX;
     }
-    
+
     public int getMapY(){
         return this.mapY;
     }
