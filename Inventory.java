@@ -16,6 +16,7 @@ public class Inventory extends Actor
     public Inventory()
     {
         update = false;
+        setImage("Inventory.png");
     }
 
     /**
