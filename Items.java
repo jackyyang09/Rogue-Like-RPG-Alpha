@@ -8,11 +8,10 @@ import greenfoot.*;
 public class Items extends Actor
 {
     protected int id;
-    private String name;
+    private String name, description, fileName;
     private int equipType;
-    private int atkBuff, defBuff;
+    private int atkBuff, defBuff, dexBuff, lukBuff;
     private boolean begin;
-    private String fileName;
     private int mapX, mapY;
     public Items()
     {
@@ -29,8 +28,11 @@ public class Items extends Actor
             equipType = 1;
             setImage("beamblade1.png");
             fileName = "beamblade1.png";
-            atkBuff = 2;
-            defBuff = 0;
+            description = "Affectionately named to avoid \ncopyright laws, apparently \n'Blight Blaber' isn't allowed.";
+            atkBuff = 3;
+            defBuff = 1;
+            dexBuff = 0;
+            lukBuff = 0;
         }
         if (num == 2)
         {
@@ -52,6 +54,7 @@ public class Items extends Actor
             equipType = 1;
             setImage("beamblade1.png");
             fileName = "beamblade1.png";
+            description = "Affectionately named to avoid copyright laws, apparently 'Blight Blaber' isn't allowed.";
             atkBuff = 2;
             defBuff = 0;
         }
@@ -84,6 +87,16 @@ public class Items extends Actor
         atkBuff = atkVar;
         defBuff = defVar;
     }
+    
+    public String getName()
+    {
+        return name;
+    }
+    
+    public String getDescription()
+    {
+        return description;
+    }
 
     public int getItemID()
     {
@@ -100,12 +113,26 @@ public class Items extends Actor
         return fileName;
     }
 
-    public void setMapLoc(int x, int y)
+    public int getAtkBuff()
     {
-        mapX = x;
-        mapY = y;
+        return atkBuff;
+    }
+    
+    public int getDefBuff()
+    {
+        return defBuff;
+    }
+    
+    public int getDexBuff()
+    {
+        return dexBuff;
     }
 
+    public int getLukBuff()
+    {
+        return lukBuff;
+    }
+    
     public int getMapX()
     {
         return mapX;
@@ -114,5 +141,11 @@ public class Items extends Actor
     public int getMapY()
     {
         return mapY;
+    }
+    
+    public void setMapLoc(int x, int y)
+    {
+        mapX = x;
+        mapY = y;
     }
 }
