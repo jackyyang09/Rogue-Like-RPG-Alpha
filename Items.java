@@ -54,7 +54,7 @@ public class Items extends Actor
             equipType = 1;
             setImage("beamblade1.png");
             fileName = "beamblade1.png";
-            description = "Affectionately named to avoid copyright laws, apparently 'Blight Blaber' isn't allowed.";
+            description = "Affectionately named to avoid \n copyright laws, apparently \n'Blight Blaber' isn't allowed.";
             atkBuff = 2;
             defBuff = 0;
         }
