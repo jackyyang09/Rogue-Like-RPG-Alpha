@@ -21,11 +21,10 @@ public class ScrollingMap extends World
     private int x = 0,y = 0;
     private HUD hud = new HUD();
 
-    private int playerX = 30; // Starting
-    private int playerY = 30; // Coords
+    private int playerX = 8; // Starting
+    private int playerY = 8; // Coords
 
     private Generate generate = new Generate();
-    private Control c = new Control();
 
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     boolean[][] grid = new boolean[58][56];
@@ -37,11 +36,13 @@ public class ScrollingMap extends World
         super(946, 774, 1, false);
         setPaintOrder(Button.class, ItemInventory.class, ValueBox.class, HUD.class, Inventory.class, Player.class, Items.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
-        addObject(c,0,0);
         spawnPlayer();
         centerOnPlayer();
         update();
         prepare();
+        Control c = new Control();
+        addObject(c,0,0);
+        //         inputObject(2,6,6,2);
     }
 
     /**
