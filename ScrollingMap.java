@@ -49,7 +49,7 @@ public class ScrollingMap extends World
      * moves the player in the desired direction by one tile
      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
      */
-    public void movePlayer(int dir){
+    public boolean movePlayer(int dir){
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
                 if(field[i][j][1] != null){
@@ -59,32 +59,45 @@ public class ScrollingMap extends World
                             field[playerX][playerY+1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerY++;
+                            centerOnPlayer();
+                            dir = 0;
+                            return true;
                         }
                         if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
                             field[playerX][playerY-1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerY--;
+                            centerOnPlayer();
+                            dir = 0;
+                            return true;
                         }
                         if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
                             field[playerX+1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerX++;
+                            centerOnPlayer();
+                            dir = 0;
+                            return true;
                         }
                         if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
                             field[playerX-1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerX--;
+                            centerOnPlayer();
+                            dir = 0;
+                            return true;
                         }
+                        dir = 0;
+                        return false;
                     }
-                    centerOnPlayer();
-                    dir = 0;
                 } 
             }
         }
         update();
+        return true;
     }
 
     /**
