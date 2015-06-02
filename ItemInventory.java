@@ -1,14 +1,19 @@
 import greenfoot.*;
 import java.util.List;
 /**
- * Write a description of class ItemInventory here.
+ * Item that only shows up in the inventory screen
  * 
- * @author (your name) 
+ * @author Jacky Yang
  * @version (a version number or a date)
  */
 public class ItemInventory extends Actor
 {
     private boolean begin = false;
+    private boolean drag = false;
+    private boolean open = false;
+    private boolean close = false;
+    private boolean secure = true;//True if the item has left it's slot, useful if the item glitches into the air
+    private InfoTab info;
     private int equipType = 0;
     private int prevX, prevY;
     private int id;
@@ -28,7 +33,7 @@ public class ItemInventory extends Actor
         }
         id = num;
     }
-    
+
     /**
      * Act - do whatever the ItemInventory wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -42,44 +47,85 @@ public class ItemInventory extends Actor
             begin = true;   
         }
         if (id != 0){mouseDetect();}
+        if (id != 0){hoverDetect();}
     }    
-    
+
     public void mouseDetect()
     {
-        if (Greenfoot.mouseDragged(this)){setLocation(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());}
-        if (Greenfoot.mouseClicked(this))
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if (mouse != null)
         {
-            if (this.isTouching(ItemInventory.class))
-            {
-                Inventory inv = (Inventory)getOneIntersectingObject(Inventory.class);
-                if (inv.switchSlot(this, (ItemInventory)getOneIntersectingObject(ItemInventory.class)) == true){setLocation(prevX, prevY);}
+            List objects = getWorld().getObjectsAt(mouse.getX(), mouse.getY(), ItemInventory.class);
+            if (Greenfoot.mouseDragged(this)){
+                setLocation(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+                secure = false;
+                drag = true;
             }
-            else
+            if (Greenfoot.mouseClicked(this))
             {
-                if (checkBoundary())
+                if (this.isTouching(ItemInventory.class))
                 {
-                    List<Inventory> inventory = getWorld().getObjects(Inventory.class);
-                    for (Inventory i :inventory){i.dropItem(this);}
-                    getWorld().removeObject(this);
+                    Inventory inv = (Inventory)getOneIntersectingObject(Inventory.class);
+                    if (inv.switchSlot(this, (ItemInventory)getOneIntersectingObject(ItemInventory.class)) == true)
+                    {
+                        setLocation(prevX, prevY);
+                    }
+                    else
+                    {
+                        secure = false;
+                    }
                 }
                 else
                 {
-                    if (checkLoc()){setLocation(prevX, prevY);}
+                    if (checkBoundary())
+                    {
+                        List<Inventory> inventory = getWorld().getObjects(Inventory.class);
+                        for (Inventory i :inventory){i.dropItem(this);}
+                        getWorld().removeObject(this);
+                    }
+                    else
+                    {
+                        if (checkLoc())
+                        {
+                            setLocation(prevX, prevY);
+                            secure = true;
+                        }
+                    }
                 }
+                drag = false;
             }
         }
     }
-    
+
+    public void hoverDetect()
+    {
+        if ((Greenfoot.mouseMoved(this) && info == null) && secure == true)
+        {
+            info = new InfoTab(this);
+            getWorld().addObject(info, 243, 127);
+        }
+        else if ((Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this)) || drag == true)
+        {
+            getWorld().removeObject(info);
+            info = null;
+        }
+    }
+
     public int getItemID()
     {
         return id;
     }
-    
+
     public int getEquipType()
     {
         return equipType;
     }
     
+    public void setSecure()
+    {
+        secure = true;
+    }
+
     private boolean checkBoundary()
     {
         if (getX() < 488 || getX() > 926 || getY() < 12 || getY() > 581){return true;}
