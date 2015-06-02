@@ -25,7 +25,7 @@ public class Generate
         //         addDoors(2);
         //         addDoors(3);
         //         addDoors(4);
-        floodGrid(5, 5);
+        floodGrid();
         //for(int i = 0; i < rooms.size(); i++){
         //addDoors(i);
         //}
@@ -307,7 +307,17 @@ public class Generate
         return false;
     }
 
-    public void floodGrid (int x, int y){
+ublic void floodGrid(){
+        for(int i = 5; i<54; i++){
+            for(int j = 5; j<53;j++){
+                if(array[i][j][0] == null){
+                    array[i][j][0] = "floorTile";
+                }
+            }
+        }
+    }
+    
+    public void floodGrid2 (int x, int y){
         // base case: array already has something in it
         if (array[x][y][0] != null){
             return;
@@ -317,19 +327,19 @@ public class Generate
         // move up:
         if (y >= 1)
         {
-            floodGrid(x, y-1); 
+            floodGrid2(x, y-1); 
         }
         if (y < array.length - 1)
         {
-            floodGrid(x, y+1); 
+            floodGrid2(x, y+1); 
         }
         if (x >= 1)
         {
-            floodGrid(x - 1, y); 
+            floodGrid2(x - 1, y); 
         }
         if (x < array.length - 1)
         {
-            floodGrid(x + 1, y);    
+            floodGrid2(x + 1, y);    
         }
     }
 
