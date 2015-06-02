@@ -16,7 +16,6 @@ public class Inventory extends Actor
     public Inventory()
     {
         update = false;
-        setImage("Inventory.png");
     }
 
     /**
@@ -105,6 +104,8 @@ public class Inventory extends Actor
         else{return true;}
         if (pass)
         {
+            item1.setSecure();
+            item2.setSecure();
             List<Player> Playerlist = getWorld().getObjects(Player.class);
             for(Player P : Playerlist)
             {
