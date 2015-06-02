@@ -16,6 +16,7 @@ public class Player extends Mobs
         baseAtt = 10;
         baseDef = 5;
         baseMov = 2;
+        move = baseMov;
         equips = new Items[2];
         items = new Items[9];
         this.mapX = mapX;
