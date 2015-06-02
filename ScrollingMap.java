@@ -28,6 +28,7 @@ public class ScrollingMap extends World
     private Control c = new Control();
 
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
+    boolean[][] grid = new boolean[58][56];
     /**
      * Constructor for objects of class ScrollingMap.
      */
@@ -52,25 +53,25 @@ public class ScrollingMap extends World
             for(int j = 0; j < 56; j++){
                 if(field[i][j][1] != null){
                     if(((Tile)field[i][j][0]) != null){
-                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isWall){
+                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
                             field[playerX][playerY+1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerY++;
                         }
-                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isWall){
+                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
                             field[playerX][playerY-1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerY--;
                         }
-                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isWall){
+                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
                             field[playerX+1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
                             playerX++;
                         }
-                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isWall){
+                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
                             field[playerX-1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -168,6 +169,18 @@ public class ScrollingMap extends World
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                         }
                     }
+                }
+            }
+        }
+        //prepare the grid for pathfinding
+        for(int i = 0; i < 58; i++){
+            for(int j = 0; j < 56; j++){
+                if(field[i][j][0] != null){
+                    if(((Tile)field[i][j][0]).isAWall){
+                        grid[i][j] = false;
+                    }
+                } else {
+                    grid[i][j] = false;
                 }
             }
         }
@@ -306,14 +319,8 @@ public class ScrollingMap extends World
         HUD hud = new HUD();
         addObject(hud, 473, 689);
     }
-    
-    public boolean[][] getTopField(){
-       for(int i = 0; i < 58; i++){
-           for(int j = 0; i < 56; j++){
-               if(((Tile)field[i][j][0]).isAWall())
-               grid[i][j] = true;
-            }
-        }
-       return grid;
+
+    public boolean[][] getGrid(){
+        return grid;
     }
 }
