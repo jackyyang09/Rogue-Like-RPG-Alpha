@@ -34,7 +34,7 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        setPaintOrder(InfoTab.class, Button.class, ItemInventory.class, ValueBox.class, HUD.class, Inventory.class, Player.class, Items.class, Mobs.class, Tile.class);
+        setPaintOrder(Button.class, ItemInventory.class, ValueBox.class, HUD.class, Inventory.class, Player.class, Items.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
         spawnPlayer();
         centerOnPlayer();
@@ -170,9 +170,15 @@ public class ScrollingMap extends World
      * Reads Image File
      */
     private void createMap(String[][][] data){
+        //prepare the grid for pathfinding
+        for(int i = 0; i < 58; i++){
+            for(int j = 0; j < 56; j++){
+                grid[i][j] = true;
+            }
+        }
         for(int x = 0; x < MAPIMGWIDTH; x++)
         {
-            for(int y = 0;y < MAPIMGHEIGHT;y++)
+            for(int y = 0 ; y < MAPIMGHEIGHT;y++)
             {
                 for(int d = 0; d < MAPDEPTH; d++){
                     if(data[x][y][0] != null){
@@ -184,20 +190,9 @@ public class ScrollingMap extends World
                         }
                         if(data[x][y][0].equals("wall")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
+                            grid[x][y] = false;
                         }
                     }
-                }
-            }
-        }
-        //prepare the grid for pathfinding
-        for(int i = 0; i < 58; i++){
-            for(int j = 0; j < 56; j++){
-                if(field[i][j][0] != null){
-                    if(((Tile)field[i][j][0]).isAWall){
-                        grid[i][j] = false;
-                    }
-                } else {
-                    grid[i][j] = false;
                 }
             }
         }
