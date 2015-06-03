@@ -307,7 +307,7 @@ public class Generate
         return false;
     }
 
-ublic void floodGrid(){
+public void floodGrid(){
         for(int i = 5; i<54; i++){
             for(int j = 5; j<53;j++){
                 if(array[i][j][0] == null){
