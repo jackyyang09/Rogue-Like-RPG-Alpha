@@ -248,7 +248,7 @@ public class ScrollingMap extends World
         }        
     }
 
-    /**
+/**
      * Updates the map by dectecting if its currently in the viewport if not remove from world if so add to world
      */
     public void update()
@@ -258,24 +258,24 @@ public class ScrollingMap extends World
         int blockY;
         int screenX;
         int screenY;
-        for(int x = 0; x < MAPIMGWIDTH; x++){
-            for(int y = 0; y < MAPIMGHEIGHT; y++){
+        for(int x = 0; x < 58; x++){
+            for(int y = 0; y < 56; y++){
                 for(int i = 0; i < MAPDEPTH; i++)
                 {
                     if(field[x][y][i] != null){
                         block = field[x][y][i];
                         if(i == 0){
-                            blockX = ((Tile)field[x][y][i]).mapX;
-                            blockY = ((Tile)field[x][y][i]).mapY;
+                            blockX = ((Tile)field[x][y][i]).mapY;
+                            blockY = ((Tile)field[x][y][i]).mapX;
                         } else if (i == 1){
-                            blockX = ((Player)field[x][y][i]).mapX;
-                            blockY = ((Player)field[x][y][i]).mapY;
+                            blockX = ((Player)field[x][y][i]).mapY;
+                            blockY = ((Player)field[x][y][i]).mapX;
                         } else if (i == 2){
-                            blockX = ((Enemy)field[x][y][i]).mapX;
-                            blockY = ((Enemy)field[x][y][i]).mapY;
+                            blockX = ((Enemy)field[x][y][i]).mapY;
+                            blockY = ((Enemy)field[x][y][i]).mapX;
                         } else {
-                            blockX = ((Items)field[x][y][i]).getMapX();
-                            blockY = ((Items)field[x][y][i]).getMapY();
+                            blockX = ((Items)field[x][y][i]).getMapY();
+                            blockY = ((Items)field[x][y][i]).getMapX();
                         }
                         if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
                         {
@@ -287,7 +287,7 @@ public class ScrollingMap extends World
                             } else {
                                 block.setLocation(screenX, screenY);
                             } 
-                        }else {
+                        } else {
                             if(block.getWorld()!=null)
                             {
                                 removeObject(block);     
