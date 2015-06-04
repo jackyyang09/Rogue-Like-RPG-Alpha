@@ -28,7 +28,7 @@ public class HUD extends Actor
         box = new ValueBox();
         bp = new Button();
         profile = new Button();
-        setImage("HUD.png")
+        setImage("HUD.png");
     }
 
     public void begin()
