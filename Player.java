@@ -17,6 +17,8 @@ public class Player extends Mobs
         baseDef = 5;
         baseMove = 2;
         move = baseMove;
+        baseDex = 0;
+        baseLuk = 555;
         equips = new Items[2];
         items = new Items[9];
         this.mapX = mapX;
@@ -72,6 +74,8 @@ public class Player extends Mobs
             {
                 List<Inventory> inv = getWorld().getObjects(Inventory.class);
                 for (Inventory i :inv){i.update();}
+                List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
+                for (ProfileWindow p : pro){p.update();}
                 removeTouching(Items.class);
                 ((ScrollingMap)getWorld()).removeItem(mapX, mapY);
             }
@@ -135,8 +139,10 @@ public class Player extends Mobs
                 Array.set(equips, slot1 - 9, placeHolder);
             }
             List<Inventory> inv = getWorld().getObjects(Inventory.class);
-            for (Inventory i :inv){i.update();}
+            for (Inventory i : inv){i.update();}
         }
+        List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
+        for (ProfileWindow p : pro){p.update();}
     }
 
     public void dropItem(int item)
@@ -147,6 +153,44 @@ public class Player extends Mobs
         int valX = (mapX - 43) / 86;
         int valY = (mapY - 43) / 86;
         map.inputItem(valX, valY);
+        List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
+        for (ProfileWindow p : pro){p.update();}
+    }
+
+    public double getAtk()
+    {
+        int buff1 = 0;
+        int buff2 = 0;
+        if (equips[0] != null){buff1 = equips[0].getAtkBuff();}
+        if (equips[1] != null){buff2 = equips[1].getAtkBuff();}
+        return baseAtt + buff1 + buff2;
+    }
+
+    public double getDef()
+    {
+        int buff1 = 0;
+        int buff2 = 0;
+        if (equips[0] != null){buff1 = equips[0].getDefBuff();}
+        if (equips[1] != null){buff2 = equips[1].getDefBuff();}
+        return baseDef + buff1 + buff2;
+    }
+
+    public double getDex()
+    {
+        int buff1 = 0;
+        int buff2 = 0;
+        if (equips[0] != null){buff1 = equips[0].getDexBuff();}
+        if (equips[1] != null){buff2 = equips[1].getDexBuff();}
+        return baseDex + buff1 + buff2;
+    }
+
+    public double getLuk()
+    {
+        int buff1 = 0;
+        int buff2 = 0;
+        if (equips[0] != null){buff1 = equips[0].getLukBuff();}
+        if (equips[1] != null){buff2 = equips[1].getLukBuff();}
+        return baseLuk + buff1 + buff2;
     }
 
     public Items[] getItems()
