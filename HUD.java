@@ -15,21 +15,27 @@ import java.awt.Font;
 public class HUD extends Actor
 {
     private boolean begin;
-    private boolean open = false;
+    private boolean sackopen = false;
+    private boolean profileopen = false;
     private ValueBox box;
     private Button bp;
+    private Button profile;
     private Inventory inv;
+    private ProfileWindow pro;
     public HUD()
     {
         begin = false;
         box = new ValueBox();
         bp = new Button();
+        profile = new Button();
     }
 
     public void begin()
     {
         bp.setImage("Sack.png");
-        getWorld().addObject(bp, 105, 644);
+        profile.setImage("profilebutton.png");
+        getWorld().addObject(profile, 56, 644);
+        getWorld().addObject(bp, 835, 644);
         getWorld().addObject(box, 253, 735);
         begin = true;
     }
@@ -41,14 +47,15 @@ public class HUD extends Actor
     public void act() 
     {
         if (begin == false){begin();}
-        mouseDetect();
+        mouseDetectBackpack();
+        mouseDetectProfile();
         update();
     }   
 
     /**
-     * Detects mouse presses
+     * Detects mouse presses on the backpack button
      */
-    private void mouseDetect()
+    private void mouseDetectBackpack()
     {
         if (Greenfoot.mousePressed(bp) == true)
         {
@@ -56,24 +63,56 @@ public class HUD extends Actor
         }
         if (Greenfoot.mouseClicked(bp) == true)
         {
-            if (open == true)
+            if (sackopen == true)
             { 
                 inv.close();
                 bp.setImage("Sack.png");
-                open = false;
+                sackopen = false;
             }
             else
             {
                 inv = new Inventory();
-                getWorld().addObject(inv, getX() + 232, getY() - 385);
+                getWorld().addObject(inv, getX() + 232, getY() - 433);
                 bp.setImage("SackOpen.png");
-                open = true;
+                sackopen = true;
             }
         }
         else if (Greenfoot.mouseClicked(null) == true)
         {
-            if (open == false){bp.setImage("Sack.png");}
+            if (sackopen == false){bp.setImage("Sack.png");}
             else{bp.setImage("SackOpen.png");}
+        }
+    }
+    
+    /**
+     * Detects mouse presses on the profile button
+     */
+    private void mouseDetectProfile()
+    {
+        if (Greenfoot.mousePressed(profile) == true)
+        {
+            profile.setImage("profilebuttonpressed.png");
+        }
+        if (Greenfoot.mouseClicked(profile) == true)
+        {
+            if (profileopen == true)
+            { 
+                getWorld().removeObject(pro);
+                profile.setImage("profilebutton.png");
+                profileopen = false;
+            }
+            else
+            {
+                pro = new ProfileWindow();
+                getWorld().addObject(pro, 271, 542);
+                profile.setImage("profilebuttonactive.png");
+                profileopen = true;
+            }
+        }
+        else if (Greenfoot.mouseClicked(null) == true)
+        {
+            if (profileopen == false){profile.setImage("profilebutton.png");}
+            else{profile.setImage("profilebuttonactive.png");}
         }
     }
 
