@@ -217,8 +217,8 @@ public class Generate
                             array[coor[2]+coor[0]][d4+1] = "door";
                         }
                     }
-                    System.out.println(coor[0] +" "+coor[1]+" "+coor[2] +" "+coor[3]);
-                    System.out.println("");
+                    //System.out.println(coor[0] +" "+coor[1]+" "+coor[2] +" "+coor[3]);
+                    //System.out.println("");
                     doneOnce = true;
                     noSpace = true;
                     rooms.add(coor);
