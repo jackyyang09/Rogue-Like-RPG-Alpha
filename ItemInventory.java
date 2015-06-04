@@ -32,7 +32,7 @@ public class ItemInventory extends Actor
             equipType = 1;
         }
         id = num;
-        setImage("Inventory.png")
+        setImage("Inventory.png");
     }
 
     /**
