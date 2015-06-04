@@ -19,6 +19,7 @@ public class InfoTab extends Actor
         fontName = new Font("OCR A Extended", 2, 20);
         fontDesc = new Font("OCR A Extended", 1, 13);
         fontNums = new Font("OCR A Extended", 3, 20);
+        setImage("Info.png")
     }
 
     /**
@@ -44,9 +45,9 @@ public class InfoTab extends Actor
         image.drawString(item.getDescription(), 155, 85);
         image.setFont(fontNums);
         image.drawString(Integer.toString(item.getAtkBuff()), 65, 167);
-        image.drawString(Integer.toString(item.getDefBuff()), 122, 167);
+        image.drawString(Integer.toString(item.getDefBuff()), 120, 167);
         image.drawString(Integer.toString(item.getLukBuff()), 65, 192);
-        image.drawString(Integer.toString(item.getDexBuff()), 122, 192);
+        image.drawString(Integer.toString(item.getDexBuff()), 120, 192);
         setImage(image);
         begin = true;
     }
