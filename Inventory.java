@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Write a description of class Inventory here.
  * 
- * @author (your name) 
+ * @author Jacky Yang 
  * @version (a version number or a date)
  */
 public class Inventory extends Actor
