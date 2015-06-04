@@ -329,7 +329,7 @@ public class ScrollingMap extends World
     private void prepare()
     {
         HUD hud = new HUD();
-        addObject(hud, 473, 689);
+        addObject(hud, 472, 735);
     }
 
     public boolean[][] getGrid(){
