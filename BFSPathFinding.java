@@ -14,7 +14,7 @@ public class BFSPathFinding {
     static Scanner scan = new Scanner(System.in);
     static LinkedList<Point> path;
 
-    public static String BFSPathFinding(int startX, int startY, int endX, int endY, boolean[][] grid){
+    public static LinkedList<Point> BFSPathFinding(int startX, int startY, int endX, int endY, boolean[][] grid2){
         //System.out.println("Enter grid size (X by Y, MAX 1000x1000): ");
         C = 56;
         R = 58;
@@ -26,21 +26,35 @@ public class BFSPathFinding {
         gY = endY;
         //System.out.println("Enter grid (0 for wall, 1 for empty space): ");
         //int input;
-        //for (int i = 1; i <= R; i++){
-          //  for (int j = 1; j <= C; j++){
+        //         for (int i = 0; i < R; i++){
+        //             for (int j = 0; j < C; j++){
+        //                 //input = scan.nextInt();
+        //                 if (!grid2[i][j])
+        //                     grid[i][j] = false;
+        //                 else 
+        //                     grid[i][j] = true;
+        //             }
+        //         }
+        for (int i = 0; i < R; i++){
+            for (int j = 0; j < C; j++){
                 //input = scan.nextInt();
-                //if (input == 0) grid[i][j] = false;
-                //else 
-            //    grid[i][j] = true;
-            //}
-        //}
+                if (!grid2[i][j]) grid[i][j] = false;
+                //if (i == 4) grid[i][j] = false;
+                else grid[i][j] = true;
+            }
+        }
         bfs();
         Point cur = new Point(gX,gY);
         path = new LinkedList<Point>();
         for (int i = dist[gY][gX]; i >= 1; i--){
+            if (i == 1){
+                path.addFirst(cur);
+                break;
+            }
             for (int j = 0; j < 4; j++){
                 int nextX = cur.x + dir[j][0];
                 int nextY = cur.y + dir[j][1];
+                //if (nextX < 0 || nextX >= C || nextY <= 0 || nextY >= R) continue;
                 if (dist[nextY][nextX] == i-1){
                     path.addFirst(cur);
                     cur = new Point(nextX,nextY);
@@ -48,17 +62,20 @@ public class BFSPathFinding {
                 }
             }
         }
-        while(!path.isEmpty()){
-            return (path.getFirst().x + "x" + path.getFirst().y);
+        
+        //if(!path.isEmpty()){
             //path.removeFirst();
-        }
-        return "";
+            //String temp = path.getFirst().x + "x" + path.getFirst().y;
+            //System.out.println(temp);
+            return path;
+            //path.removeFirst();
+        //}
     }
 
     public void reset(){
         //path.removeFirst();
-        R = 0;
-        C = 0;
+        //R = 0;
+        //C = 0;
         grid = new boolean[MAXR+2][MAXC+2];
         dist = new int[MAXR+2][MAXC+2];
         vis = new boolean[MAXR+2][MAXC+2];
@@ -75,14 +92,13 @@ public class BFSPathFinding {
             for (int i = 0; i < 4; i++){
                 int nextY = cur.y + dir[i][1];
                 int nextX = cur.x + dir[i][0];
-                if (nextX < 1 || nextX > C || nextY < 1 || nextY > R) continue;
-                if (vis[nextY][nextX] && !grid[nextY][nextX]){
+                if (nextX < 0 || nextX >= C || nextY < 0 || nextY >= R) continue;
+                if (!vis[nextY][nextX] && grid[nextY][nextX]){
                     dist[nextY][nextX] = dist[cur.y][cur.x] + 1;
-                    vis[nextY][nextX] = false;
+                    vis[nextY][nextX] = true;
                     q.addLast(new Point(nextX,nextY));
                 }
             }
         }
     }
-
 }
