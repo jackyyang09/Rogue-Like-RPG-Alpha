@@ -13,21 +13,20 @@ public class Control extends Actor
      */
     public void act() 
     {
-        if(Greenfoot.isKeyDown("s") && ((ScrollingMap)getWorld()).movePlayer(1)){
+        if(Greenfoot.isKeyDown("d") && ((ScrollingMap)getWorld()).movePlayer(1)){
             decreasePlayerMove();
         }
-        if(Greenfoot.isKeyDown("w") && ((ScrollingMap)getWorld()).movePlayer(2)){
+        if(Greenfoot.isKeyDown("a") && ((ScrollingMap)getWorld()).movePlayer(2)){
             decreasePlayerMove();
         }
-        if(Greenfoot.isKeyDown("d") && ((ScrollingMap)getWorld()).movePlayer(3)){
+        if(Greenfoot.isKeyDown("s") && ((ScrollingMap)getWorld()).movePlayer(3)){
             decreasePlayerMove();
         }
-        if(Greenfoot.isKeyDown("a") && ((ScrollingMap)getWorld()).movePlayer(4)){
+        if(Greenfoot.isKeyDown("w") && ((ScrollingMap)getWorld()).movePlayer(4)){
             decreasePlayerMove();
         }
         ((ScrollingMap)getWorld()).update();
         if(getPlayerMove() <= 0){
-            System.out.println("enemy's turn");
             resetPlayerMove();
         }
     }
