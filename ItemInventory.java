@@ -28,10 +28,11 @@ public class ItemInventory extends Actor
         }
         if (num == 2)
         {
-            setImage("chest2.png");
-            equipType = 2;
+            setImage("electricsword3.png");
+            equipType = 1;
         }
         id = num;
+        setImage("Inventory.png")
     }
 
     /**
