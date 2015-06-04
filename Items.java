@@ -36,12 +36,15 @@ public class Items extends Actor
         }
         if (num == 2)
         {
-            name = "Chest";
-            equipType = 2;
-            setImage("chest2.png");
-            fileName = "chest2.png";
-            atkBuff = 2;
-            defBuff = 0;
+            name = "Electric Edge";
+            equipType = 1;
+            setImage("electricsword1.png");
+            fileName = "electricsword1.png";
+            description = "Hastily built by a fugitive \nengineer in his final moments.\nCareful how you hold it.";
+            atkBuff = 4;
+            defBuff = -1;
+            dexBuff = 0;
+            lukBuff = 0;
         }
     }
 
@@ -55,17 +58,22 @@ public class Items extends Actor
             setImage("beamblade1.png");
             fileName = "beamblade1.png";
             description = "Affectionately named to avoid \n copyright laws, apparently \n'Blight Blaber' isn't allowed.";
-            atkBuff = 2;
-            defBuff = 0;
+            atkBuff = 3;
+            defBuff = 1;
+            dexBuff = 0;
+            lukBuff = 0;
         }
         if (num == 2)
         {
-            name = "Chest";
-            equipType = 2;
-            setImage("chest2.png");
-            fileName = "chest2.png";
-            atkBuff = 2;
-            defBuff = 0;
+            name = "Electric Edge";
+            equipType = 1;
+            setImage("electricsword1.png");
+            fileName = "electricsword1.png";
+            description = "Hastily built by a fugitive \nengineer in his final moments.\nCareful how you hold it.";
+            atkBuff = 4;
+            defBuff = -1;
+            dexBuff = 0;
+            lukBuff = 0;
         }
         this.mapX = mapX;
         this.mapY = mapY;
