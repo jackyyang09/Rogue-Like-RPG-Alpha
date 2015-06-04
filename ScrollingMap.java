@@ -235,8 +235,8 @@ public class ScrollingMap extends World
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
                 if(field[i][j][1] != null){
-                    pMapX = ((Player)field[i][j][1]).getMapX();
-                    pMapY = ((Player)field[i][j][1]).getMapY();
+                    pMapX = ((Player)field[i][j][1]).getMapY();
+                    pMapY = ((Player)field[i][j][1]).getMapX();
                     topBound = pMapY - (getHeight()/2);
                     bottomBound = pMapY + (getHeight()/2);
                     leftBound = pMapX - (getWidth()/2);
@@ -248,7 +248,7 @@ public class ScrollingMap extends World
         }        
     }
 
-/**
+    /**
      * Updates the map by dectecting if its currently in the viewport if not remove from world if so add to world
      */
     public void update()
