@@ -19,7 +19,7 @@ public class InfoTab extends Actor
         fontName = new Font("OCR A Extended", 2, 20);
         fontDesc = new Font("OCR A Extended", 1, 13);
         fontNums = new Font("OCR A Extended", 3, 20);
-        setImage("Info.png")
+        setImage("Info.png");
     }
 
     /**
