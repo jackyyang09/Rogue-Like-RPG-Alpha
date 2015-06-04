@@ -169,7 +169,7 @@ public class ScrollingMap extends World
     /**
      * Reads Image File
      */
-    private void createMap(String[][][] data){
+    private void createMap(String[][] data){
         //prepare the grid for pathfinding
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
@@ -181,14 +181,14 @@ public class ScrollingMap extends World
             for(int y = 0 ; y < MAPIMGHEIGHT;y++)
             {
                 for(int d = 0; d < MAPDEPTH; d++){
-                    if(data[x][y][0] != null){
-                        if(data[x][y][0].equals("door")){
+                    if(data[x][y] != null){
+                        if(data[x][y].equals("door")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                         }
-                        if(data[x][y][0].equals("floorTile")){
+                        if(data[x][y].equals("floorTile")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
                         }
-                        if(data[x][y][0].equals("wall")){
+                        if(data[x][y].equals("wall")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                             grid[x][y] = false;
                         }
