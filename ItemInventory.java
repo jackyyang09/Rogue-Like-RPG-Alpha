@@ -9,9 +9,7 @@ import java.util.List;
 public class ItemInventory extends Actor
 {
     private boolean begin = false;
-    private boolean drag = false;
-    private boolean open = false;
-    private boolean close = false;
+    private boolean drag = false; //True if item is currently being dragged by the mouse
     private boolean secure = true;//True if the item has left it's slot, useful if the item glitches into the air
     private InfoTab info;
     private int equipType = 0;
@@ -50,23 +48,27 @@ public class ItemInventory extends Actor
         if (id != 0){hoverDetect();}
     }    
 
+    /**
+     * Detects mouse clickes and presses and runs appropriate functions as necessary
+     * Handles item dropping and slot switching
+     */
     public void mouseDetect()
     {
         MouseInfo mouse = Greenfoot.getMouseInfo();
         if (mouse != null)
         {
             List objects = getWorld().getObjectsAt(mouse.getX(), mouse.getY(), ItemInventory.class);
-            if (Greenfoot.mouseDragged(this)){
+            if (Greenfoot.mouseDragged(this)){ //Enables ability to drag this object around
                 setLocation(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
                 secure = false;
                 drag = true;
             }
-            if (Greenfoot.mouseClicked(this))
+            if (Greenfoot.mouseClicked(this)) //Things happen when the mouse key is released
             {
                 if (this.isTouching(ItemInventory.class))
                 {
                     Inventory inv = (Inventory)getOneIntersectingObject(Inventory.class);
-                    if (inv.switchSlot(this, (ItemInventory)getOneIntersectingObject(ItemInventory.class)) == true)
+                    if (inv.switchSlot(this, (ItemInventory)getOneIntersectingObject(ItemInventory.class)) == true)//Switch slots
                     {
                         setLocation(prevX, prevY);
                     }
@@ -77,7 +79,7 @@ public class ItemInventory extends Actor
                 }
                 else
                 {
-                    if (checkBoundary())
+                    if (checkBoundary()) //Drop item onto the map if the item is dragged outside the inventory
                     {
                         List<Inventory> inventory = getWorld().getObjects(Inventory.class);
                         for (Inventory i :inventory){i.dropItem(this);}
@@ -85,7 +87,7 @@ public class ItemInventory extends Actor
                     }
                     else
                     {
-                        if (checkLoc())
+                        if (checkLoc()) //Reset the item's location in the inventory if item is dragged to any other location
                         {
                             setLocation(prevX, prevY);
                             secure = true;
@@ -97,6 +99,9 @@ public class ItemInventory extends Actor
         }
     }
 
+    /**
+     * Does a check if and where the mouse is hovering and displays an information screen accordingly
+     */
     public void hoverDetect()
     {
         if ((Greenfoot.mouseMoved(this) && info == null) && secure == true)
@@ -126,12 +131,20 @@ public class ItemInventory extends Actor
         secure = true;
     }
 
+    /**
+     * Checks the item's current position on the screen
+     * Returns true if the item is located outside the bounds of the inventory
+     */
     private boolean checkBoundary()
     {
         if (getX() < 488 || getX() > 926 || getY() < 12 || getY() > 581){return true;}
         return false;
     }
 
+    /**
+     * Checks the item's current position relative to it's original position
+     * Returns true if it has changed
+     */
     private boolean checkLoc()
     {
         if (prevX != getX() || prevY != getY()){return true;}
