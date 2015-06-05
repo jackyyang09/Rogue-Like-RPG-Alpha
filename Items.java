@@ -1,6 +1,7 @@
 import greenfoot.*;
 /**
  * Universal Item class
+ * Also functions as a database for items
  * 
  * @author Jacky Yang
  * @version (a version number or a date)
@@ -11,70 +12,27 @@ public class Items extends Actor
     private String name, description, fileName;
     private int equipType;
     private int atkBuff, defBuff, dexBuff, lukBuff;
-    private boolean begin;
-    private int mapX, mapY;
+    private int mapX, mapY;.
     public Items()
     {
         setImage("transparent.png");
         id = 0;
     }
 
+    /**
+     * Basic constructor that functions as a database accessor
+     */
     public Items(int num)
     {
-        id = num;
-        if (num == 1)
-        {
-            name = "Beam Blade";
-            equipType = 1;
-            setImage("beamblade1.png");
-            fileName = "beamblade1.png";
-            description = "Affectionately named to avoid \ncopyright laws, apparently \n'Blight Blaber' isn't allowed.";
-            atkBuff = 3;
-            defBuff = 1;
-            dexBuff = 0;
-            lukBuff = 0;
-        }
-        if (num == 2)
-        {
-            name = "Electric Edge";
-            equipType = 1;
-            setImage("electricsword1.png");
-            fileName = "electricsword1.png";
-            description = "Hastily built by a fugitive \nengineer in his final moments.\nCareful how you hold it.";
-            atkBuff = 4;
-            defBuff = -1;
-            dexBuff = 0;
-            lukBuff = 0;
-        }
+        database(num);
     }
 
+    /**
+     * Main constructor that binds the item to the world
+     */
     public Items(int num, int mapX, int mapY)
     {
-        id = num;
-        if (num == 1)
-        {
-            name = "Beam Blade";
-            equipType = 1;
-            setImage("beamblade1.png");
-            fileName = "beamblade1.png";
-            description = "Affectionately named to avoid \n copyright laws, apparently \n'Blight Blaber' isn't allowed.";
-            atkBuff = 3;
-            defBuff = 1;
-            dexBuff = 0;
-            lukBuff = 0;
-        }
-        if (num == 2)
-        {
-            name = "Electric Edge";
-            equipType = 1;
-            setImage("electricsword1.png");
-            fileName = "electricsword1.png";
-            description = "Hastily built by a fugitive \nengineer in his final moments.\nCareful how you hold it.";
-            atkBuff = 4;
-            defBuff = -1;
-            dexBuff = 0;
-            lukBuff = 0;
-        }
+        database(num);
         this.mapX = mapX;
         this.mapY = mapY;
     }
@@ -155,5 +113,37 @@ public class Items extends Actor
     {
         mapX = x;
         mapY = y;
+    }
+    
+    /**
+     * Sets values of the item upon instantiation
+     */
+    private void database(int num)
+    {
+        id = num;
+        if (num == 1)
+        {
+            name = "Beam Blade";
+            equipType = 1;
+            setImage("beamblade1.png");
+            fileName = "beamblade1.png";
+            description = "Affectionately named to avoid \ncopyright laws, apparently \n'Blight Blaber' isn't allowed.";
+            atkBuff = 3;
+            defBuff = 1;
+            dexBuff = 0;
+            lukBuff = 0;
+        }
+        if (num == 2)
+        {
+            name = "Electric Edge";
+            equipType = 1;
+            setImage("electricsword1.png");
+            fileName = "electricsword1.png";
+            description = "Hastily built by a fugitive \nengineer in his final moments.\nCareful how you hold it.";
+            atkBuff = 4;
+            defBuff = -1;
+            dexBuff = 0;
+            lukBuff = 0;
+        }
     }
 }
