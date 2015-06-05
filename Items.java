@@ -12,7 +12,7 @@ public class Items extends Actor
     private String name, description, fileName;
     private int equipType;
     private int atkBuff, defBuff, dexBuff, lukBuff;
-    private int mapX, mapY;.
+    private int mapX, mapY;
     public Items()
     {
         setImage("transparent.png");
