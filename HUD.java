@@ -52,7 +52,6 @@ public class HUD extends Actor
         if (begin == false){begin();}
         mouseDetectBackpack();
         mouseDetectProfile();
-        update();
     }   
 
     /**
