@@ -2,11 +2,11 @@ import greenfoot.*;
 import java.awt.Color;
 import java.awt.Font;
 /**
- * Displays player information and controls displays
+ * Displays player information and controls other display elements
  * 
  * WIP 
- * - Action Bar
- * - Profile Picture
+ * - Action meter
+ * - Exp bar
  * - Minimap(?)
  * 
  * @author Jacky Yang
@@ -28,9 +28,11 @@ public class HUD extends Actor
         box = new ValueBox();
         bp = new Button();
         profile = new Button();
-        setImage("HUD.png");
     }
-
+    
+    /**
+     * Run only once, adds all necessary elements to the screen
+     */
     public void begin()
     {
         bp.setImage("Sack.png");
@@ -84,7 +86,7 @@ public class HUD extends Actor
             else{bp.setImage("SackOpen.png");}
         }
     }
-    
+
     /**
      * Detects mouse presses on the profile button
      */
@@ -115,10 +117,5 @@ public class HUD extends Actor
             if (profileopen == false){profile.setImage("profilebutton.png");}
             else{profile.setImage("profilebuttonactive.png");}
         }
-    }
-
-    private void update()
-    {
-
     }
 }
