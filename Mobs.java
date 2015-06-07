@@ -32,7 +32,6 @@ public class Mobs extends Actor
 
     public void decreaseMove(){
         move--;
-        System.out.println(move);
     }
 
     public void resetMove(){
