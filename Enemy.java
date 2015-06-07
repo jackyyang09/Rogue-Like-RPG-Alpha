@@ -13,72 +13,62 @@ public class Enemy extends Mobs
     BFSPathFinding bfs = new BFSPathFinding();
     int middle;
     LinkedList<Point> moveTo;
+    int tempX;
+    int tempY;
+    int ID;
     //boolean[][] grid2;
 
-    public Enemy(int getMapX, int getMapY){
+    /**
+     * Constructor for Enemy
+     * <p>
+     * List of tasks:
+     * -Sets image
+     * -Sets Base Stats
+     * -Sets a UNIQUE ID number
+     * -Sets the desired 
+     * 
+     * @param getMapX
+     * @param getMapY
+     * @param IDnum
+     */
+    public Enemy(int getMapX, int getMapY, int IDnum){
         setImage("chest.png");
         baseHp = 100;
         baseAtt = 10;
         baseDef = 5;
         baseMove = 2;
+        ID = IDnum;
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
     }
 
+    /**
+     * Act Method
+     */
     public void act(){
         if(Greenfoot.isKeyDown("c")){
             convertToTile();
             Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
             boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
-//             for(int i = 0; i < 58; i++){
-//                 for(int j = 0; j < 56; j++){
-//                     try{
-//                         if(!((Tile)grid[i][j][0]).isAWall){
-//                             System.out.print(0);
-//                         } else {
-//                             System.out.print(1);
-//                         }
-//                     } catch (Exception e){
-// //                         System.out.print(0);
-//                     }
-//                 }
-//                 System.out.println("");
-//             }
-
-            //         for(int i = 0; i < 58; i++){
-            //             for(int j = 0; j < 56; j++){
-            //                 if(grid2[i][j]){
-            //                     System.out.print(0);
-            //                 }
-            //                 else{
-            //                     System.out.print(1);
-            //                 }
-            //             }
-            //             System.out.println();
-            //         }
-
             for(int i = 0; i < 58; i++){
                 for(int j = 0; j < 56; j++){
                     if(grid[i][j][1] != null){
-                        playerX = i;//((Player)grid[i][j][1]).getMapX();
-                        playerY = j;//((Player)grid[i][j][1]).getMapY();
+                        playerX = i;
+                        playerY = j;
                         System.out.println(playerX + "p" + playerY);
                         System.out.println(grid2[mapX][mapY]);
-                        //convertToTilePlayer();
+
                     }
                 }
             }
-            //int playerX = grid[0][0][2].getMapX();
-            //int playerY = grid[0][0][2].getMapY();
             System.out.println(mapX + "x" + mapY);
             moveTo = bfs.BFSPathFinding(mapY, mapX, playerY, playerX, grid2);
             bfs.reset();
-            //System.out.println(moveTo);
-            //middle = moveTo.indexOf('x');
-            //mapX = Integer.parseInt(moveTo.substring(0,middle));
-            //mapY = Integer.parseInt(moveTo.substring(middle + 1));
-            if(moveTo.size() > 1){
+            if(moveTo.size() == 2){
+                
+            }
+            else if(moveTo.size() > 1 && moveTo.size() < 16){
                 moveTo.removeFirst();
                 mapY = moveTo.getFirst().x;
                 mapX = moveTo.getFirst().y;
@@ -86,5 +76,14 @@ public class Enemy extends Mobs
             convertToPixel();
             ((ScrollingMap)getWorld()).update();
         }
+    }
+
+    /**
+     * Returns the ID of this specific enemy
+     * 
+     * @return ID specific ID number for this enemy
+     */
+    public int getID(){
+        return this.ID;
     }
 }
