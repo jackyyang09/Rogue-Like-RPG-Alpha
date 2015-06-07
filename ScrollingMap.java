@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
+import java.util.Random;
+
 /**
  * Write a description of class ScrollingMap here.
  * 
@@ -145,7 +147,7 @@ public class ScrollingMap extends World
             field[xC][yC][d] = new Player(xCo, yCo);
         }
         if(object == 2){
-            field[xC][yC][d] = new Enemy(xCo, yCo);
+            field[xC][yC][d] = new Enemy(xCo, yCo, 1);
         }
         update();
     }
@@ -290,7 +292,9 @@ public class ScrollingMap extends World
                         } else {
                             if(block.getWorld()!=null)
                             {
-                                removeObject(block);     
+                                if(i != 2){
+                                    removeObject(block);
+                                }
                             }
                         }
                     }
