@@ -2,9 +2,9 @@ import greenfoot.*;
 import java.lang.reflect.Array;
 import java.util.List;
 /**
- * Write a description of class Inventory here.
+ * A visual representation of the Player's inventory array
  * 
- * @author Jacky Yang 
+ * @author Jacky Yang
  * @version (a version number or a date)
  */
 public class Inventory extends Actor
@@ -25,12 +25,13 @@ public class Inventory extends Actor
      */
     public void act() 
     {
-        if (update == false)
-        {
-            update();
-        }    
+        if (update == false){update();}    
     }
 
+    /**
+     * Run once to show the latest values
+     * Ocassionally called by other values when changes are made
+     */
     public void update()
     {
         clear();
@@ -41,7 +42,7 @@ public class Inventory extends Actor
             items = P.getItems();
             equips = P.getEquips();
             for (int i = 0; i < Array.getLength(items); i++)
-            {
+            {// Checks for empty slots in the inventory and adds in an empty iteminventory in an appropriate slot
                 ItemInventory newItem = null;
                 if (items[i] != null){newItem = new ItemInventory(items[i].getItemID());}
                 else if (items[i] == null){newItem = new ItemInventory(0);}
@@ -57,7 +58,7 @@ public class Inventory extends Actor
                 slots[i] = newItem;
             }
             for (int i = 0; i < Array.getLength(equips); i++)
-            {
+            {// Checks for items in the inventory and adds an apprioprate item inventory in an appropriate slot
                 ItemInventory newItem = null;
                 if (equips[i] != null){newItem = new ItemInventory(equips[i].getItemID());}
                 if (equips[i] == null){newItem = new ItemInventory(0);}
@@ -81,7 +82,7 @@ public class Inventory extends Actor
         int slot1 = 0;
         int slot2 = 0;
         for (int i = 0; i < Array.getLength(slots); i++)
-        {
+        {// Searches for the instance of the first item
             if (slots[i] == item1)
             {
                 slot1 = i;
@@ -89,14 +90,14 @@ public class Inventory extends Actor
             }
         }
         for (int i = 0; i < Array.getLength(slots); i++)
-        {
+        {// Searches for the instance of the item to be switched
             if (slots[i] == item2)
             {
                 slot2 = i;
                 i = Array.getLength(slots);
             }
         }
-        boolean pass = false;
+        boolean pass = false; //Becomes true if the items are qualified to switch
         //Check if you're trying to put a non-weapon into a weapon slot or a non-armor into an armor slot
         if ((slot2 == 9 && item1.getEquipType() == 1) || (slot2 == 10 && item1.getEquipType() == 2)){pass = true;} // Items > Equips
         else if ((slot1 == 9 && item2.getEquipType() == 1) || (slot1 == 10 && item2.getEquipType() == 2)){pass = true;} // Equips > Items
@@ -110,8 +111,8 @@ public class Inventory extends Actor
             List<Player> Playerlist = getWorld().getObjects(Player.class);
             for(Player P : Playerlist)
             {
-                if (slot1 < slot2)
-                {
+                if (slot1 < slot2)      
+                {// Sets the slot to be switched as the lower value for convinience
                     int hold;
                     hold = slot1;
                     slot1 = slot2;
@@ -124,11 +125,16 @@ public class Inventory extends Actor
         return false;
     }
 
+    /**
+     * Sends a command to the player to drop an item onto the ground
+     * 
+     * @param item ItemInventory object
+     */
     public void dropItem(ItemInventory item)
     {
         int index = 0;
         for (int i = 0; i < Array.getLength(slots); i++)
-        {
+        {// Searches for the index of the item to be dropped
             if (slots[i] == item)
             {
                 index = i;
@@ -136,10 +142,13 @@ public class Inventory extends Actor
             }
         }
         List<Player> player = getWorld().getObjects(Player.class);
-        for (Player p :player){p.dropItem(index);}
+        for (Player p :player){p.dropItem(index);} //Tells player to drop the item
         update = false;
     }
 
+    /**
+     * Removes every existance of ItemInventory when the inventory closes
+     */
     public void clear()
     {
         List<ItemInventory> ItemList = getIntersectingObjects(ItemInventory.class);
