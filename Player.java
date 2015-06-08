@@ -35,8 +35,9 @@ public class Player extends Mobs
      */
     public void begin()
     {
+        setImage("player2.png");
         GreenfootImage image = new GreenfootImage(144, 86);
-        image.drawImage("player2.png", 29, 0);
+        image.drawImage(getImage(), 29, 0);
         setImage(image);
     }
 
