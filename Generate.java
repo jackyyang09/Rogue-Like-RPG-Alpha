@@ -152,8 +152,55 @@ public class Generate
     }
 
     public void checkDoors(){
+        int amtWalls;
+        boolean r, l, u, d;
         for(int[] ds : doors){
-            System.out.println(ds);
+            System.out.println(ds[0] + " " + ds[1]);
+            if(ds[0] == 5 || ds[0] == 52 || ds[1] == 5 || ds[1] == 51){
+                array[ds[0]][ds[1]][0] = "wall";
+            }
+            else{
+                amtWalls = 0;
+                r = false;
+                l = false;
+                u = false;
+                d = false;
+                if(array[ds[0]+1][ds[1]][0] == "wall"){
+                    //System.out.println("right");
+                    amtWalls++;
+                    r = true;
+                }
+                if(array[ds[0]-1][ds[1]][0] == "wall"){
+                    //System.out.println("left");
+                    amtWalls++;
+                    l = true;
+                }
+                if(array[ds[0]][ds[1]+1][0] == "wall"){
+                    //System.out.println("up");
+                    amtWalls++;
+                    u = true;
+                }
+                if(array[ds[0]][ds[1]-1][0] == "wall"){
+                    //System.out.println("down");
+                    amtWalls++;
+                    d = true;
+                }
+                if(amtWalls >= 2){
+                    System.out.println("blocked");
+                    if(r == true && l != true){
+                        array[ds[0]+1][ds[1]][0] = "door";
+                    }
+                    if(l == true && r != true){
+                        array[ds[0]-1][ds[1]][0] = "door";
+                    }
+                    if(u == true && d != true){
+                        array[ds[0]][ds[1]+1][0] = "door";
+                    }
+                    if(d == true && u != true){
+                        array[ds[0]][ds[1]-1][0] = "door";
+                    }
+                }
+            }
         }
     }
 
