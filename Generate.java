@@ -83,7 +83,7 @@ public class Generate
                 noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
                 if(noSpace == false){
                     room(coor);
-                    spawnEnemy(coor, 1);
+                    spawnEnemy(coor, 3);
                     doneOnce = true;
                     noSpace = true;
                     rooms.add(coor);
@@ -110,9 +110,9 @@ public class Generate
             }
         }
         int listN[] = new int[4];
-        int amtDoors = getRandDoor();
+        //int amtDoors = getRandDoor();
         listN = getRandList();
-        for(int i = 0; i < amtDoors; i++){
+        for(int i = 0; i < 4; i++){
             if(listN[i]==1){
                 int d1 = coor[2]+(coor[0]/2);
                 array[d1][coor[3]][0] = null;
@@ -215,10 +215,11 @@ public class Generate
         }
     }
 
-    public void spawnEnemy (int[] room, int times){
+    public void spawnEnemy (int[] room, int maxEnemies){
+        int times = Greenfoot.getRandomNumber(maxEnemies)+1;
         for(int i = 0; i < times; i++){
-            int xCor = getRandNum(room[2], room[2]+room[0]+1);
-            int yCor = getRandNum(room[3], room[3]+room[1]+1);
+            int xCor = getRandNum(room[2]+1, room[2]+room[0]+1);
+            int yCor = getRandNum(room[3]+1, room[3]+room[1]+1);
             array[xCor][yCor][2] = "enemy";
         }
     }
