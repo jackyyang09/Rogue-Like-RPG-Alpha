@@ -38,6 +38,8 @@ public class ScrollingMap extends World
         super(946, 774, 1, false);
         setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, Button.class, ValueBox.class, HUD.class, Inventory.class, Player.class, Items.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
+        playerX = generate.getStartingCoorX();
+        playerY = generate.getStartingCoorY();
         spawnPlayer();
         centerOnPlayer();
         update();
@@ -187,13 +189,16 @@ public class ScrollingMap extends World
                         if(data[x][y].equals("door")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                         }
-                        if(data[x][y].equals("floorTile")){
+                        else if(data[x][y].equals("floorTile")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
                         }
-                        if(data[x][y].equals("wall")){
+                        else if(data[x][y].equals("wall")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                             grid[x][y] = false;
                         }
+                        if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
+                            inputObject(2, x, y, 2);
+                    }
                     }
                 }
             }
