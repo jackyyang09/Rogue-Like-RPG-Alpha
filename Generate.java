@@ -46,7 +46,7 @@ public class Generate
         noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
         if(noSpace == false){
             room(coor);
-            System.out.println(coor[0] +" "+coor[1] +" "+coor[2] +" "+coor[3]);
+            //System.out.println(coor[0] +" "+coor[1] +" "+coor[2] +" "+coor[3]);
             noSpace = true;
             rooms.add(coor);
         }
@@ -155,7 +155,7 @@ public class Generate
         int amtWalls;
         boolean r, l, u, d;
         for(int[] ds : doors){
-            System.out.println(ds[0] + " " + ds[1]);
+            //System.out.println(ds[0] + " " + ds[1]);
             if(ds[0] == 5 || ds[0] == 52 || ds[1] == 5 || ds[1] == 51){
                 array[ds[0]][ds[1]][0] = "wall";
             }
@@ -186,7 +186,7 @@ public class Generate
                     d = true;
                 }
                 if(amtWalls >= 2){
-                    System.out.println("blocked");
+                    //System.out.println("blocked");
                     if(r == true && l != true){
                         array[ds[0]+1][ds[1]][0] = "door";
                     }
