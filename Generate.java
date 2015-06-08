@@ -109,11 +109,6 @@ public class Generate
                 array[k][l][0] = "floorTile";
             }
         }
-        int listN[] = new int[4];
-        //int amtDoors = getRandDoor();
-        listN = getRandList();
-        for(int i = 0; i < 4; i++){
-            if(listN[i]==1){
                 int d1 = coor[2]+(coor[0]/2);
                 array[d1][coor[3]][0] = null;
                 array[d1][coor[3]][0] = "door";
@@ -121,8 +116,7 @@ public class Generate
                 array[d1+1][coor[3]][0] = null;
                 array[d1+1][coor[3]][0] = "door";
                 putDoors(d1+1, coor[3]);
-            }
-            else if(listN[i]==2){
+
                 int d2 = coor[3]+(coor[1]/2);
                 array[coor[2]][d2][0] = null;
                 array[coor[2]][d2][0] = "door";
@@ -130,8 +124,7 @@ public class Generate
                 array[coor[2]][d2+1][0] = null;
                 array[coor[2]][d2+1][0] = "door";
                 putDoors(coor[2], d2+1);
-            }
-            else if(listN[i]==3){
+                
                 int d3 = coor[2]+(coor[0]/2);
                 array[d3][coor[3]+coor[1]+1][0] = null;
                 array[d3][coor[3]+coor[1]+1][0] = "door";
@@ -139,8 +132,7 @@ public class Generate
                 array[d3+1][coor[3]+coor[1]+1][0] = null;
                 array[d3+1][coor[3]+coor[1]+1][0] = "door";
                 putDoors(d3+1, coor[3]+coor[1]+1);
-            }
-            else if(listN[i]==4){
+
                 int d4 = coor[3]+(coor[1]/2);
                 array[coor[2]+coor[0]+1][d4][0] = null;
                 array[coor[2]+coor[0]+1][d4][0] = "door";
@@ -148,8 +140,6 @@ public class Generate
                 array[coor[2]+coor[0]+1][d4+1][0] = null;
                 array[coor[2]+coor[0]+1][d4+1][0] = "door";
                 putDoors(coor[2]+coor[0]+1, d4+1);
-            }
-        }
     }
 
     public void putDoors(int x, int y){
