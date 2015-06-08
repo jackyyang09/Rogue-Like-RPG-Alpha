@@ -9,31 +9,31 @@ import java.util.ArrayList;
  */
 public class Generate
 {
-    String array[][] = new String[58][56];
+    String array[][][] = new String[58][56][4];
     //private int coor[] = new int[4];
     ArrayList<int[]> rooms = new ArrayList<int[]>(); // 0=w, 1=h, 2=x, 3=y
-    ArrayList<int[]> doors = new ArrayList<int[]>();
+    ArrayList<int[]> doors = new ArrayList<int[]>(); // 0=x, 1=y
     private boolean noSpace = false;
     private boolean doneOnce = false;
-    public String[][] generateMap(){
+    public String[][][] generateMap(){
         generateBorder();
         generateStartRoom();
         generateEndRoom();
         generateRoom(10);
         floodGrid();
-
+        checkDoors();
         return array;
     }
 
     public void generateBorder(){
         // 4x3, 4x52, 53x3, 53x52
         for(int i = 4; i < 52; i++){
-            array[4][i] = "wall";
-            array[53][i] = "wall";
+            array[4][i][0] = "wall";
+            array[53][i][0] = "wall";
         }
         for(int j = 4; j < 54; j++){
-            array[j][4] = "wall";
-            array[j][52] = "wall";
+            array[j][4][0] = "wall";
+            array[j][52][0] = "wall";
         }
     }
 
@@ -45,52 +45,8 @@ public class Generate
         coor[3] = getRandY(coor[1]);
         noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
         if(noSpace == false){
-            for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
-                array[i][coor[3]] = "wall";
-                array[i][coor[3]+coor[1]+1] = "wall";
-            }
-            for(int j = coor[3]; j < coor[3] + coor[1] + 1; j++){
-                array[coor[2]][j] = "wall";
-                array[coor[2]+coor[0]][j] = "wall";
-            }
-            for(int k = coor[2] + 1; k < coor[2] + coor[0]; k++){
-                for(int l = coor[3] + 1; l < coor[3] + coor[1]+1; l++){
-                    array[k][l] = "floorTile";
-                }
-            }
-            int listN[] = new int[4];
-            int amtDoors = getRandDoor();
-            listN = getRandList();
-            for(int i = 0; i < amtDoors; i++){
-                if(listN[i]==1){
-                    int d1 = coor[2]+(coor[0]/2);
-                    array[d1][coor[3]] = null;
-                    array[d1][coor[3]] = "door";
-                    array[d1+1][coor[3]] = null;
-                    array[d1+1][coor[3]] = "door";
-                }
-                else if(listN[i]==2){
-                    int d2 = coor[3]+(coor[1]/2);
-                    array[coor[2]][d2] = null;
-                    array[coor[2]][d2] = "door";
-                    array[coor[2]][d2+1] = null;
-                    array[coor[2]][d2+1] = "door";
-                }
-                else if(listN[i]==3){
-                    int d3 = coor[2]+(coor[0]/2);
-                    array[d3][coor[3]+coor[1]+1] = null;
-                    array[d3][coor[3]+coor[1]+1] = "door";
-                    array[d3+1][coor[3]+coor[1]+1] = null;
-                    array[d3+1][coor[3]+coor[1]+1] = "door";
-                }
-                else if(listN[i]==4){
-                    int d4 = coor[3]+(coor[1]/2);
-                    array[coor[2]+coor[0]][d4] = null;
-                    array[coor[2]+coor[0]][d4] = "door";
-                    array[coor[2]+coor[0]][d4+1] = null;
-                    array[coor[2]+coor[0]][d4+1] = "door";
-                }
-            }
+            room(coor);
+            System.out.println(coor[0] +" "+coor[1] +" "+coor[2] +" "+coor[3]);
             noSpace = true;
             rooms.add(coor);
         }
@@ -105,52 +61,7 @@ public class Generate
             coor[3] = getRandY(coor[1]);
             noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
             if(noSpace == false){
-                for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
-                    array[i][coor[3]] = "wall";
-                    array[i][coor[3]+coor[1]+1] = "wall";
-                }
-                for(int j = coor[3]; j < coor[3] + coor[1] + 1; j++){
-                    array[coor[2]][j] = "wall";
-                    array[coor[2]+coor[0]][j] = "wall";
-                }
-                for(int k = coor[2] + 1; k < coor[2] + coor[0]; k++){
-                    for(int l = coor[3] + 1; l < coor[3] + coor[1]+1; l++){
-                        array[k][l] = "floorTile";
-                    }
-                }
-                int listN[] = new int[4];
-                int amtDoors = getRandDoor();
-                listN = getRandList();
-                for(int i = 0; i < amtDoors; i++){
-                    if(listN[i]==1){
-                        int d1 = coor[2]+(coor[0]/2);
-                        array[d1][coor[3]] = null;
-                        array[d1][coor[3]] = "door";
-                        array[d1+1][coor[3]] = null;
-                        array[d1+1][coor[3]] = "door";
-                    }
-                    else if(listN[i]==2){
-                        int d2 = coor[3]+(coor[1]/2);
-                        array[coor[2]][d2] = null;
-                        array[coor[2]][d2] = "door";
-                        array[coor[2]][d2+1] = null;
-                        array[coor[2]][d2+1] = "door";
-                    }
-                    else if(listN[i]==3){
-                        int d3 = coor[2]+(coor[0]/2);
-                        array[d3][coor[3]+coor[1]+1] = null;
-                        array[d3][coor[3]+coor[1]+1] = "door";
-                        array[d3+1][coor[3]+coor[1]+1] = null;
-                        array[d3+1][coor[3]+coor[1]+1] = "door";
-                    }
-                    else if(listN[i]==4){
-                        int d4 = coor[3]+(coor[1]/2);
-                        array[coor[2]+coor[0]][d4] = null;
-                        array[coor[2]+coor[0]][d4] = "door";
-                        array[coor[2]+coor[0]][d4+1] = null;
-                        array[coor[2]+coor[0]][d4+1] = "door";
-                    }
-                }
+                room(coor);
                 doneOnce = true;
                 noSpace = true;
                 rooms.add(coor);
@@ -171,54 +82,8 @@ public class Generate
                 coor[3] = getRandY(coor[1]);
                 noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
                 if(noSpace == false){
-                    for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
-                        array[i][coor[3]] = "wall";
-                        array[i][coor[3]+coor[1]+1] = "wall";
-                    }
-                    for(int j = coor[3]; j < coor[3] + coor[1] + 1; j++){
-                        array[coor[2]][j] = "wall";
-                        array[coor[2]+coor[0]][j] = "wall";
-                    }
-                    for(int k = coor[2] + 1; k < coor[2] + coor[0]; k++){
-                        for(int l = coor[3] + 1; l < coor[3] + coor[1]+1; l++){
-                            array[k][l] = "floorTile";
-                        }
-                    }
-                    int listN[] = new int[4];
-                    int amtDoors = getRandDoor();
-                    listN = getRandList();
-                    for(int i = 0; i < amtDoors; i++){
-                        if(listN[i]==1){
-                            int d1 = coor[2]+(coor[0]/2);
-                            array[d1][coor[3]] = null;
-                            array[d1][coor[3]] = "door";
-                            array[d1+1][coor[3]] = null;
-                            array[d1+1][coor[3]] = "door";
-                        }
-                        else if(listN[i]==2){
-                            int d2 = coor[3]+(coor[1]/2);
-                            array[coor[2]][d2] = null;
-                            array[coor[2]][d2] = "door";
-                            array[coor[2]][d2+1] = null;
-                            array[coor[2]][d2+1] = "door";
-                        }
-                        else if(listN[i]==3){
-                            int d3 = coor[2]+(coor[0]/2);
-                            array[d3][coor[3]+coor[1]+1] = null;
-                            array[d3][coor[3]+coor[1]+1] = "door";
-                            array[d3+1][coor[3]+coor[1]+1] = null;
-                            array[d3+1][coor[3]+coor[1]+1] = "door";
-                        }
-                        else if(listN[i]==4){
-                            int d4 = coor[3]+(coor[1]/2);
-                            array[coor[2]+coor[0]][d4] = null;
-                            array[coor[2]+coor[0]][d4] = "door";
-                            array[coor[2]+coor[0]][d4+1] = null;
-                            array[coor[2]+coor[0]][d4+1] = "door";
-                        }
-                    }
-                    //System.out.println(coor[0] +" "+coor[1]+" "+coor[2] +" "+coor[3]);
-                    //System.out.println("");
+                    room(coor);
+                    spawnEnemy(coor, 1);
                     doneOnce = true;
                     noSpace = true;
                     rooms.add(coor);
@@ -226,6 +91,77 @@ public class Generate
             }
             while(doneOnce == false);
             doneOnce = false;
+        }
+    }
+
+    public void room(int[] coor){
+        for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
+            array[i][coor[3]][0] = "wall";
+            array[i][coor[3]+coor[1]+1][0] = "wall";
+        }
+        for(int j = coor[3]; j < coor[3] + coor[1] + 1; j++){
+            array[coor[2]][j][0] = "wall";
+            array[coor[2]+coor[0]+1][j][0] = "wall";
+        }
+        array[coor[2] + coor[0] + 1][coor[3] + coor[1] + 1][0] = "wall";
+        for(int k = coor[2] + 1; k < coor[2] + coor[0]+1; k++){
+            for(int l = coor[3] + 1; l < coor[3] + coor[1]+1; l++){
+                array[k][l][0] = "floorTile";
+            }
+        }
+        int listN[] = new int[4];
+        int amtDoors = getRandDoor();
+        listN = getRandList();
+        for(int i = 0; i < amtDoors; i++){
+            if(listN[i]==1){
+                int d1 = coor[2]+(coor[0]/2);
+                array[d1][coor[3]][0] = null;
+                array[d1][coor[3]][0] = "door";
+                array[d1+1][coor[3]][0] = null;
+                array[d1+1][coor[3]][0] = "door";
+            }
+            else if(listN[i]==2){
+                int d2 = coor[3]+(coor[1]/2);
+                array[coor[2]][d2][0] = null;
+                array[coor[2]][d2][0] = "door";
+                array[coor[2]][d2+1][0] = null;
+                array[coor[2]][d2+1][0] = "door";
+            }
+            else if(listN[i]==3){
+                int d3 = coor[2]+(coor[0]/2);
+                array[d3][coor[3]+coor[1]+1][0] = null;
+                array[d3][coor[3]+coor[1]+1][0] = "door";
+                array[d3+1][coor[3]+coor[1]+1][0] = null;
+                array[d3+1][coor[3]+coor[1]+1][0] = "door";
+            }
+            else if(listN[i]==4){
+                int d4 = coor[3]+(coor[1]/2);
+                array[coor[2]+coor[0]+1][d4][0] = null;
+                array[coor[2]+coor[0]+1][d4][0] = "door";
+                array[coor[2]+coor[0]+1][d4+1][0] = null;
+                array[coor[2]+coor[0]+1][d4+1][0] = "door";
+            }
+        }
+    }
+
+    public void putDoors(int x, int y){
+        int dc[] = new int[2];
+        dc[0] = x;
+        dc[1] = y;
+        doors.add(dc);
+    }
+
+    public void checkDoors(){
+        for(int[] ds : doors){
+            System.out.println(ds);
+        }
+    }
+
+    public void spawnEnemy (int[] room, int times){
+        for(int i = 0; i < times; i++){
+            int xCor = getRandNum(room[2], room[2]+room[0]+1);
+            int yCor = getRandNum(room[3], room[3]+room[1]+1);
+            array[xCor][yCor][2] = "enemy";
         }
     }
 
@@ -243,62 +179,10 @@ public class Generate
         //}
     }
 
-    public void addDoors(int a){
-        int amtDoors, w, h, x, y;
-        int listN[] = new int[4];
-        //for(int a =0; a< rooms.size();a++){
-        //System.out.println(rooms.size());
-        amtDoors = getRandDoor();
-        //System.out.println(amtDoors);
-        //System.out.println(a);
-        //System.out.println(" ");
-        w = rooms.get(a)[0];
-        h = rooms.get(a)[1];
-        x = rooms.get(a)[2];
-        y = rooms.get(a)[3];
-        //System.out.println(w);
-        //System.out.println(h);
-        //System.out.println(x);
-        //System.out.println(y);
-        //System.out.println(" ");
-        listN = getRandList();
-        for(int i = 0; i < amtDoors; i++){
-            if(listN[i]==1){
-                int d1 = x+(w/2);
-                array[d1][y] = null;
-                array[d1][y] = "door";
-                array[d1+1][y] = null;
-                array[d1+1][y] = "door";
-            }
-            else if(listN[i]==2){
-                int d2 = y+(h/2);
-                array[x][d2] = null;
-                array[x][d2] = "door";
-                array[x][d2+1] = null;
-                array[x][d2+1] = "door";
-            }
-            else if(listN[i]==3){
-                int d3 = x+(w/2);
-                array[d3][y+h+1] = null;
-                array[d3][y+h+1] = "door";
-                array[d3+1][y+h+1] = null;
-                array[d3+1][y+h+1] = "door";
-            }
-            else if(listN[i]==4){
-                int d4 = y+(h/2);
-                array[x+w][d4] = null;
-                array[x+w][d4] = "door";
-                array[x+w][d4+1] = null;
-                array[x+w][d4+1] = "door";
-            }
-        }
-        //}
-    }
-
     public boolean checkSpaces (int w, int h, int x, int y){
         for(int a = x; a < x + w + 1; a++){
             for(int b = y; b < y + h + 1; b++){
-                if(array[a][b] != null){
+                if(array[a][b][0] != null){
                     return true;
                 }
             }
@@ -309,39 +193,14 @@ public class Generate
     public void floodGrid(){
         for(int i = 5; i<54; i++){
             for(int j = 5; j<53;j++){
-                if(array[i][j] == null){
-                    array[i][j] = "floorTile";
+                if(array[i][j][0] == null){
+                    array[i][j][0] = "floorTile";
                 }
             }
         }
     }
-    public void floodGrid2 (int x, int y){
-        // base case: array already has something in it
-        if (array[x][y] != null){
-            return;
-        }
 
-        array[x][y] = "floorTile";
-        // move up:
-        if (y >= 1)
-        {
-            floodGrid2(x, y-1); 
-        }
-        if (y < array.length - 1)
-        {
-            floodGrid2(x, y+1); 
-        }
-        if (x >= 1)
-        {
-            floodGrid2(x - 1, y); 
-        }
-        if (x < array.length - 1)
-        {
-            floodGrid2(x + 1, y);    
-        }
-    }
-
-    public String[][] returnMap(){
+    public String[][][] returnMap(){
         return array;
     }
 
