@@ -17,7 +17,7 @@ public class Enemy extends Mobs
     int tempY;
     int ID;
     //boolean[][] grid2;
-
+    boolean enemyTurn = false;
     /**
      * Constructor for Enemy
      * <p>
@@ -32,11 +32,12 @@ public class Enemy extends Mobs
      * @param IDnum
      */
     public Enemy(int getMapX, int getMapY, int IDnum){
-        setImage("chest.png");
+        setImage("slime.png");
         baseHp = 100;
         baseAtt = 10;
         baseDef = 5;
         baseMove = 2;
+        move = 0;
         ID = IDnum;
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
@@ -47,7 +48,8 @@ public class Enemy extends Mobs
      * Act Method
      */
     public void act(){
-        if(Greenfoot.isKeyDown("c")){
+        if(enemyTurn && move > 0){
+            move--;
             convertToTile();
             Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
             boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
@@ -66,7 +68,7 @@ public class Enemy extends Mobs
             moveTo = bfs.BFSPathFinding(mapY, mapX, playerY, playerX, grid2);
             bfs.reset();
             if(moveTo.size() == 2){
-                
+
             }
             else if(moveTo.size() > 1 && moveTo.size() < 16){
                 moveTo.removeFirst();
@@ -75,6 +77,19 @@ public class Enemy extends Mobs
             }
             convertToPixel();
             ((ScrollingMap)getWorld()).update();
+        }
+        if(move == 0){
+            enemyTurn = false;
+        }
+    }
+
+    public void setEnemyTurn(boolean turn){
+        if(turn){
+            enemyTurn = true;
+            move = baseMove;
+        } else {
+            enemyTurn = false;
+            move = 0;
         }
     }
 
