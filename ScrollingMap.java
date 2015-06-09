@@ -30,6 +30,7 @@ public class ScrollingMap extends World
 
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     boolean[][] grid = new boolean[58][56];
+    private int floor = 1;
     /**
      * Constructor for objects of class ScrollingMap.
      */
@@ -104,32 +105,32 @@ public class ScrollingMap extends World
         return true;
     }
 
-//     /**
-//      * moves the screen in the desired direction by one tile
-//      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
-//      */
-//     public void move(int dir){
-//         if (dir == 1){
-//             y = TILESIZE;
-//             shiftScreen(x,y);
-//             y = 0;
-//         }
-//         if (dir == 2){
-//             y = -TILESIZE;
-//             shiftScreen(x,y);
-//             y = 0;
-//         }
-//         if (dir == 3){
-//             x = TILESIZE;
-//             shiftScreen(x,y);
-//             x = 0;
-//         }
-//         if (dir == 4){
-//             x = -TILESIZE;
-//             shiftScreen(x,y);
-//             x = 0;
-//         }
-//     }
+    //     /**
+    //      * moves the screen in the desired direction by one tile
+    //      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
+    //      */
+    //     public void move(int dir){
+    //         if (dir == 1){
+    //             y = TILESIZE;
+    //             shiftScreen(x,y);
+    //             y = 0;
+    //         }
+    //         if (dir == 2){
+    //             y = -TILESIZE;
+    //             shiftScreen(x,y);
+    //             y = 0;
+    //         }
+    //         if (dir == 3){
+    //             x = TILESIZE;
+    //             shiftScreen(x,y);
+    //             x = 0;
+    //         }
+    //         if (dir == 4){
+    //             x = -TILESIZE;
+    //             shiftScreen(x,y);
+    //             x = 0;
+    //         }
+    //     }
 
     public void spawnPlayer(){
         int xCo = playerX * TILESIZE + TILESIZE/2;
@@ -307,24 +308,24 @@ public class ScrollingMap extends World
         }
     }
 
-//     /**
-//      * Manual testing controls
-//      */
-//     public void act() 
-//     {
-//         if(Greenfoot.isKeyDown("k")){
-//             move(1);
-//         }
-//         if(Greenfoot.isKeyDown("i")){
-//             move(2);
-//         }
-//         if(Greenfoot.isKeyDown("l")){
-//             move(3);
-//         }
-//         if(Greenfoot.isKeyDown("j")){
-//             move(4);
-//         }
-//     }
+    //     /**
+    //      * Manual testing controls
+    //      */
+    //     public void act() 
+    //     {
+    //         if(Greenfoot.isKeyDown("k")){
+    //             move(1);
+    //         }
+    //         if(Greenfoot.isKeyDown("i")){
+    //             move(2);
+    //         }
+    //         if(Greenfoot.isKeyDown("l")){
+    //             move(3);
+    //         }
+    //         if(Greenfoot.isKeyDown("j")){
+    //             move(4);
+    //         }
+    //     }
 
     public Actor[][][] getField(){
         return field;
@@ -342,5 +343,13 @@ public class ScrollingMap extends World
 
     public boolean[][] getGrid(){
         return grid;
+    }
+
+    public int getFloor(){
+        return floor;
+    }
+    
+    public void increaseFloor(){
+        floor++;
     }
 }
