@@ -40,8 +40,8 @@ public class ProfileWindow extends Actor
         {
             image.drawString(Integer.toString((int)(P.getAtk())), 70, 100); //Attack stat
             image.drawString(Integer.toString((int)(P.getDef())), 195, 100); //Defense stat
-            image.drawString(Integer.toString((int)(P.getDex())), 70, 178); //Dexterity stat
-            image.drawString(Integer.toString((int)(P.getLuk())), 195, 178); //Luck stat
+            image.drawString(Integer.toString((int)(P.getLuk())), 70, 178); //Luck stat
+            image.drawString(Integer.toString((int)(P.getDex())), 195, 178); //Dexterity stat
         }
         setImage(image);
     }
