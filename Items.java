@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Items extends Actor
 {
-    protected int id;
+    private int id;
     private String name, description, fileName;
     private int equipType;
     private int atkBuff, defBuff, dexBuff, lukBuff;
@@ -24,7 +24,7 @@ public class Items extends Actor
      */
     public Items(int num)
     {
-        database(num);
+        database(num, false);
     }
 
     /**
@@ -32,7 +32,7 @@ public class Items extends Actor
      */
     public Items(int num, int mapX, int mapY)
     {
-        database(num);
+        database(num, true);
         this.mapX = mapX;
         this.mapY = mapY;
     }
@@ -53,12 +53,12 @@ public class Items extends Actor
         atkBuff = atkVar;
         defBuff = defVar;
     }
-    
+
     public String getName()
     {
         return name;
     }
-    
+
     public String getDescription()
     {
         return description;
@@ -73,7 +73,7 @@ public class Items extends Actor
     {
         return equipType;
     }
-    
+
     public String getFileName()
     {
         return fileName;
@@ -83,12 +83,12 @@ public class Items extends Actor
     {
         return atkBuff;
     }
-    
+
     public int getDefBuff()
     {
         return defBuff;
     }
-    
+
     public int getDexBuff()
     {
         return dexBuff;
@@ -98,7 +98,7 @@ public class Items extends Actor
     {
         return lukBuff;
     }
-    
+
     public int getMapX()
     {
         return mapX;
@@ -108,24 +108,28 @@ public class Items extends Actor
     {
         return mapY;
     }
-    
+
     public void setMapLoc(int x, int y)
     {
         mapX = x;
         mapY = y;
     }
-    
+
     /**
      * Sets values of the item upon instantiation
+     * 1 to 5 are weapons
+     * 6 to 10 are armors
+     * 11 to 15 are items
      */
-    private void database(int num)
+    private void database(int num, boolean dropped)
     {
         id = num;
         if (num == 1)
         {
             name = "Beam Blade";
             equipType = 1;
-            setImage("beamblade1.png");
+            if (dropped){setImage("beamblade3.png");}
+            else{setImage("beamblade1.png");}
             fileName = "beamblade1.png";
             description = "Affectionately named to avoid \ncopyright laws, apparently \n'Blight Blaber' isn't allowed.";
             atkBuff = 3;
@@ -137,12 +141,26 @@ public class Items extends Actor
         {
             name = "Electric Edge";
             equipType = 1;
-            setImage("electricsword1.png");
+            if (dropped){setImage("electricsword3.png");}
+            else{setImage("electricsword1.png");}
             fileName = "electricsword1.png";
             description = "Hastily built by a fugitive \nengineer in his final moments.\nCareful how you hold it.";
             atkBuff = 4;
             defBuff = -1;
             dexBuff = 0;
+            lukBuff = 0;
+        }
+        if (num == 6)
+        {
+            name = "Rustic Rampart";
+            equipType = 2;
+            if (dropped){setImage("rustarmor3.png");}
+            else{setImage("rustarmor1.png");}
+            fileName = "rustarmor1.png";
+            description = "Slimes corrode the armor \nturning it into this mess.\nBut hey, it looks cool.";
+            atkBuff = 0;
+            defBuff = 3;
+            dexBuff = -1;
             lukBuff = 0;
         }
     }
