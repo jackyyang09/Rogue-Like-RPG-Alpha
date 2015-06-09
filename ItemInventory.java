@@ -21,13 +21,28 @@ public class ItemInventory extends Actor
         if (num == 0){setImage("transparent.png");}
         if (num == 1)
         {
-            setImage("beamblade3.png");
+            setImage("beamblade2.png");
             equipType = 1;
         }
         if (num == 2)
         {
-            setImage("electricsword3.png");
+            setImage("electricsword2.png");
             equipType = 1;
+        }
+        if (num == 6)
+        {
+            setImage("rustarmor2.png");
+            equipType = 2;
+        }
+        if (num == 11)
+        {
+            setImage("firstaid2.png");
+            equipType = 0;
+        }
+        if (num == 12)
+        {
+            setImage("armorperk2.png");
+            equipType = 0;
         }
         id = num;
     }
