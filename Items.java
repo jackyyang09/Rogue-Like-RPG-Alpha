@@ -150,6 +150,19 @@ public class Items extends Actor
             dexBuff = 0;
             lukBuff = 0;
         }
+        if (num == 3)
+        {
+            name = "Bane's Bane";
+            equipType = 1;
+            if (dropped){setImage("banesbane3.png");}
+            else{setImage("banesbane1.png");}
+            fileName = "banesbane1.png";
+            description = "What is a Bane Slime? Why \ndoes it wear the mask? If you \ntake it off, it would be\nextremely painful...\nFor you.";
+            atkBuff = 2;
+            defBuff = 0;
+            dexBuff = 0;
+            lukBuff = 0;
+        }
         if (num == 6)
         {
             name = "Rustic Rampart";
@@ -169,6 +182,13 @@ public class Items extends Actor
             equipType = 0;
             setImage("firstaid1.png");
             description = "A small opened case filled \nwith supplies from bandaids\nto popsicle sticks. Perfect\nfor healing open wounds!";
+        }
+        if (num == 12)
+        {
+            name = "Armor Tuneup";
+            equipType = 0;
+            setImage("armorperk1.png");
+            description = "A case full of worktools \nand spare parts fit for \nmaking your heavy armor a bit\nheavier than before.";
         }
     }
 }
