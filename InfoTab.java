@@ -13,6 +13,7 @@ public class InfoTab extends Actor
     private Font fontName, fontDesc, fontNums;
     public InfoTab(ItemInventory iteminventory)
     {
+        setImage("Info.png");
         items = iteminventory;
         fontName = new Font("OCR A Extended", 2, 20);
         fontDesc = new Font("OCR A Extended", 1, 13);
