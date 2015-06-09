@@ -15,7 +15,7 @@ public class ScrollingMap extends World
     private final int MAPHEIGHT = 56 * TILESIZE;
     private final int MAPIMGWIDTH = 58;
     private final int MAPIMGHEIGHT = 56;
-    private final int MAPDEPTH = 4;
+    private final int MAPDEPTH = 5;
     private int leftBound = 0;
     private int bottomBound = MAPHEIGHT;
     private int topBound = MAPHEIGHT - getHeight();
@@ -58,7 +58,7 @@ public class ScrollingMap extends World
             for(int j = 0; j < 56; j++){
                 if(field[i][j][1] != null){
                     if(((Tile)field[i][j][0]) != null){
-                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall){
+                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall && (Enemy)field[i][j + 1][2] == null){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
                             field[playerX][playerY+1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -67,7 +67,7 @@ public class ScrollingMap extends World
                             dir = 0;
                             return true;
                         }
-                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall){
+                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall && (Enemy)field[i][j - 1][2] == null){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
                             field[playerX][playerY-1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -76,7 +76,7 @@ public class ScrollingMap extends World
                             dir = 0;
                             return true;
                         }
-                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall){
+                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall && (Enemy)field[i + 1][j][2] == null){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
                             field[playerX+1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -85,7 +85,7 @@ public class ScrollingMap extends World
                             dir = 0;
                             return true;
                         }
-                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall){
+                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall && (Enemy)field[i - 1][j][2] == null){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
                             field[playerX-1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -104,32 +104,32 @@ public class ScrollingMap extends World
         return true;
     }
 
-    /**
-     * moves the screen in the desired direction by one tile
-     * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
-     */
-    public void move(int dir){
-        if (dir == 1){
-            y = TILESIZE;
-            shiftScreen(x,y);
-            y = 0;
-        }
-        if (dir == 2){
-            y = -TILESIZE;
-            shiftScreen(x,y);
-            y = 0;
-        }
-        if (dir == 3){
-            x = TILESIZE;
-            shiftScreen(x,y);
-            x = 0;
-        }
-        if (dir == 4){
-            x = -TILESIZE;
-            shiftScreen(x,y);
-            x = 0;
-        }
-    }
+//     /**
+//      * moves the screen in the desired direction by one tile
+//      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
+//      */
+//     public void move(int dir){
+//         if (dir == 1){
+//             y = TILESIZE;
+//             shiftScreen(x,y);
+//             y = 0;
+//         }
+//         if (dir == 2){
+//             y = -TILESIZE;
+//             shiftScreen(x,y);
+//             y = 0;
+//         }
+//         if (dir == 3){
+//             x = TILESIZE;
+//             shiftScreen(x,y);
+//             x = 0;
+//         }
+//         if (dir == 4){
+//             x = -TILESIZE;
+//             shiftScreen(x,y);
+//             x = 0;
+//         }
+//     }
 
     public void spawnPlayer(){
         int xCo = playerX * TILESIZE + TILESIZE/2;
@@ -197,7 +197,7 @@ public class ScrollingMap extends World
                         }
                         if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
                             inputObject(2, x, y, 2);
-                    }
+                        }
                     }
                 }
             }
@@ -307,24 +307,24 @@ public class ScrollingMap extends World
         }
     }
 
-    /**
-     * Manual testing controls
-     */
-    public void act() 
-    {
-        if(Greenfoot.isKeyDown("k")){
-            move(1);
-        }
-        if(Greenfoot.isKeyDown("i")){
-            move(2);
-        }
-        if(Greenfoot.isKeyDown("l")){
-            move(3);
-        }
-        if(Greenfoot.isKeyDown("j")){
-            move(4);
-        }
-    }
+//     /**
+//      * Manual testing controls
+//      */
+//     public void act() 
+//     {
+//         if(Greenfoot.isKeyDown("k")){
+//             move(1);
+//         }
+//         if(Greenfoot.isKeyDown("i")){
+//             move(2);
+//         }
+//         if(Greenfoot.isKeyDown("l")){
+//             move(3);
+//         }
+//         if(Greenfoot.isKeyDown("j")){
+//             move(4);
+//         }
+//     }
 
     public Actor[][][] getField(){
         return field;
