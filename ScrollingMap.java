@@ -184,7 +184,7 @@ public class ScrollingMap extends World
             for(int y = 0 ; y < MAPIMGHEIGHT;y++)
             {
                 for(int d = 0; d < MAPDEPTH; d++){
-                    if(data[x][y] != null){
+                    if(data[x][y][0] != null){
                         if(data[x][y][0].equals("door")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                         }
