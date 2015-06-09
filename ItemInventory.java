@@ -29,6 +29,11 @@ public class ItemInventory extends Actor
             setImage("electricsword2.png");
             equipType = 1;
         }
+        if (num == 3)
+        {
+            setImage("banesbane2.png");
+            equipType = 1;
+        }
         if (num == 6)
         {
             setImage("rustarmor2.png");
