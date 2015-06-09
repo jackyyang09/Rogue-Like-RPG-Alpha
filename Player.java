@@ -100,8 +100,11 @@ public class Player extends Mobs
         if (equips[0] != null)
         {
             image.drawImage(new GreenfootImage(equips[0].getFileName()), 29, 0);
-            GreenfootImage fist = new GreenfootImage("fist.png");
-            image.drawImage(fist, 29, 0);
+            image.drawImage(new GreenfootImage("fist.png"), 29, 0);
+        }
+        if (equips[1] != null)
+        {
+            image.drawImage(new GreenfootImage(equips[1].getFileName()), 29, 0);
         }
         setImage(image);
     }
@@ -161,11 +164,16 @@ public class Player extends Mobs
     public void dropItem(int item)
     {
         ScrollingMap map = (ScrollingMap)getWorld();
-        if (item < 9){items[item] = null;}
-        else{equips[item - 9] = null;}
         int valX = (mapX - 43) / 86;
         int valY = (mapY - 43) / 86;
-        map.inputItem(valX, valY); //Adds item to an array in Scrolling Map
+        if (item < 9){
+            map.inputItem(valX, valY, items[item].getItemID()); //Adds item to an array in Scrolling Map
+            items[item] = null;
+        }
+        else{
+            map.inputItem(valX, valY, equips[item - 9].getItemID()); //Adds item to an array in Scrolling Map
+            equips[item - 9] = null;
+        }
         List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
         for (ProfileWindow p : pro){p.update();}
         update();
