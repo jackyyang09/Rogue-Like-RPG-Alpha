@@ -163,5 +163,12 @@ public class Items extends Actor
             dexBuff = -1;
             lukBuff = 0;
         }
+        if (num == 11)
+        {
+            name = "Health Kit";
+            equipType = 0;
+            setImage("firstaid1.png");
+            description = "A small opened case filled \nwith supplies from bandaids\nto popsicle sticks. Perfect\nfor healing open wounds!";
+        }
     }
 }
