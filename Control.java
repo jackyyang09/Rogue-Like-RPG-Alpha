@@ -27,6 +27,8 @@ public class Control extends Actor
         }
         ((ScrollingMap)getWorld()).update();
         if(getPlayerMove() <= 0){
+            Greenfoot.delay(2);
+            moveEnemy();
             resetPlayerMove();
         }
     }
@@ -60,6 +62,17 @@ public class Control extends Actor
             for(int y = 0; y < 56; y++){
                 if(grid[x][y][1] != null){
                     ((Player)grid[x][y][1]).resetMove();
+                }
+            }
+        }
+    }
+    
+    public void moveEnemy(){
+        Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
+        for(int x = 0; x < 58; x++){
+            for(int y = 0; y < 56; y++){
+                if(grid[x][y][2] != null){
+                    ((Enemy)grid[x][y][2]).setEnemyTurn(true);
                 }
             }
         }
