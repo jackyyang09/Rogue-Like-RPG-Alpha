@@ -10,7 +10,6 @@ import java.util.List;
 public class Player extends Mobs
 {
     private Items[] equips, items;
-    private int itemCount = 0;
     /**
      * Sets all the base stats
      */
@@ -35,8 +34,8 @@ public class Player extends Mobs
      */
     public void begin()
     {
-        setImage("player2.png");
         GreenfootImage image = new GreenfootImage(144, 86);
+        setImage("player2.png");
         image.drawImage(getImage(), 29, 0);
         setImage(image);
     }
@@ -101,13 +100,10 @@ public class Player extends Mobs
         if (equips[0] != null)
         {
             image.drawImage(new GreenfootImage(equips[0].getFileName()), 29, 0);
+            GreenfootImage fist = new GreenfootImage("fist.png");
+            image.drawImage(fist, 29, 0);
         }
         setImage(image);
-    }
-
-    public int checkInv()
-    {
-        return itemCount; 
     }
 
     /**
@@ -175,6 +171,9 @@ public class Player extends Mobs
         update();
     }
 
+    /**
+     * Returns the a value equalling the Player's attack value after item bonus calculations
+     */
     public double getAtk()
     {
         int buff1 = 0;
@@ -184,6 +183,9 @@ public class Player extends Mobs
         return baseAtt + buff1 + buff2;
     }
 
+    /**
+     * Returns the a value equalling the Player's defense value after item bonus calculations
+     */
     public double getDef()
     {
         int buff1 = 0;
@@ -193,6 +195,9 @@ public class Player extends Mobs
         return baseDef + buff1 + buff2;
     }
 
+    /**
+     * Returns the a value equalling the Player's dexterity value after item bonus calculations
+     */
     public double getDex()
     {
         int buff1 = 0;
@@ -202,6 +207,9 @@ public class Player extends Mobs
         return baseDex + buff1 + buff2;
     }
 
+    /**
+     * Returns the a value equalling the Player's luck value after item bonus calculations
+     */
     public double getLuk()
     {
         int buff1 = 0;
@@ -211,28 +219,50 @@ public class Player extends Mobs
         return baseLuk + buff1 + buff2;
     }
 
+    /**
+     * Returns an array of items within Player
+     */
     public Items[] getItems()
     {
         return items;
     }
 
+    /**
+     * Returns an array of equippable items within player
+     */
     public Items[] getEquips()
     {
         return equips;
     }
 
+    /**
+     * Sets the Player's mapX value
+     * 
+     * @param newMapX The new value
+     */
     public void setMapX(int newMapX){
         mapX = newMapX;
     }
 
+    /**
+     * Sets the Player's mapY value
+     * 
+     * @param newMapY The new value
+     */
     public void setMapY(int newMapY){
         mapY = newMapY;
     }
 
+    /**
+     * Returns the Player's mapX value
+     */
     public int getMapX(){
         return mapX;
     }
 
+    /**
+     * Returns the Player's mapX value
+     */
     public int getMapY(){
         return mapY;
     }
