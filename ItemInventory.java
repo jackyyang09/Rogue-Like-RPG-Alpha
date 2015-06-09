@@ -71,6 +71,7 @@ public class ItemInventory extends Actor
                     if (inv.switchSlot(this, (ItemInventory)getOneIntersectingObject(ItemInventory.class)) == true)//Switch slots
                     {
                         setLocation(prevX, prevY);
+                        secure = true;
                     }
                     else
                     {
