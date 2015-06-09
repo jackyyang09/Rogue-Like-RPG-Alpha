@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Write a description of class ScrollingMap here.
  * 
- * @author Ryan Huang
+ * @author Ryan Huang, Jacky Yang
  * @version MAY 2015
  */
 public class ScrollingMap extends World
@@ -154,12 +154,11 @@ public class ScrollingMap extends World
         update();
     }
 
-    public void inputItem(int xC, int yC)
+    public void inputItem(int xC, int yC, int id)
     {
         int xCo = xC * TILESIZE + TILESIZE/2;
         int yCo = yC * TILESIZE + TILESIZE/2;
-        field[xC][yC][3] = new Items(1, xCo, yCo);
-        field[xC][yC][3].setImage("beamblade4.png");
+        field[xC][yC][3] = new Items(id, xCo, yCo);
         update();
     }
 
