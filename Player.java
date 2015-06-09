@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Player extends Mobs
 {
-    private Items[] equips, items;
-    boolean [][] stats = new boolean [11][7];
+    protected Items[] equips, items;
+    protected boolean [][] stats = new boolean [11][7];
     /**
      * Sets all the base stats
      */
