@@ -49,25 +49,24 @@ public class Enemy extends Mobs
     public void act(){
         if(Greenfoot.isKeyDown("c")){
             convertToTile();
-            Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
-            boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
+            //             Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
+            //             boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
             for(int i = 0; i < 58; i++){
                 for(int j = 0; j < 56; j++){
-                    if(grid[i][j][1] != null){
+                    if(((ScrollingMap)getWorld()).field[i][j][1] != null){
                         playerX = i;
                         playerY = j;
-                        System.out.println(playerX + "p" + playerY);
-                        System.out.println(grid2[mapX][mapY]);
-
+                        //System.out.println(playerX + "p" + playerY);
+                        //System.out.println(grid2[mapX][mapY]);
                     }
                 }
             }
-            System.out.println(mapX + "x" + mapY);
-            moveTo = bfs.BFSPathFinding(mapY, mapX, playerY, playerX, grid2);
+            //System.out.println(mapX + "x" + mapY);
+            moveTo = bfs.BFSPathFinding(mapY, mapX, playerY, playerX, ((ScrollingMap)getWorld()).grid);
             bfs.reset();
             if(moveTo.size() == 2){
                 moveTo.removeFirst();
-                attack((Player)grid[moveTo.getFirst().y][moveTo.getFirst().x][1]);
+                attack((Player)((ScrollingMap)getWorld()).field[moveTo.getFirst().y][moveTo.getFirst().x][1]);
             }
             else if(moveTo.size() > 1 && moveTo.size() < 17){
                 moveTo.removeFirst();   
@@ -91,5 +90,5 @@ public class Enemy extends Mobs
     public int getID(){
         return this.ID;
     }
-    
+
 }
