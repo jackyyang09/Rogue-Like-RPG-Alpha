@@ -17,6 +17,7 @@ public class Enemy extends Mobs
     int tempY;
     int ID;
     //boolean[][] grid2;
+     boolean enemyTurn = false;
 
     /**
      * Constructor for Enemy
@@ -32,11 +33,12 @@ public class Enemy extends Mobs
      * @param IDnum
      */
     public Enemy(int getMapX, int getMapY, int IDnum){
-        setImage("chest.png");
+        setImage("slime.png");
         baseHp = 100;
         baseAtt = 10;
         baseDef = 5;
         baseMove = 2;
+        move = 0;
         ID = IDnum;
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
@@ -91,4 +93,13 @@ public class Enemy extends Mobs
         return this.ID;
     }
 
+    public void setEnemyTurn(boolean turn){
+        if(turn){
+            enemyTurn = true;
+            move = baseMove;
+        } else {
+            enemyTurn = false;
+            move = 0;
+        }
+    }
 }
