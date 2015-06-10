@@ -131,8 +131,8 @@ public class Items extends Actor
             if (dropped){setImage("beamblade3.png");}
             else{setImage("beamblade1.png");}
             fileName = "beamblade1.png";
-            description = "Affectionately named to avoid \ncopyright laws, apparently \n'Blight Blaber' isn't allowed.";
-            atkBuff = 3;
+            description = "The sword of victory, no\npromises. Affectionately \nnamed to avoid copyright laws,\napparently 'Blight Blaber' \nisn't allowed.";
+            atkBuff = 30;
             defBuff = 1;
             dexBuff = 0;
             lukBuff = 0;
@@ -163,6 +163,32 @@ public class Items extends Actor
             dexBuff = 0;
             lukBuff = 0;
         }
+        if (num == 4)
+        {
+            name = "Czar's Katars";
+            equipType = 1;
+            if (dropped){setImage("qatar3.png");}
+            else{setImage("qatar1.png");}
+            fileName = "qatar1.png";
+            description = "Although the practicality of\nthis weapon is quite iffy,\nyou'll be able to cut\nthings up just by punching\nthem, which is pretty cool!";
+            atkBuff = 32;
+            defBuff = 0;
+            dexBuff = 1;
+            lukBuff = 0;
+        }
+        if (num == 5)
+        {
+            name = "Soulless Sabre";
+            equipType = 1;
+            if (dropped){setImage("soullesssabre3.png");}
+            else{setImage("soullesssabre1.png");}
+            fileName = "soullesssabre1.png";
+            description = "Imbued with many LEDs and a\ndark energy, this weapon is\nguaranteed to hurt you and\nothers badly!";
+            atkBuff = 666;
+            defBuff = -12;
+            dexBuff = -1;
+            lukBuff = -7;
+        }
         if (num == 6)
         {
             name = "Rustic Rampart";
@@ -175,6 +201,19 @@ public class Items extends Actor
             defBuff = 3;
             dexBuff = -1;
             lukBuff = 0;
+        }
+        if (num == 7)
+        {
+            name = "Coloured Camouflauge";
+            equipType = 2;
+            if (dropped){setImage("flamboyant3.png");}
+            else{setImage("flamboyant1.png");}
+            fileName = "flamboyant1.png";
+            description = "Rainbow coloured armor is\nuseful for attracting\nattention of all sorts.\nAlso helps camouflauge with rainbows.";
+            atkBuff = 0;
+            defBuff = 7;
+            dexBuff = 1;
+            lukBuff = 7;
         }
         if (num == 11)
         {
@@ -189,6 +228,27 @@ public class Items extends Actor
             equipType = 0;
             setImage("armorperk1.png");
             description = "A case full of worktools \nand spare parts fit for \nmaking your heavy armor a bit\nheavier than before.";
+        }
+        if (num == 13)
+        {
+            name = "Big Health Kit";
+            equipType = 0;
+            setImage("firstaidlarge1.png");
+            description = "A big case filled with \nsupplies from splints to \nsutures. Perfect for healing \nbumps and bruises!";
+        }
+        if (num == 14)
+        {
+            name = "Engineer Toolbox";
+            equipType = 0;
+            setImage("armorbuff1.png");
+            description = "A big case filled with \npowertools akin to your \ngrandmother's basket of\nsewing equipment.";
+        }
+        if (num == 15)
+        {
+            name = "Sanic Soda";
+            equipType = 0;
+            setImage("sanic.png");
+            description = "Although critics argue whether\nit's actually the dilluted\nsweat of the elusive Sanic or\nnot, one cannot doubt its\ntangy flavour.";
         }
     }
 }
