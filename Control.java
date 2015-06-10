@@ -31,6 +31,19 @@ public class Control extends Actor
             moveEnemy();
             resetPlayerMove();
         }
+        
+        if(Greenfoot.isKeyDown("right") && ((ScrollingMap)getWorld()).movePlayer(1)){
+            decreasePlayerMove();
+        }
+        if(Greenfoot.isKeyDown("left") && ((ScrollingMap)getWorld()).movePlayer(2)){
+            decreasePlayerMove();
+        }
+        if(Greenfoot.isKeyDown("down") && ((ScrollingMap)getWorld()).movePlayer(3)){
+            decreasePlayerMove();
+        }
+        if(Greenfoot.isKeyDown("up") && ((ScrollingMap)getWorld()).movePlayer(4)){
+            decreasePlayerMove();
+        }
     }
 
     public void decreasePlayerMove(){
