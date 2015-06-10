@@ -25,6 +25,10 @@ public class ScrollingMap extends World
 
     private int playerX = 8; // Starting
     private int playerY = 8; // Coords
+    
+        private int targetX = -1;
+    private int targetY = -1;
+    private boolean spawnTarget = true;
 
     private Generate generate = new Generate();
 
