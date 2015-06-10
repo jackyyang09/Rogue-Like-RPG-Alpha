@@ -109,7 +109,9 @@ public class ScrollingMap extends World
         return true;
     }
     
-       public void moveTarget(int dir){
+    int maxY = 0, minY = 0, maxX = 0, minX = 0;
+    public void moveTarget(int dir){
+
         for(int x = 0; x < MAPIMGWIDTH; x++){
             for(int y = 0; y < MAPIMGHEIGHT; y++){
                 if((Target)field[x][y][4] != null){
@@ -120,31 +122,35 @@ public class ScrollingMap extends World
                     targetX = y;
                     targetY = x;
                     spawnTarget = true;
+                    maxY = targetY + 1;
+                    minY = targetY - 1;
+                    maxX = targetX + 1;
+                    minX = targetX - 1;
                 }
             }
         }
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
                 if(((Target)field[i][j][4]) != null){
-                    if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall){
+                    if (dir == 1 && targetY < maxY){
                         ((Target)field[i][j][4]).setMapY(((Target)field[i][j][4]).getMapY() + 86);
                         field[targetX][targetY+1][4] = field[targetX][targetY][4];
                         field[targetX][targetY][4] = null;
                         targetY++;
                     }
-                    if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall){
+                    if (dir == 2 && targetY > minY){
                         ((Target)field[i][j][4]).setMapY(((Target)field[i][j][4]).getMapY() - 86);
                         field[targetX][targetY-1][4] = field[targetX][targetY][4];
                         field[targetX][targetY][4] = null;
                         targetY--;
                     }
-                    if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall){
+                    if (dir == 3 && targetX < maxX){
                         ((Target)field[i][j][4]).setMapX(((Target)field[i][j][4]).getMapX() + 86);
                         field[targetX+1][targetY][4] = field[targetX][targetY][4];
                         field[targetX][targetY][4] = null;
                         targetX++;
                     }
-                    if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall){
+                    if (dir == 4 && targetX > minX){
                         ((Target)field[i][j][4]).setMapX(((Target)field[i][j][4]).getMapX() - 86);
                         field[targetX-1][targetY][4] = field[targetX][targetY][4];
                         field[targetX][targetY][4] = null;
