@@ -15,15 +15,19 @@ public class Control extends Actor
     {
         if(Greenfoot.isKeyDown("d") && ((ScrollingMap)getWorld()).movePlayer(1)){
             decreasePlayerMove();
+            ((ScrollingMap)getWorld()).removeTarget();
         }
         if(Greenfoot.isKeyDown("a") && ((ScrollingMap)getWorld()).movePlayer(2)){
             decreasePlayerMove();
+            ((ScrollingMap)getWorld()).removeTarget();
         }
         if(Greenfoot.isKeyDown("s") && ((ScrollingMap)getWorld()).movePlayer(3)){
             decreasePlayerMove();
+            ((ScrollingMap)getWorld()).removeTarget();
         }
         if(Greenfoot.isKeyDown("w") && ((ScrollingMap)getWorld()).movePlayer(4)){
             decreasePlayerMove();
+            ((ScrollingMap)getWorld()).removeTarget();
         }
         ((ScrollingMap)getWorld()).update();
         if(getPlayerMove() <= 0){
@@ -31,18 +35,18 @@ public class Control extends Actor
             moveEnemy();
             resetPlayerMove();
         }
-        
-        if(Greenfoot.isKeyDown("right") && ((ScrollingMap)getWorld()).movePlayer(1)){
-            decreasePlayerMove();
+
+        if(Greenfoot.isKeyDown("right")){
+            ((ScrollingMap)getWorld()).moveTarget(1);
         }
-        if(Greenfoot.isKeyDown("left") && ((ScrollingMap)getWorld()).movePlayer(2)){
-            decreasePlayerMove();
+        if(Greenfoot.isKeyDown("left")){
+            ((ScrollingMap)getWorld()).moveTarget(2);
         }
-        if(Greenfoot.isKeyDown("down") && ((ScrollingMap)getWorld()).movePlayer(3)){
-            decreasePlayerMove();
+        if(Greenfoot.isKeyDown("down")){
+            ((ScrollingMap)getWorld()).moveTarget(3);
         }
-        if(Greenfoot.isKeyDown("up") && ((ScrollingMap)getWorld()).movePlayer(4)){
-            decreasePlayerMove();
+        if(Greenfoot.isKeyDown("up")){
+            ((ScrollingMap)getWorld()).moveTarget(4);
         }
     }
 
@@ -79,7 +83,7 @@ public class Control extends Actor
             }
         }
     }
-    
+
     public void moveEnemy(){
         Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
         for(int x = 0; x < 58; x++){
