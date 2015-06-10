@@ -109,24 +109,27 @@ public class ScrollingMap extends World
         return true;
     }
     
-        public void moveTarget(int dir){
+       public void moveTarget(int dir){
         for(int x = 0; x < MAPIMGWIDTH; x++){
             for(int y = 0; y < MAPIMGHEIGHT; y++){
                 if((Target)field[x][y][4] != null){
                     spawnTarget = false;
                 }
-                if(spawnTarget){
-                    field[x][y][4] = new Target();
+                if(spawnTarget && ((Player)field[x][y][1]) != null){
+                    field[x][y][4] = new Target(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
+                    targetX = y;
+                    targetY = x;
+                    spawnTarget = true;
                 }
             }
         }
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
-                if(((Player)field[i][j][1]) != null){
+                if(((Target)field[i][j][4]) != null){
                     if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall){
                         ((Target)field[i][j][4]).setMapY(((Target)field[i][j][4]).getMapY() + 86);
-                        field[targetX][targetY+1][1] = field[targetX][targetY][1];
-                        field[targetX][targetY][1] = null;
+                        field[targetX][targetY+1][4] = field[targetX][targetY][4];
+                        field[targetX][targetY][4] = null;
                         targetY++;
                     }
                     if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall){
@@ -137,16 +140,28 @@ public class ScrollingMap extends World
                     }
                     if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall){
                         ((Target)field[i][j][4]).setMapX(((Target)field[i][j][4]).getMapX() + 86);
-                        field[targetX+1][targetY][1] = field[targetX][targetY][1];
-                        field[targetX][targetY][1] = null;
+                        field[targetX+1][targetY][4] = field[targetX][targetY][4];
+                        field[targetX][targetY][4] = null;
                         targetX++;
                     }
                     if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall){
-                        ((Target)field[i][j][1]).setMapX(((Target)field[i][j][4]).getMapX() - 86);
-                        field[targetX-1][targetY][1] = field[targetX][targetY][1];
-                        field[targetX][targetY][1] = null;
+                        ((Target)field[i][j][4]).setMapX(((Target)field[i][j][4]).getMapX() - 86);
+                        field[targetX-1][targetY][4] = field[targetX][targetY][4];
+                        field[targetX][targetY][4] = null;
                         targetX--;
                     }
+                }
+            }
+        }
+    }
+
+    public void removeTarget(){
+        for(int x = 0; x < MAPIMGWIDTH; x++){
+            for(int y = 0; y < MAPIMGHEIGHT; y++){
+                if((Target)field[x][y][4] != null){
+                    spawnTarget = true;
+                    removeObject(field[x][y][4]);
+                    field[x][y][4] = null;
                 }
             }
         }
