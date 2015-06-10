@@ -34,9 +34,24 @@ public class ItemInventory extends Actor
             setImage("banesbane2.png");
             equipType = 1;
         }
+        if (num == 4)
+        {
+            setImage("qatar2.png");
+            equipType = 1;
+        }
+        if (num == 5)
+        {
+            setImage("soullesssabre2.png");
+            equipType = 1;
+        }
         if (num == 6)
         {
             setImage("rustarmor2.png");
+            equipType = 2;
+        }
+        if (num == 7)
+        {
+            setImage("flamboyant2.png");
             equipType = 2;
         }
         if (num == 11)
@@ -47,6 +62,21 @@ public class ItemInventory extends Actor
         if (num == 12)
         {
             setImage("armorperk2.png");
+            equipType = 0;
+        }
+        if (num == 13)
+        {
+            setImage("firstaidlarge2.png");
+            equipType = 0;
+        }
+        if (num == 14)
+        {
+            setImage("armorbuff2.png");
+            equipType = 0;
+        }
+        if (num == 15)
+        {
+            setImage("sanic2.png");
             equipType = 0;
         }
         id = num;
@@ -136,6 +166,13 @@ public class ItemInventory extends Actor
             info = null;
         }
     }
+    
+    public void rightClickDetect()
+    {
+        if (Greenfoot.getMouseInfo().getButton == 3)
+        {
+        }
+    }
 
     public int getItemID()
     {
@@ -146,7 +183,7 @@ public class ItemInventory extends Actor
     {
         return equipType;
     }
-    
+
     public void setSecure()
     {
         secure = true;
