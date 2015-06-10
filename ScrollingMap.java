@@ -104,6 +104,49 @@ public class ScrollingMap extends World
         update();
         return true;
     }
+    
+        public void moveTarget(int dir){
+        for(int x = 0; x < MAPIMGWIDTH; x++){
+            for(int y = 0; y < MAPIMGHEIGHT; y++){
+                if((Target)field[x][y][4] != null){
+                    spawnTarget = false;
+                }
+                if(spawnTarget){
+                    field[x][y][4] = new Target();
+                }
+            }
+        }
+        for(int i = 0; i < 58; i++){
+            for(int j = 0; j < 56; j++){
+                if(((Player)field[i][j][1]) != null){
+                    if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall){
+                        ((Target)field[i][j][4]).setMapY(((Target)field[i][j][4]).getMapY() + 86);
+                        field[targetX][targetY+1][1] = field[targetX][targetY][1];
+                        field[targetX][targetY][1] = null;
+                        targetY++;
+                    }
+                    if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall){
+                        ((Target)field[i][j][4]).setMapY(((Target)field[i][j][4]).getMapY() - 86);
+                        field[targetX][targetY-1][4] = field[targetX][targetY][4];
+                        field[targetX][targetY][4] = null;
+                        targetY--;
+                    }
+                    if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall){
+                        ((Target)field[i][j][4]).setMapX(((Target)field[i][j][4]).getMapX() + 86);
+                        field[targetX+1][targetY][1] = field[targetX][targetY][1];
+                        field[targetX][targetY][1] = null;
+                        targetX++;
+                    }
+                    if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall){
+                        ((Target)field[i][j][1]).setMapX(((Target)field[i][j][4]).getMapX() - 86);
+                        field[targetX-1][targetY][1] = field[targetX][targetY][1];
+                        field[targetX][targetY][1] = null;
+                        targetX--;
+                    }
+                }
+            }
+        }
+    }
 
     //     /**
     //      * moves the screen in the desired direction by one tile
