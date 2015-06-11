@@ -29,13 +29,7 @@ public class Control extends Actor
             decreasePlayerMove();
             ((ScrollingMap)getWorld()).removeTarget();
         }
-        ((ScrollingMap)getWorld()).update();
-        if(getPlayerMove() <= 0){
-            Greenfoot.delay(2);
-            moveEnemy();
-            resetPlayerMove();
-        }
-
+        
         if(Greenfoot.isKeyDown("right")){
             ((ScrollingMap)getWorld()).moveTarget(1);
         }
@@ -48,6 +42,15 @@ public class Control extends Actor
         if(Greenfoot.isKeyDown("up")){
             ((ScrollingMap)getWorld()).moveTarget(4);
         }
+        if(Greenfoot.isKeyDown("space")){
+            ((ScrollingMap)getWorld()).interact();
+        }
+        if(getPlayerMove() <= 0){
+            Greenfoot.delay(2);
+            moveEnemy();
+            resetPlayerMove();
+        }
+        ((ScrollingMap)getWorld()).update();
     }
 
     public void decreasePlayerMove(){
