@@ -290,8 +290,18 @@ public class ScrollingMap extends World
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                             grid[x][y] = false;
                         }
+                        else if(data[x][y][0].equals("sPortal")){
+                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 4);
+                        }
+                        else if(data[x][y][0].equals("ePortal")){
+                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 5);
+                        }
                         if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
                             inputObject(2, x, y, 2);
+                        }
+                        if(data[x][y][3] != null && data[x][y][3].equals("item")){
+                            int a = Greenfoot.getRandomNumber(15)+1;
+                            inputItem(x, y, a);
                         }
                     }
                 }
