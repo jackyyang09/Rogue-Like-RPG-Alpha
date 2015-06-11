@@ -1,5 +1,5 @@
 import greenfoot.*;
-
+import java.util.List;
 /**
  * Write a description of class Control here.
  * 
@@ -48,6 +48,8 @@ public class Control extends Actor
         if(getPlayerMove() <= 0){
             Greenfoot.delay(2);
             moveEnemy();
+            List<Player> player = getWorld().getObjects(Player.class);
+            for (Player p : player){p.count();}
             resetPlayerMove();
         }
         ((ScrollingMap)getWorld()).update();
