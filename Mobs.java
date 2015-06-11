@@ -31,8 +31,12 @@ public class Mobs extends Actor
     protected int playerX;
     protected int playerY;
 
-    public void decreaseMove(){
-        move--;
+    public void decreaseMove(int amt){
+        if(move - amt <= 0){
+            move = 0;
+        } else {
+            move -= amt;
+        }
     }
 
     public void resetMove(){
