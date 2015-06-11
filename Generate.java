@@ -14,6 +14,12 @@ public class Generate
     ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
     private boolean noSpace = false;
     private boolean doneOnce = false;
+    
+    /*
+    *   Main class to create a grid
+    *
+    *   @return String[][][]    returns the full grid of the created map
+    */
     public String[][][] generateMap(){
         generateBorder();
         generateStartRoom();
