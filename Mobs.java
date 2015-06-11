@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Mobs extends Actor
 {
     protected int level;
-    protected int Xp;
+    protected int xp;
+    protected int value;
     protected double baseHp;
     protected double baseAtt;
     protected double baseDef;
