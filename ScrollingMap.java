@@ -299,10 +299,6 @@ public class ScrollingMap extends World
                         if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
                             inputObject(2, x, y, 2);
                         }
-                        if(data[x][y][3] != null && data[x][y][3].equals("item")){
-                            int a = Greenfoot.getRandomNumber(15)+1;
-                            inputItem(x, y, a);
-                        }
                     }
                 }
             }
