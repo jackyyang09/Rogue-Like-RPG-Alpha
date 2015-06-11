@@ -94,8 +94,12 @@ public class ItemInventory extends Actor
             prevY = getY();
             begin = true;   
         }
-        if (id != 0){mouseDetect();}
-        if (id != 0){hoverDetect();}
+        if (id != 0)
+        {
+            mouseDetect();
+            hoverDetect();
+            rightClickDetect();
+        }
     }    
 
     /**
@@ -108,12 +112,12 @@ public class ItemInventory extends Actor
         if (mouse != null)
         {
             List objects = getWorld().getObjectsAt(mouse.getX(), mouse.getY(), ItemInventory.class);
-            if (Greenfoot.mouseDragged(this)){ //Enables ability to drag this object around
+            if (Greenfoot.mouseDragged(this) && mouse.getButton() == 1){ //Enables ability to drag this object around
                 setLocation(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
                 secure = false;
                 drag = true;
             }
-            if (Greenfoot.mouseClicked(this)) //Things happen when the mouse key is released
+            if (Greenfoot.mouseClicked(this) && mouse.getButton() == 1) //Things happen when the mouse key is released
             {
                 if (this.isTouching(ItemInventory.class))
                 {
@@ -133,7 +137,7 @@ public class ItemInventory extends Actor
                     if (checkBoundary()) //Drop item onto the map if the item is dragged outside the inventory
                     {
                         List<Inventory> inventory = getWorld().getObjects(Inventory.class);
-                        for (Inventory i :inventory){i.dropItem(this);}
+                        for (Inventory i :inventory){i.itemInteract(this, 1);}
                         getWorld().removeObject(this);
                     }
                     else
@@ -166,11 +170,17 @@ public class ItemInventory extends Actor
             info = null;
         }
     }
-    
+
     public void rightClickDetect()
     {
-        if (Greenfoot.getMouseInfo().getButton == 3)
+        if (Greenfoot.mouseClicked(this) && secure == true && drag == false)
         {
+            if (Greenfoot.getMouseInfo().getButton() == 3)
+            {
+                List<Inventory> inventory = getWorld().getObjects(Inventory.class);
+                for (Inventory i : inventory){i.itemInteract(this, 2);}
+                getWorld().removeObject(info);
+            }
         }
     }
 
