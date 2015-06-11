@@ -131,7 +131,7 @@ public class Items extends Actor
             if (dropped){setImage("beamblade3.png");}
             else{setImage("beamblade1.png");}
             fileName = "beamblade1.png";
-            description = "The sword of victory, no\npromises. Affectionately \nnamed to avoid copyright laws,\napparently 'Blight Blaber' \nisn't allowed.";
+            description = "The sword of victory, no\npromises. Affectionately \nnamed to avoid copyright laws,\napparently 'Blexcalibur' \nisn't allowed.";
             atkBuff = 30;
             defBuff = 1;
             dexBuff = 0;
