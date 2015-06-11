@@ -128,9 +128,10 @@ public class Inventory extends Actor
     /**
      * Sends a command to the player to drop an item onto the ground
      * 
-     * @param item ItemInventory object
+     * @param item ItemInventory object.
+     * @param action 1 for item drop, 2 for item consume
      */
-    public void dropItem(ItemInventory item)
+    public void itemInteract(ItemInventory item, int action)
     {
         int index = 0;
         for (int i = 0; i < Array.getLength(slots); i++)
@@ -142,7 +143,11 @@ public class Inventory extends Actor
             }
         }
         List<Player> player = getWorld().getObjects(Player.class);
-        for (Player p :player){p.dropItem(index);} //Tells player to drop the item
+        for (Player p :player)
+        {
+            if (action == 1){p.dropItem(index);}//Tells player to drop the item
+            if (action == 2){p.consumeItem(index);}//Tells player to consume the item
+        } 
         update = false;
     }
 
