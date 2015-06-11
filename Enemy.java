@@ -5,7 +5,7 @@ import java.awt.Point;
 /**
  * Write a description of class Enemy here.
  * 
- * @author (your name) 
+ * @author (Kajamugesh Raneethran) 
  * @version (a version number or a date)
  */
 public class Enemy extends Mobs
@@ -17,7 +17,7 @@ public class Enemy extends Mobs
     int tempY;
     int ID;
     //boolean[][] grid2;
-     boolean enemyTurn = false;
+    boolean enemyTurn = false;
 
     /**
      * Constructor for Enemy
@@ -33,18 +33,40 @@ public class Enemy extends Mobs
      * @param IDnum
      */
     public Enemy(int getMapX, int getMapY, int IDnum){
-        setImage("slime.png");
-        baseHp = 100;
-        currentHp = baseHp;
-        baseAtt = 10;
-        baseDef = 5;
-        baseMove = 2;
-        move = 0;
-        ID = IDnum;
+        if (IDnum ==1)
+        {
+            setImage("slime.png");
+            level = 1;
+            value = 39;
+            xp = 0;
+            baseHp = 10;
+            baseAtt = 3;
+            baseDef = 5;
+            baseDex = 0;
+            baseHit = 3;
+            baseLuk = 5;
+            baseMove = 2;
+            move = 0;
+            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+        }
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
     }
+
+    /**
+     * 
+     */
+    public void levelUp() 
+    {
+        baseHp += 5;
+        baseAtt += 1;
+        baseDef += 1;
+        baseDex += 1;
+        baseHit += 1;
+        baseLuk += 1;
+        level++;
+    }   
 
     /**
      * Act Method
