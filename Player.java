@@ -201,9 +201,9 @@ public class Player extends Mobs
 
     public void consumeItem(int item)
     {
-        if (items[item].getItemID() == 11){healMe(getMaxHP() * 0.2);} //Heal 20% HP if Health Kit is used
+        if (items[item].getItemID() == 11){healMe(getMaxHp() * 0.2);} //Heal 20% HP if Health Kit is used
         if (items[item].getItemID() == 12){armorBuff += 5;} //Increase defense by 5 permanently if Armor Tuneup is used
-        if (items[item].getItemID() == 13){healMe(getMaxHP() * 0.6);} //Heal 60% HP if Big Health Kit is used
+        if (items[item].getItemID() == 13){healMe(getMaxHp() * 0.6);} //Heal 60% HP if Big Health Kit is used
         if (items[item].getItemID() == 14){armorBuff += 15;} //Increase defense by 15 permanently if Engineer Toolbox is used
         if (items[item].getItemID() == 15)//Increase speed temporarily for 42 turns if Sanic Soda is used
         {
