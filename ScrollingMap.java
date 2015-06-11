@@ -363,9 +363,15 @@ public class ScrollingMap extends World
                         } else if (i == 2){
                             blockX = ((Enemy)field[x][y][i]).mapY;
                             blockY = ((Enemy)field[x][y][i]).mapX;
-                        } else {
+                        } else if(i == 3){
                             blockX = ((Items)field[x][y][i]).getMapY();
                             blockY = ((Items)field[x][y][i]).getMapX();
+                        } else if(i == 4){
+                            blockX = ((Target)field[x][y][i]).getMapY();
+                            blockY = ((Target)field[x][y][i]).getMapX();
+                        } else {
+                            blockX = -1;
+                            blockY = -1;
                         }
                         if(blockX + TILESIZE >= leftBound && blockX - TILESIZE <= rightBound && blockY + TILESIZE >= topBound && blockY - TILESIZE <= bottomBound)
                         {
