@@ -204,12 +204,12 @@ public class Items extends Actor
         }
         if (num == 7)
         {
-            name = "Coloured Camouflauge";
+            name = "Coloured Camo";
             equipType = 2;
             if (dropped){setImage("flamboyant3.png");}
             else{setImage("flamboyant1.png");}
             fileName = "flamboyant1.png";
-            description = "Rainbow coloured armor is\nuseful for attracting\nattention of all sorts.\nAlso helps camouflauge with rainbows.";
+            description = "Rainbow coloured armor is\nuseful for attracting the\nattention of all sorts.\nAlso helps camouflauge with\nrainbows.";
             atkBuff = 0;
             defBuff = 7;
             dexBuff = 1;
