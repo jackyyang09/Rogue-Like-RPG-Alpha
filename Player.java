@@ -56,6 +56,15 @@ public class Player extends Mobs
             speedBoost = false;
         }
         if (Greenfoot.isKeyDown("z")){pickupItem();}
+        if(xp >= (6/5 * Math.pow(level,3) - 15 * Math.pow(level,2) + 100*level - 140))
+        {
+            levelUp();
+        }
+    }
+
+    public void levelUp()
+    {
+        level++;
     }
 
     /**
