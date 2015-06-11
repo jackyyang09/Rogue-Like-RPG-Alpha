@@ -42,10 +42,10 @@ public class InfoTab extends Actor
         image.setFont(fontDesc);
         image.drawString(item.getDescription(), 155, 85); //Generate item's description
         image.setFont(fontNums);
-        image.drawString(Integer.toString(item.getAtkBuff()), 65, 167); //Generate attack stat
-        image.drawString(Integer.toString(item.getDefBuff()), 120, 167); //Generate defense stat
-        image.drawString(Integer.toString(item.getLukBuff()), 65, 192); //Generate luck stat
-        image.drawString(Integer.toString(item.getDexBuff()), 120, 192); //Generate dexterity stat
+        image.drawString(Integer.toString(item.getAtkBuff()), 50, 167); //Generate attack stat
+        image.drawString(Integer.toString(item.getDefBuff()), 105, 167); //Generate defense stat
+        image.drawString(Integer.toString(item.getLukBuff()), 50, 192); //Generate luck stat
+        image.drawString(Integer.toString(item.getDexBuff()), 105, 192); //Generate dexterity stat
         setImage(image);
         begin = true;
     }
