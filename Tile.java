@@ -26,11 +26,11 @@ public class Tile extends Actor
             setImage("wall.png");
             isAWall = true;
         }
-        else if(tileCode == 4){
+        if(tileCode == 4){
             setImage("portalEntrance.png");
             isAWall = false;
         }
-        else if(tileCode == 5){
+        if(tileCode == 5){
             setImage("portalExit.png");
             isAWall = false;
         }
