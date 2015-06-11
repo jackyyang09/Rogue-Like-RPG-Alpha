@@ -131,7 +131,7 @@ public class Items extends Actor
             if (dropped){setImage("beamblade3.png");}
             else{setImage("beamblade1.png");}
             fileName = "beamblade1.png";
-            description = "The sword of victory, no\npromises. Affectionately \nnamed to avoid copyright laws,\napparently 'Blexcalibur' \nisn't allowed.";
+            description = "The sword of victory, no promises.\nAffectionately named to avoid\ncopyright laws, apparently\n'Blexcalibur' isn't allowed.";
             atkBuff = 30;
             defBuff = 1;
             dexBuff = 0;
@@ -157,7 +157,7 @@ public class Items extends Actor
             if (dropped){setImage("banesbane3.png");}
             else{setImage("banesbane1.png");}
             fileName = "banesbane1.png";
-            description = "What is a Bane Slime? Why \ndoes it wear the mask? If you \ntake it off, it would be\nextremely painful...\nFor you.";
+            description = "What is a Bane Slime? Why does it\nwear the mask? If you take it\noff, it would be extremely\npainful... For you.";
             atkBuff = 2;
             defBuff = 0;
             dexBuff = 0;
@@ -170,7 +170,7 @@ public class Items extends Actor
             if (dropped){setImage("qatar3.png");}
             else{setImage("qatar1.png");}
             fileName = "qatar1.png";
-            description = "Although the practicality of\nthis weapon is quite iffy,\nyou'll be able to cut\nthings up just by punching\nthem, which is pretty cool!";
+            description = "Although the practicality of this\nweapon is quite iffy, you'll be\nable to cut things up just by\npunching them, which is pretty\ncool!";
             atkBuff = 32;
             defBuff = 0;
             dexBuff = 1;
@@ -183,7 +183,7 @@ public class Items extends Actor
             if (dropped){setImage("soullesssabre3.png");}
             else{setImage("soullesssabre1.png");}
             fileName = "soullesssabre1.png";
-            description = "Imbued with many LEDs and a\ndark energy, this weapon is\nguaranteed to hurt you and\nothers badly!";
+            description = "Imbued with many LEDs and a dark\nenergy, this weapon is guaranteed\nto hurt you and others badly!";
             atkBuff = 666;
             defBuff = -12;
             dexBuff = -1;
@@ -196,7 +196,7 @@ public class Items extends Actor
             if (dropped){setImage("rustarmor3.png");}
             else{setImage("rustarmor1.png");}
             fileName = "rustarmor1.png";
-            description = "Slimes corrode the armor \nturning it into this mess.\nBut hey, it looks cool.";
+            description = "Slimes corrode the armor turning\nit into this mess. But hey, it\nlooks cool.";
             atkBuff = 0;
             defBuff = 3;
             dexBuff = -1;
@@ -209,46 +209,85 @@ public class Items extends Actor
             if (dropped){setImage("flamboyant3.png");}
             else{setImage("flamboyant1.png");}
             fileName = "flamboyant1.png";
-            description = "Rainbow coloured armor is\nuseful for attracting the\nattention of all sorts.\nAlso helps camouflauge with\nrainbows.";
+            description = "Rainbow coloured armor is useful\nfor attracting the attention of\nall sorts. Also helps camouflauge\nwith rainbows.";
             atkBuff = 0;
             defBuff = 7;
             dexBuff = 1;
             lukBuff = 7;
         }
+        if (num == 8)
+        {
+            name = "Spectral Screen";
+            equipType = 2;
+            if (dropped){setImage("spectralscreen3.png");}
+            else{setImage("spectralscreen1.png");}
+            fileName = "spectralscreen1.png";
+            description = "Surprise your friends, shock your\nfamily, and sneak away from your\nenemies with this cowardly\ncloaking device!";
+            atkBuff = -10;
+            defBuff = -10;
+            dexBuff = 10;
+            lukBuff = 10;
+        } 
+        if (num == 9)
+        {
+            name = "Striking Serpent";
+            equipType = 2;
+            if (dropped){setImage("light3.png");}
+            else{setImage("light1.png");}
+            fileName = "light1.png";
+            description = "Fly like butterfly, sting like\nbee! With the weight off your\nshoulders, you can run fast and\nkill fast!";
+            atkBuff = 5;
+            defBuff = -2;
+            dexBuff = 10;
+            lukBuff = 0;
+        } 
+        if (num == 10)
+        {
+            name = "Plated Patriot";
+            equipType = 2;
+            if (dropped){setImage("heavy3.png");}
+            else{setImage("heavy1.png");}
+            fileName = "heavy1.png";
+            description = "You are unstoppable, a tank, a\njuggernaut! Steamroll past\nheretics in the name of the\nemperor! ONWARDS TO FREEDOM!";
+            atkBuff = 0;
+            defBuff = 20;
+            dexBuff = -10;
+            lukBuff = 0;
+        } 
         if (num == 11)
         {
             name = "Health Kit";
             equipType = 0;
             setImage("firstaid1.png");
-            description = "A small opened case filled \nwith supplies from bandaids\nto popsicle sticks. Perfect\nfor healing open wounds!";
+            description = "A small opened case filled with supplies\nfrom bandaids to\npopsicle sticks. Perfect for\nhealing open wounds!";
         }
         if (num == 12)
         {
             name = "Armor Tuneup";
             equipType = 0;
             setImage("armorperk1.png");
-            description = "A case full of worktools \nand spare parts fit for \nmaking your heavy armor a bit\nheavier than before.";
+            description = "A case full of worktools and\nspare parts fit for making your\nheavy armor a bit heavier than\nbefore.";
         }
         if (num == 13)
         {
             name = "Big Health Kit";
             equipType = 0;
             setImage("firstaidlarge1.png");
-            description = "A big case filled with \nsupplies from splints to \nsutures. Perfect for healing \nbumps and bruises!";
+            description = "A big case filled with supplies\nfrom splints to sutures. Perfect\nfor healing bumps and bruises!";
         }
         if (num == 14)
         {
             name = "Engineer Toolbox";
             equipType = 0;
             setImage("armorbuff1.png");
-            description = "A big case filled with \npowertools akin to your \ngrandmother's basket of\nsewing equipment.";
+            description = "A big case filled with powertools\nakin to your grandmother's basket\nof sewing equipment.";
         }
         if (num == 15)
         {
             name = "Sanic Soda";
             equipType = 0;
             setImage("sanic.png");
-            description = "Although critics argue whether\nit's actually the dilluted\nsweat of the elusive Sanic or\nnot, one cannot doubt its\ntangy flavour.";
+            description = "Although critics argue whether\nit's actually the dilluted sweat\nof the elusive Sanic or not, one\ncannot doubt its tangy flavour.";
         }
     }
 }
