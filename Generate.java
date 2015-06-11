@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @version June 2015 v2.0
  */
 public class Generate
-{(
+{
     String array[][][] = new String[58][56][4]; //3D array of the grid (56x58x4)
     ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=width, 1=h, 2=x, 3=y)
     ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
