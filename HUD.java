@@ -24,6 +24,7 @@ public class HUD extends Actor
     private ProfileWindow pro;
     public HUD()
     {
+        setImage("HUD.png");
         begin = false;
         box = new ValueBox();
         bp = new Button();
