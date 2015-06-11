@@ -2,17 +2,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Generate here.
+ * Generate is a class with procedural programming to create the World for the RPG game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kris Leung
+ * @version June 2015 v2.0
  */
 public class Generate
-{
-    String array[][][] = new String[58][56][4];
-    //private int coor[] = new int[4];
-    ArrayList<int[]> rooms = new ArrayList<int[]>(); // 0=w, 1=h, 2=x, 3=y
-    ArrayList<int[]> doors = new ArrayList<int[]>(); // 0=x, 1=y
+{(
+    String array[][][] = new String[58][56][4]; //3D array of the grid (56x58x4)
+    ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=width, 1=h, 2=x, 3=y)
+    ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
     private boolean noSpace = false;
     private boolean doneOnce = false;
     public String[][][] generateMap(){
