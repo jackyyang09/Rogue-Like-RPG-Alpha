@@ -26,6 +26,14 @@ public class Tile extends Actor
             setImage("wall.png");
             isAWall = true;
         }
+        else if(tileCode == 4){
+            setImage("portalEntrance.png");
+            isAWall = false;
+        }
+        else if(tileCode == 5){
+            setImage("portalExit.png");
+            isAWall = false;
+        }
         mapX = getMapX;
         mapY = getMapY;
     }
