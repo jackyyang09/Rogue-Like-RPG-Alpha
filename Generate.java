@@ -19,6 +19,7 @@ public class Generate
         generateBorder();
         generateStartRoom();
         generateEndRoom();
+        generatePortals();
         generateRoom(10);
         floodGrid();
         checkDoors();
@@ -69,6 +70,15 @@ public class Generate
         }
         while(doneOnce == false);
         doneOnce = false;
+    }
+    
+    public void generatePortals(){
+        int sX = getStartingCoorX();
+        int sY = getStartingCoorY();
+        array[sX][sY][0] = "sPortal";
+        int eX = getEndingCoorX();
+        int eY = getEndingCoorY();
+        array[eX][eY][0] = "ePortal";
     }
 
     public void generateRoom(int amtOfRooms){
@@ -285,6 +295,14 @@ public class Generate
 
     public int getStartingCoorY(){
         return rooms.get(0)[3]+(rooms.get(0)[1]/2);
+    }
+    
+    public int getEndingCoorX(){
+        return rooms.get(1)[2]+(rooms.get(1)[0]/2);
+    }
+    
+    public int getEndingCoorY(){
+        return rooms.get(1)[3]+(rooms.get(1)[1]/2);
     }
 
     public int[] getRandList(){
