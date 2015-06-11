@@ -9,19 +9,26 @@ import java.util.List;
  */
 public class Player extends Mobs
 {
-    protected Items[] equips, items;
-    protected boolean [][] stats = new boolean [11][7];
+    private int counter;
+    private int armorBuff;
+    private boolean speedBoost;
+    private Items[] equips, items;
     /**
      * Sets all the base stats
+     * 
+     * BASE STATS SUBJECT TO CHANGE
      */
     public Player(int mapX, int mapY){
         baseHp = 100;
         baseAtt = 10;
         baseDef = 5;
         baseMove = 2;
+        currentHp = 100;
+        maxHp = 100; 
         move = baseMove;
         baseDex = 0;
         baseLuk = 555;
+        armorBuff = 0;
         equips = new Items[2];
         items = new Items[9];
         this.mapX = mapX;
@@ -43,6 +50,11 @@ public class Player extends Mobs
 
     public void act()
     {
+        if (speedBoost)
+        {
+            baseMove += 2;
+            speedBoost = false;
+        }
         if (Greenfoot.isKeyDown("z")){pickupItem();}
     }
 
@@ -111,15 +123,6 @@ public class Player extends Mobs
     }
 
     /**
-     * Deposit an item directly into the inventory
-     * Probably only used with chests
-     */
-    public void addItemInv(Items item)
-    {
-
-    }
-
-    /**
      * Switch an item with a different one in a different slot
      * The slot for the item to go into 0 - 9, 10 and 11 are the weapon and armor slots
      * 
@@ -165,6 +168,7 @@ public class Player extends Mobs
     public void dropItem(int item)
     {
         ScrollingMap map = (ScrollingMap)getWorld();
+        //Converts coordinate values
         int valX = (mapX - 43) / 86;
         int valY = (mapY - 43) / 86;
         if (item < 9){
@@ -176,8 +180,30 @@ public class Player extends Mobs
             equips[item - 9] = null;
         }
         List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
+        for (ProfileWindow p : pro){p.update();} //Updates the information in the Profile Window
+        update(); //Update Player's graphic
+    }
+
+    /**
+     * Consumes an item in the inventory and activates an appropriate effect
+     * 
+     * @param item Index of the item to be dropped within the array
+     */
+
+    public void consumeItem(int item)
+    {
+        if (items[item].getItemID() == 11){healMe(getMaxHP() * 0.2);} //Heal 20% HP if Health Kit is used
+        if (items[item].getItemID() == 12){armorBuff += 5;} //Increase defense by 5 permanently if Armor Tuneup is used
+        if (items[item].getItemID() == 13){healMe(getMaxHP() * 0.6);} //Heal 60% HP if Big Health Kit is used
+        if (items[item].getItemID() == 14){armorBuff += 15;} //Increase defense by 15 permanently if Engineer Toolbox is used
+        if (items[item].getItemID() == 15)//Increase speed temporarily for 42 turns if Sanic Soda is used
+        {
+            speedBoost = true; 
+            counter = 42;
+        }
+        items[item] = null;
+        List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
         for (ProfileWindow p : pro){p.update();}
-        update();
     }
 
     /**
@@ -201,7 +227,7 @@ public class Player extends Mobs
         int buff2 = 0;
         if (equips[0] != null){buff1 = equips[0].getDefBuff();}
         if (equips[1] != null){buff2 = equips[1].getDefBuff();}
-        return baseDef + buff1 + buff2;
+        return baseDef + buff1 + buff2 + armorBuff;
     }
 
     /**
@@ -249,7 +275,8 @@ public class Player extends Mobs
      * 
      * @param newMapX The new value
      */
-    public void setMapX(int newMapX){
+    public void setMapX(int newMapX)
+    {
         mapX = newMapX;
     }
 
@@ -258,21 +285,32 @@ public class Player extends Mobs
      * 
      * @param newMapY The new value
      */
-    public void setMapY(int newMapY){
+    public void setMapY(int newMapY)
+    {
         mapY = newMapY;
     }
 
     /**
      * Returns the Player's mapX value
      */
-    public int getMapX(){
+    public int getMapX()
+    {
         return mapX;
     }
 
     /**
      * Returns the Player's mapX value
      */
-    public int getMapY(){
+    public int getMapY()
+    {
         return mapY;
+    }
+
+    /**
+     * Counts down the Player's timer for effect durations
+     */
+    public void count()
+    {
+        if(counter > 0){counter--;}
     }
 }
