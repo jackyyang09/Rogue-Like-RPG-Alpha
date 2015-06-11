@@ -5,7 +5,7 @@ import java.awt.Point;
 /**
  * Write a description of class Enemy here.
  * 
- * @author (Kajamugesh Raneethran) 
+ * @author Sean Cao, Ryan Huang, Kajamugesh Raneethran
  * @version (a version number or a date)
  */
 public class Enemy extends Mobs
@@ -77,6 +77,12 @@ public class Enemy extends Mobs
      * Act Method
      */
     public void act(){
+        if(currentHp <= 0){
+            convertToTile();
+            ((ScrollingMap)getWorld()).removeMe(mapX,mapY);
+            convertToPixel();
+            getWorld().removeObject(this);
+        }
         if(enemyTurn && move > 0){
             move--;
             convertToTile();
@@ -117,12 +123,6 @@ public class Enemy extends Mobs
         if(move <= 0){
             enemyTurn = false;
             move = baseMove;
-        }
-        if(currentHp <= 0){
-            convertToTile();
-            ((ScrollingMap)getWorld()).removeMe(mapX,mapY);
-            convertToPixel();
-            getWorld().removeObject(this);
         }
     }
 
