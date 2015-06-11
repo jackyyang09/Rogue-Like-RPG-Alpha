@@ -14,39 +14,43 @@ public class Control extends Actor
     public void act() 
     {
         if(Greenfoot.isKeyDown("d") && ((ScrollingMap)getWorld()).movePlayer(1)){
-            decreasePlayerMove();
+            decreasePlayerMove(1);
             ((ScrollingMap)getWorld()).removeTarget();
         }
         if(Greenfoot.isKeyDown("a") && ((ScrollingMap)getWorld()).movePlayer(2)){
-            decreasePlayerMove();
+            decreasePlayerMove(1);
             ((ScrollingMap)getWorld()).removeTarget();
         }
         if(Greenfoot.isKeyDown("s") && ((ScrollingMap)getWorld()).movePlayer(3)){
-            decreasePlayerMove();
+            decreasePlayerMove(1);
             ((ScrollingMap)getWorld()).removeTarget();
         }
         if(Greenfoot.isKeyDown("w") && ((ScrollingMap)getWorld()).movePlayer(4)){
-            decreasePlayerMove();
+            decreasePlayerMove(1);
             ((ScrollingMap)getWorld()).removeTarget();
         }
-        
-        if(Greenfoot.isKeyDown("right")){
-            ((ScrollingMap)getWorld()).moveTarget(1);
-        }
-        if(Greenfoot.isKeyDown("left")){
-            ((ScrollingMap)getWorld()).moveTarget(2);
-        }
-        if(Greenfoot.isKeyDown("down")){
-            ((ScrollingMap)getWorld()).moveTarget(3);
-        }
-        if(Greenfoot.isKeyDown("up")){
-            ((ScrollingMap)getWorld()).moveTarget(4);
-        }
-        if(Greenfoot.isKeyDown("space")){
-            ((ScrollingMap)getWorld()).interact();
+        if(!((ScrollingMap)getWorld()).isSpawned()){
+            if(Greenfoot.isKeyDown("right")){
+                ((ScrollingMap)getWorld()).moveTarget(1);
+            }
+            if(Greenfoot.isKeyDown("left")){
+                ((ScrollingMap)getWorld()).moveTarget(2);
+            }
+            if(Greenfoot.isKeyDown("down")){
+                ((ScrollingMap)getWorld()).moveTarget(3);
+            }
+            if(Greenfoot.isKeyDown("up")){
+                ((ScrollingMap)getWorld()).moveTarget(4);
+            }
+            if(Greenfoot.isKeyDown("space")){
+                ((ScrollingMap)getWorld()).interact();
+                decreasePlayerMove(getPlayerMove());
+            }
+        } else if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("up")){
+            ((ScrollingMap)getWorld()).spawnTargetIn();
         }
         if(getPlayerMove() <= 0){
-            Greenfoot.delay(2);
+            Greenfoot.delay(3);
             moveEnemy();
             List<Player> player = getWorld().getObjects(Player.class);
             for (Player p : player){p.count();}
@@ -55,12 +59,12 @@ public class Control extends Actor
         ((ScrollingMap)getWorld()).update();
     }
 
-    public void decreasePlayerMove(){
+    public void decreasePlayerMove(int amt){
         Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
         for(int x = 0; x < 58; x++){
             for(int y = 0; y < 56; y++){
                 if(grid[x][y][1] != null){
-                    ((Player)grid[x][y][1]).decreaseMove();
+                    ((Player)grid[x][y][1]).decreaseMove(amt);
                 }
             }
         }
