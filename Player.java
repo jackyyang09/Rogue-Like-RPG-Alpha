@@ -20,14 +20,18 @@ public class Player extends Mobs
      */
     public Player(int mapX, int mapY){
         baseHp = 100;
-        baseAtt = 10;
-        baseDef = 5;
-        baseMove = 2;
         currentHp = 100;
-        maxHp = 100; 
+        baseAtt = 10;
+        attack = baseAtt;
+        baseDef = 5;
+        defense = baseDef;
+        baseMove = 2;
+        maxHp = 100;
         move = baseMove;
-        baseDex = 0;
-        baseLuk = 555;
+        baseDex = 10;
+        dexterity = baseDex;
+        baseLuk = 10;
+        luck = baseLuk
         armorBuff = 0;
         equips = new Items[2];
         items = new Items[9];
