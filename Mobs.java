@@ -166,7 +166,7 @@ public class Mobs extends Actor
         }
         else
         {
-            double lucky = attack;
+            double lucky = attack + Greenfoot.getRandomNumber(100);
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
                 lucky = 2*attack;
