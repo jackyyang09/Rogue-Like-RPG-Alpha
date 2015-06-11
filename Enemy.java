@@ -103,6 +103,8 @@ public class Enemy extends Mobs
                 ((ScrollingMap)getWorld()).field[mapX][mapY][2] = null;
                 mapY = tempY;
                 mapX = tempX;
+                ((ScrollingMap)getWorld()).grid[tempX][tempY] = false;
+                ((ScrollingMap)getWorld()).grid[mapX][mapY] = true;
             }
             convertToPixel();
             ((ScrollingMap)getWorld()).update();
