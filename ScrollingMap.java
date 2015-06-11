@@ -111,7 +111,6 @@ public class ScrollingMap extends World
     
     int maxY = 0, minY = 0, maxX = 0, minX = 0;
     public void moveTarget(int dir){
-
         for(int x = 0; x < MAPIMGWIDTH; x++){
             for(int y = 0; y < MAPIMGHEIGHT; y++){
                 if((Target)field[x][y][4] != null){
@@ -119,8 +118,8 @@ public class ScrollingMap extends World
                 }
                 if(spawnTarget && ((Player)field[x][y][1]) != null){
                     field[x][y][4] = new Target(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
-                    targetX = y;
-                    targetY = x;
+                    targetX = x;
+                    targetY = y;
                     spawnTarget = true;
                     maxY = targetY + 1;
                     minY = targetY - 1;
@@ -171,6 +170,22 @@ public class ScrollingMap extends World
                 }
             }
         }
+    }
+
+    public void interact(){
+        if(!spawnTarget){
+            for(int x = 0; x < MAPIMGWIDTH; x++){
+                for(int y = 0; y < MAPIMGHEIGHT; y++){
+                    if((Player)field[x][y][1] != null){
+                        ((Player)field[x][y][1]).attack((Enemy)field[targetX][targetY][2]);
+                    }
+                }
+            }
+        }
+    }
+
+    public void removeMe(int x, int y){
+        field[x][y][2] = null;
     }
 
     //     /**
