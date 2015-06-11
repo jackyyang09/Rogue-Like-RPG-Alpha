@@ -35,6 +35,7 @@ public class Enemy extends Mobs
     public Enemy(int getMapX, int getMapY, int IDnum){
         setImage("slime.png");
         baseHp = 100;
+        currentHp = baseHp;
         baseAtt = 10;
         baseDef = 5;
         baseMove = 2;
@@ -49,8 +50,10 @@ public class Enemy extends Mobs
      * Act Method
      */
     public void act(){
-        if(Greenfoot.isKeyDown("c")){
+        if(enemyTurn && move > 0){
+            move--;
             convertToTile();
+            
             //             Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
             //             boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
             for(int i = 0; i < 58; i++){
@@ -81,6 +84,16 @@ public class Enemy extends Mobs
             }
             convertToPixel();
             ((ScrollingMap)getWorld()).update();
+        }
+        if(move <= 0){
+            enemyTurn = false;
+            move = baseMove;
+        }
+        if(currentHp <= 0){
+            convertToTile();
+            ((ScrollingMap)getWorld()).removeMe(mapX,mapY);
+            convertToPixel();
+            getWorld().removeObject(this);
         }
     }
 
