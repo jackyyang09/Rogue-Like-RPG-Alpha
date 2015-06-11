@@ -65,12 +65,12 @@ public class ValueBox extends Actor
         {
             //Draws the bar image
             bar.setColor(red); //Temporarily changes colour to red
-            changeValues(p.getHP(), p.getMaxHP());
+            changeValues(p.getHp(), p.getMaxHp());
             bar.fillPolygon(xCoords, yCoords, 4);
 
             //Draws the text
             bar.setColor(white);
-            bar.drawString(Double.toString(p.getHP()) + "/" + Double.toString(p.getMaxHP()), 50, 16);
+            bar.drawString(Double.toString(p.getHp()) + "/" + Double.toString(p.getMaxHp()), 50, 16);
         }
         setImage(bar);
     }
