@@ -58,7 +58,7 @@ public class Mobs extends Actor
     /**
      * 
      */
-    public double getHP() 
+    public double getHp() 
     {
         return currentHp;
     }
@@ -66,7 +66,7 @@ public class Mobs extends Actor
     /**
      * 
      */
-    public double getMaxHP() 
+    public double getMaxHp() 
     {
         return maxHp;
     }
@@ -181,9 +181,13 @@ public class Mobs extends Actor
             {
                 System.out.println("Too weak");
             }
+            if(enemy.getHp() == 0)
+            {
+                xp += enemy.giveXp();
+               getWorld().removeObject(enemy);
+            }
         }
     }
-
     public void convertToTile(){
         mapX = (mapX - 43) / 86;
         mapY = (mapY - 43) / 86;
