@@ -158,6 +158,14 @@ public class Mobs extends Actor
         }
     } 
 
+   /**
+     * 
+     */
+    public int giveXp() 
+    {
+        return value*level/6;
+    }  
+
     public void attack(Mobs enemy)
     {
         double chance = enemy.getDexterity() - hit;
