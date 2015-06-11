@@ -31,7 +31,7 @@ public class Player extends Mobs
         baseDex = 10;
         dexterity = baseDex;
         baseLuk = 10;
-        luck = baseLuk
+        luck = baseLuk;
         armorBuff = 0;
         equips = new Items[2];
         items = new Items[9];
