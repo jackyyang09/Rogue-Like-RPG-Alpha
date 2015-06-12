@@ -20,17 +20,20 @@ public class HUD extends Actor
     private ValueBox box;
     private Button bp;
     private Button profile;
+    private ExperienceBar bar;
     private Inventory inv;
     private MoveCount movecount;
+    private FloorCount floor;
     private ProfileWindow pro;
     public HUD()
     {
-        setImage("HUD.png");
         begin = false;
         box = new ValueBox();
         bp = new Button();
         profile = new Button();
         movecount = new MoveCount();
+        bar = new ExperienceBar();
+        floor = new FloorCount();
     }
     
     /**
@@ -44,6 +47,8 @@ public class HUD extends Actor
         getWorld().addObject(bp, 835, 644);
         getWorld().addObject(box, 253, 735);
         getWorld().addObject(movecount, 56, 556);
+        getWorld().addObject(bar, 388, 23);
+        getWorld().addObject(floor, 890, 52);
         begin = true;
     }
 
