@@ -9,6 +9,18 @@ import greenfoot.*;
 public class Chest extends Actor
 {
     private boolean open = false;
+    
+    /**
+     * Main constructor that binds the item to the world
+     */
+    public Chest(int mapX, int mapY)
+    {
+        setImage("chest.png");
+        this.mapX = mapX;
+        this.mapY = mapY;
+        generate();
+    }
+    
     public Chest(int rarity)
     {
         setImage("chest.png");
@@ -46,7 +58,24 @@ public class Chest extends Actor
     /**
      * Sets the kind of item it'll drop according to the rarity
      */
+    private void generate()
+    {
+    }
+    
+    /**
+     * Sets the kind of item it'll drop according to the rarity
+     */
     private void generate(int rarity)
     {
+    }
+    
+    public int getMapX()
+    {
+        return mapX;
+    }
+
+    public int getMapY()
+    {
+        return mapY;
     }
 }
