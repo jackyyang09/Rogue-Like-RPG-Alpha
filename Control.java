@@ -34,22 +34,26 @@ public class Control extends Actor
             Greenfoot.delay(3);
         }
         if(!((ScrollingMap)getWorld()).isSpawned()){
-            Greenfoot.delay(3);
             if(Greenfoot.isKeyDown("right")){
                 ((ScrollingMap)getWorld()).moveTarget(1);
+                Greenfoot.delay(5);
             }
             if(Greenfoot.isKeyDown("left")){
                 ((ScrollingMap)getWorld()).moveTarget(2);
+                Greenfoot.delay(5);
             }
             if(Greenfoot.isKeyDown("down")){
                 ((ScrollingMap)getWorld()).moveTarget(3);
+                Greenfoot.delay(5);
             }
             if(Greenfoot.isKeyDown("up")){
                 ((ScrollingMap)getWorld()).moveTarget(4);
+                Greenfoot.delay(5);
             }
             if(Greenfoot.isKeyDown("space")){
                 ((ScrollingMap)getWorld()).interact();
                 decreasePlayerMove(getPlayerMove());
+                Greenfoot.delay(5);
             }
         } else if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("up")){
             ((ScrollingMap)getWorld()).spawnTargetIn();
