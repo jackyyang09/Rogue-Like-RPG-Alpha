@@ -146,12 +146,12 @@ public class Mobs extends Actor
      */
     public void healMe(double heal) 
     {
-        if(heal + currentHp <=maxHp){
+        if(heal + currentHp <=baseHp){
             currentHp +=  heal;
         }
         else
         {
-            currentHp = maxHp; 
+            currentHp = baseHp; 
         }
     }
 
