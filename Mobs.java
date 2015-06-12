@@ -229,6 +229,7 @@ public class Mobs extends Actor
             } 
             if(lucky > enemy.getDefense())
             {
+                GreenfootSound atk = new GreenfootSound("atk_Player.mp3");
                 enemy.hurtMe(lucky-enemy.getDefense());
                 String damage = "Dmg " + (lucky-enemy.getDefense());
                 text = new FadingWord(damage);//damages enemy
