@@ -80,7 +80,7 @@ public class Enemy extends Mobs
         if(currentHp <= 0){
             convertToTile();
             enemyTurn = false;
-            ((ScrollingMap)getWorld()).removeMe(mapX,mapY);
+            ((ScrollingMap)getWorld()).removeMe(mapX,mapY,2);
             convertToPixel();
             getWorld().removeObject(this);
         }
