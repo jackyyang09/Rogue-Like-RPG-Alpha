@@ -344,4 +344,41 @@ public class Generate
     public void setMaxEnemies(int max){
         maxEnemies = max;
     }
+    
+    public String pickEnemy(int floor){
+        int num = Greenfoot.getRandomNumber(100)+1;
+        if(floor>=1 && floor<=5){
+            if(num < 20){return "enemy2";}
+            else{return "enemy1";}
+        }
+        else if(floor>=6 && floor<=10){
+            if(num < 20){return "enemy3";}
+            else if(num < 40){return "enemy2";}
+            else{return "enemy1";}
+        }
+        else if(floor>=11 && floor<=15){
+            if(num < 20){return "enemy4";}
+            else if(num < 40){return "enemy2";}
+            else{return "enemy3";}
+        }
+        else if(floor>=16 && floor<=20){
+            if(num < 20){return "enemy4";}
+            else if(num < 30){return "enemy2";}
+            else{return "enemy3";}
+        }
+        else if(floor>=21 && floor<=30){
+            if(num < 10){return "enemy4";}
+            else if(num < 20){return "enemy5";}
+            else if(num < 30){return "enemy2";}
+            else{return "enemy3";}
+        }
+        else if(floor >= 31){
+            if(num < 20){return "enemy4";}
+            else if(num < 50){return "enemy5";}
+            else{return "enemy3";}
+        }
+        else{
+            return "enemy";
+        }
+    }
 }
