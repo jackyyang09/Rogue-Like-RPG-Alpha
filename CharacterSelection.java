@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CharacterSelection extends World
 {
     private Button back; private Button dlcBack; private Button mainBack; private Button begin; private Button lock;
-    private Button title;
+    private Button title; private Button story; private Button instructions;
     private Button marine; 
     private Button marineInfo; private Button dlcInfo;
     
@@ -24,8 +24,8 @@ public class CharacterSelection extends World
         super(946, 774, 1); 
         back = new Button(); dlcBack = new Button();
         title = new Button(); marine = new Button(); marineInfo = new Button();
-        lock = new Button(); mainBack = new Button(); ; dlcInfo = new Button();
-        begin = new Button();
+        lock = new Button(); mainBack = new Button(); dlcInfo = new Button();
+        begin = new Button(); story = new Button(); instructions = new Button();
         
     }
 
@@ -54,11 +54,14 @@ public class CharacterSelection extends World
         }
         else if(Greenfoot.mouseClicked(begin))
         {
+            removeObject(marineInfo);
+            addObject(story, 472, 387); story.setImage("Story.png");Greenfoot.delay(700);
+            removeObject(story); addObject(instructions,472, 387); instructions.setImage("Instructions.png"); Greenfoot.delay(100);
             Greenfoot.setWorld(new ScrollingMap());
         }
         else if(Greenfoot.mouseClicked(back))
         {
-            removeObject(marineInfo); removeObject(back);
+            removeObject(marineInfo); removeObject(back); removeObject(story); removeObject(instructions);
         }
         
         if(Greenfoot.mouseClicked(lock))
@@ -70,6 +73,12 @@ public class CharacterSelection extends World
         {
             removeObject(dlcInfo); removeObject(dlcBack);
         }
+        
+        if(Greenfoot.mouseClicked(mainBack))
+        {
+            Greenfoot.setWorld(new StartScreen());
+        }
+        
     }
 
 }
