@@ -1,3 +1,11 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class CharacterSelection here.
+ * 
+ * @author Aingharan Uthayakumar 
+ * @version (a version number or a date)
+ */
 public class CharacterSelection extends World
 {
     private Button back; private Button dlcBack; private Button mainBack; private Button begin; private Button lock;
@@ -14,10 +22,10 @@ public class CharacterSelection extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(946, 774, 1); 
-        back = new Button(""); dlcBack = new Button("");
-        title = new Button(""); marine = new Button(""); marineInfo = new Button("");
-        lock = new Button(""); mainBack = new Button(""); ; dlcInfo = new Button("");
-        begin = new Button("");
+        back = new Button(); dlcBack = new Button();
+        title = new Button(); marine = new Button(); marineInfo = new Button();
+        lock = new Button(); mainBack = new Button(); ; dlcInfo = new Button();
+        begin = new Button();
         
     }
 
