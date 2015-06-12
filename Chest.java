@@ -42,8 +42,8 @@ public class Chest extends Actor
             ScrollingMap map = (ScrollingMap)getWorld();
             //Converts x and y values to values useable by ScrollingMap
             //Potentially unnecessary
-            //             int valX = (mapX - 43) / 86;
-            //             int valY = (mapY - 43) / 86;
+            int valX = (mapX - 43) / 86;
+            int valY = (mapY - 43) / 86;
             map.inputItem(valX, valY, generate(1)); //Adds item to an array in Scrolling Map
             map.removeme(mapX, mapY, 4);
             getWorld().removeObject(this);
