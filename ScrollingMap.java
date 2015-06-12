@@ -196,37 +196,10 @@ public class ScrollingMap extends World
         return spawnTarget;
     }
 
-    public void removeMe(int x, int y, int z){
-        field[x][y][z] = null;
+    public void removeMe(int x, int y){
+        field[x][y][2] = null;
     }
-
-    //     /**
-    //      * moves the screen in the desired direction by one tile
-    //      * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
-    //      */
-    //     public void move(int dir){
-    //         if (dir == 1){
-    //             y = TILESIZE;
-    //             shiftScreen(x,y);
-    //             y = 0;
-    //         }
-    //         if (dir == 2){
-    //             y = -TILESIZE;
-    //             shiftScreen(x,y);
-    //             y = 0;
-    //         }
-    //         if (dir == 3){
-    //             x = TILESIZE;
-    //             shiftScreen(x,y);
-    //             x = 0;
-    //         }
-    //         if (dir == 4){
-    //             x = -TILESIZE;
-    //             shiftScreen(x,y);
-    //             x = 0;
-    //         }
-    //     }
-
+    
     public void spawnPlayer(){
         int xCo = playerX * TILESIZE + TILESIZE/2;
         int yCo = playerY * TILESIZE + TILESIZE/2;
