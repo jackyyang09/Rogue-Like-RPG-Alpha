@@ -1,26 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Font;
+import java.awt.Color;
 /**
  * Write a description of class fadingWord here.
  * 
  * @author (Kajamugesh) 
  * @version (a version number or a date)
  */
-public class fadingWord extends Actor
+public class FadingWord extends Actor
 {
-    private String phrase;
-    private int factor;
-    private Font font;
     private int transparency;
-    private GreenfootImage image = new GreenfootImage(getImage());
-    public fadingWord (String phrase, int acts, int x, int y)
+    private GreenfootImage image;
+    private int timer = 0;
+    public FadingWord (String text)
     {
-        this.phrase = phrase;
-        factor = transparency/acts;
-        font = new Font("OCR A Extended", 3, 20);
+        Color transparent = new Color(0,0,0,0);
+        Font font = new Font("OCR A Extended", 3, 20);
         transparency = 255;
-        image.setFont(font);
-        image.drawString(phrase,x,y);
+        GreenfootImage image = new GreenfootImage (text, 12, Color.BLACK, transparent);
         setImage(image);
     }
 
@@ -30,12 +27,15 @@ public class fadingWord extends Actor
      */
     public void act() 
     {
-//         if(transparency <= 0)
-//         {
-//             getWorld().removeObject(this);   
-//         }
-//         image.setTransparency(transparency);
-//         transparency -= factor;
+               if (timer%4 == 0){
+            move(1);
+        }
+        timer++;
+        if (timer >= 100){
+            getImage().setTransparency(getImage().getTransparency() - 2);
+        }
+        if (timer == 195){
+            getWorld().removeObject(this);
+        }
     }    
-
 }
