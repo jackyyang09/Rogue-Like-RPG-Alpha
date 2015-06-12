@@ -105,7 +105,12 @@ public class Mobs extends Actor
     {
         return luck;
     }
-
+    
+    public double getXp() 
+    {
+        return xp;
+    }
+    
     /**
      * 
      */
@@ -135,3 +140,97 @@ public class Mobs extends Actor
             currentHp = 0; 
         }
     }
+
+    /**
+     * 
+     */
+    public void healMe(double heal) 
+    {
+        if(heal + currentHp <=maxHp){
+            currentHp +=  heal;
+        }
+        else
+        {
+            currentHp = maxHp; 
+        }
+    }
+
+    /**
+     * 
+     */
+    public void levelGenerate(int level) 
+    {
+        for(int i = getLevel(); i<level; i++)
+        {
+            levelUp();
+        }
+    } 
+
+   /**
+     * 
+     */
+    public int giveXp() 
+    {
+        return value*level/6;
+    }  
+
+   public void attack(Mobs enemy)
+    {
+        FadingWord text;
+        FadingWord critical;
+        double chance = enemy.getDexterity() - hit;
+        if (Greenfoot.getRandomNumber(100) + 1 <= chance)
+        {
+            text = new FadingWord("Miss!");
+        }
+        else
+        {
+            // double random = Greenfoot.getRandomNumber(3);
+            //if(Greenfoot.getRandomNumber(2)==0)
+            //{
+             //   random = -random;
+            //}
+            //double lucky = attack + random;
+            double lucky = attack;
+            if (Greenfoot.getRandomNumber(100) + 1 <= luck)
+            {
+                lucky = 2*attack;
+                critical = new FadingWord("Critical!");
+                getWorld().addObject(critical, enemy.getX(), enemy.getY() - 31);
+            } 
+            if(lucky > enemy.getDefense())
+            {
+                enemy.hurtMe(lucky-enemy.getDefense());
+                String damage = "Dmg " + (lucky-enemy.getDefense());
+                text = new FadingWord(damage);
+            }
+            else
+            {
+                text = new FadingWord("Too Weak");
+            }
+            getWorld().addObject(text, enemy.getX(), enemy.getY() - 31);
+            if(enemy.getHp() == 0)
+            {
+                xp += enemy.giveXp();
+               getWorld().removeObject(enemy);
+            }
+        }
+    }
+    public void convertToTile(){
+        mapX = (mapX - 43) / 86;
+        mapY = (mapY - 43) / 86;
+    }
+
+    public void convertToPixel(){
+        mapX = (mapX * 86) + 43;
+        mapY = (mapY * 86) + 43;
+    }
+
+    public int getMapX(){
+        return this.mapX;
+    }
+
+    public int getMapY(){
+        return this.mapY;
+    }
+}
