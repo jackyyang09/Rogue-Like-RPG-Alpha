@@ -15,7 +15,7 @@ public class ScrollingMap extends World
     private final int MAPHEIGHT = 56 * TILESIZE;
     private final int MAPIMGWIDTH = 58;
     private final int MAPIMGHEIGHT = 56;
-    private final int MAPDEPTH = 5;
+    private final int MAPDEPTH = 6;
     private int leftBound = 0;
     private int bottomBound = MAPHEIGHT;
     private int topBound = MAPHEIGHT - getHeight();
@@ -246,6 +246,9 @@ public class ScrollingMap extends World
         if(object == 2){
             field[xC][yC][d] = new Enemy(xCo, yCo, 1);
         }
+        if(object == 3){
+            field[xC][yC][d] = new Chest(xCo, yCo);
+        }
         update();
     }
 
@@ -298,6 +301,9 @@ public class ScrollingMap extends World
                         }
                         if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
                             inputObject(2, x, y, 2);
+                        }
+                        if(data[x][y][5] != null && data[x][y][5].equals("chest")){
+                            inputObject(3, x, y, 5);
                         }
                     }
                 }
@@ -386,6 +392,9 @@ public class ScrollingMap extends World
                         } else if(i == 4){
                             blockX = ((Target)field[x][y][i]).getMapY();
                             blockY = ((Target)field[x][y][i]).getMapX();
+                        } else if(i == 5){
+                            blockX = ((Chest)field[x][y][i]).getMapY();
+                            blockY = ((Chest)field[x][y][i]).getMapX();
                         } else {
                             blockX = -1;
                             blockY = -1;
