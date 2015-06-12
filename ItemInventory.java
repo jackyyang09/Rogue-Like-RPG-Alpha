@@ -152,6 +152,8 @@ public class ItemInventory extends Actor
                     }
                     else
                     {
+                        dropSnd = new GreenfootSound("drop.wav");
+                        dropSnd.play();
                         secure = false;
                     }
                 }
