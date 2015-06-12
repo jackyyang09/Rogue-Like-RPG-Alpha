@@ -190,7 +190,7 @@ public class ItemInventory extends Actor
     {
         if (Greenfoot.mouseClicked(this) && secure == true && drag == false)
         {
-            if (Greenfoot.getMouseInfo().getButton() == 3)
+            if (Greenfoot.getMouseInfo().getButton() == 3 && equipType == 0)
             {
                 List<Inventory> inventory = getWorld().getObjects(Inventory.class);
                 for (Inventory i : inventory){i.itemInteract(this, 2);}
