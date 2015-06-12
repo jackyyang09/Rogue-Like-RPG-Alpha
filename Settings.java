@@ -1,7 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import java.awt.Image;
+
 /**
  * KEYBINDINGS and other settings
  * 
@@ -75,19 +74,22 @@ public class Settings extends World
         if(Greenfoot.mouseClicked(up))
         {
             upBind = (String)JOptionPane.showInputDialog("Pick any key!");
-            addObject(new TextField(upBind), 145, 140);
+            addObject(new TextField(upBind), 700, 40);
         }
         else if(Greenfoot.mouseClicked(down))
         {
             downBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(downBind), 700, 114);
         }
         else if(Greenfoot.mouseClicked(left))
         {
             leftBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(leftBind), 700, 185);
         }
         else if (Greenfoot.mouseClicked(right))
         {
             rightBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(rightBind), 700, 256);
         }
     }
 
@@ -96,18 +98,22 @@ public class Settings extends World
         if(Greenfoot.mouseClicked(chUp))
         {
             chUpBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(chUpBind), 700, 327);
         }
         else if(Greenfoot.mouseClicked(chDown))
         {
             chDownBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(chDownBind), 700, 398);
         }
         else if(Greenfoot.mouseClicked(chLeft))
         {
             chLeftBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(chLeftBind), 700, 470);
         }
         else if(Greenfoot.mouseClicked(chRight))
         {
             chRightBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(chRightBind), 700, 543);
         }
     }
 
@@ -117,10 +123,12 @@ public class Settings extends World
         if(Greenfoot.mouseClicked(pickUp))
         {
             pickUpBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(pickUpBind), 700, 612);
         }
         else if(Greenfoot.mouseClicked(action))
         {
             actionBind = (String)JOptionPane.showInputDialog("Pick any key!");
+            addObject(new TextField(actionBind), 700, 686);
         }
     }
 
