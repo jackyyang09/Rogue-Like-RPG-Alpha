@@ -50,7 +50,7 @@ public class Control extends Actor
                 ((ScrollingMap)getWorld()).moveTarget(4);
                 Greenfoot.delay(5);
             }
-            if (Greenfoot.isKeyDown("z")
+            if (Greenfoot.isKeyDown("z"))
             {
                 List<Player> player = getWorld().getObjects(Player.class);
                 for (Player p : player){p.pickupItem();}
