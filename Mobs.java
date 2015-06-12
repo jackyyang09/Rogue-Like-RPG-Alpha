@@ -173,6 +173,7 @@ public class Mobs extends Actor
    public void attack(Mobs enemy)
     {
         FadingWord text;
+        FadingWord critical;
         double chance = enemy.getDexterity() - hit;
         if (Greenfoot.getRandomNumber(100) + 1 <= chance)
         {
@@ -190,7 +191,8 @@ public class Mobs extends Actor
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
                 lucky = 2*attack;
-                text = new FadingWord("Critical!");
+                critical = new FadingWord("Critical!");
+                getWorld().addObject(critical, enemy.getX(), enemy.getY() - 31);
             } 
             if(lucky > enemy.getDefense())
             {
