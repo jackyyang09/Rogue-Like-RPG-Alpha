@@ -20,18 +20,15 @@ public class Player extends Mobs
      */
     public Player(int mapX, int mapY){
         baseHp = 100;
-        currentHp = 100;
         baseAtt = 10;
-        attack = baseAtt;
         baseDef = 5;
-        defense = baseDef;
         baseMove = 2;
-        maxHp = 100;
+        attack = baseAtt;
+        currentHp = 100;
+        maxHp = 100; 
         move = baseMove;
-        baseDex = 10;
-        dexterity = baseDex;
-        baseLuk = 10;
-        luck = baseLuk;
+        baseDex = 0;
+        baseLuk = 555;
         armorBuff = 0;
         equips = new Items[2];
         items = new Items[9];
@@ -123,16 +120,15 @@ public class Player extends Mobs
     public void update()
     {
         GreenfootImage image = new GreenfootImage(144, 86);
-        GreenfootImage player = new GreenfootImage("player2.png");
-        image.drawImage(player, 29, 0);
+        if (equips[1] != null)
+        {
+            image.drawImage(new GreenfootImage(equips[1].getFileName()), 29, 0);
+        }
+        else{image.drawImage(new GreenfootImage("player2.png"), 29, 0);}
         if (equips[0] != null)
         {
             image.drawImage(new GreenfootImage(equips[0].getFileName()), 29, 0);
             image.drawImage(new GreenfootImage("fist.png"), 29, 0);
-        }
-        if (equips[1] != null)
-        {
-            image.drawImage(new GreenfootImage(equips[1].getFileName()), 29, 0);
         }
         setImage(image);
     }
