@@ -188,6 +188,7 @@ public class Enemy extends Mobs
             if(moveTo.size() == 2){
                 moveTo.removeFirst();
                 attack((Player)((ScrollingMap)getWorld()).field[moveTo.getFirst().y][moveTo.getFirst().x][1]);
+                move = 0;
             }
             else if(moveTo.size() > 1 && moveTo.size() < 17){
                 moveTo.removeFirst();   
