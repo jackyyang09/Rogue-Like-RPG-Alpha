@@ -194,7 +194,7 @@ public class ScrollingMap extends World
                         }
                     }
                 } catch(Exception e){
-                    System.out.println("NOT A CHEST");
+                    //System.out.println("NOT A CHEST");
                 }
         }
     }
