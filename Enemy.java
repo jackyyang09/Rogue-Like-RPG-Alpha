@@ -79,15 +79,15 @@ public class Enemy extends Mobs
     public void act(){
         if(currentHp <= 0){
             convertToTile();
+            enemyTurn = false;
             ((ScrollingMap)getWorld()).removeMe(mapX,mapY);
             convertToPixel();
             getWorld().removeObject(this);
-            enemyTurn = false;
         }
         if(enemyTurn && move > 0){
             move--;
             convertToTile();
-            
+
             //             Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
             //             boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
             for(int i = 0; i < 58; i++){
