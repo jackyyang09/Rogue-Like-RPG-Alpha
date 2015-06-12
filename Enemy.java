@@ -57,6 +57,90 @@ public class Enemy extends Mobs
             move = 0;
             levelGenerate(Greenfoot.getRandomNumber(5) + 1);
         }
+        if (IDnum ==2)
+        {
+            setImage("ambulance.png");
+            level = 1;
+            value = 39;
+            xp = 0;
+            baseHp = 10;
+            currentHp = baseHp;
+            baseAtt = 3;
+            attack = baseAtt;
+            baseDef = 5;
+            defense = baseDef;
+            baseDex = 0;
+            dexterity = baseDex;
+            baseHit = 3;
+            baseLuk = 5;
+            luck = baseLuk;
+            baseMove = 2;
+            move = 0;
+            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+        }
+        if (IDnum ==3)
+        {
+            setImage("arrowsmith.png");
+            level = 1;
+            value = 39;
+            xp = 0;
+            baseHp = 10;
+            currentHp = baseHp;
+            baseAtt = 3;
+            attack = baseAtt;
+            baseDef = 5;
+            defense = baseDef;
+            baseDex = 0;
+            dexterity = baseDex;
+            baseHit = 3;
+            baseLuk = 5;
+            luck = baseLuk;
+            baseMove = 2;
+            move = 0;
+            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+        }
+        if (IDnum ==4)
+        {
+            setImage("sanicsrobot.png");
+            level = 1;
+            value = 39;
+            xp = 0;
+            baseHp = 10;
+            currentHp = baseHp;
+            baseAtt = 3;
+            attack = baseAtt;
+            baseDef = 5;
+            defense = baseDef;
+            baseDex = 0;
+            dexterity = baseDex;
+            baseHit = 3;
+            baseLuk = 5;
+            luck = baseLuk;
+            baseMove = 2;
+            move = 0;
+            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+        }
+        if (IDnum ==5)
+        {
+            setImage("beefbot.png");
+            level = 1;
+            value = 39;
+            xp = 0;
+            baseHp = 10;
+            currentHp = baseHp;
+            baseAtt = 3;
+            attack = baseAtt;
+            baseDef = 5;
+            defense = baseDef;
+            baseDex = 0;
+            dexterity = baseDex;
+            baseHit = 3;
+            baseLuk = 5;
+            luck = baseLuk;
+            baseMove = 2;
+            move = 0;
+            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+        }
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
