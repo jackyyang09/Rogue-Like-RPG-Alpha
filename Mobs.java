@@ -170,12 +170,13 @@ public class Mobs extends Actor
         return value*level/6;
     }  
 
-    public void attack(Mobs enemy)
+   public void attack(Mobs enemy)
     {
+        FadingWord text;
         double chance = enemy.getDexterity() - hit;
         if (Greenfoot.getRandomNumber(100) + 1 <= chance)
         {
-            System.out.println("Miss!");
+            text = new FadingWord("Miss!");
         }
         else
         {
@@ -183,16 +184,19 @@ public class Mobs extends Actor
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
                 lucky = 2*attack;
-                System.out.println("Critical!");
+                text = new FadingWord("Critical!");
             } 
             if(lucky > enemy.getDefense())
             {
                 enemy.hurtMe(lucky-enemy.getDefense());
+                String damage = "Dmg " + (lucky-enemy.getDefense());
+                text = new FadingWord(damage);
             }
             else
             {
-                System.out.println("Too weak");
+                text = new FadingWord("Too Weak");
             }
+            getWorld().addObject(text, enemy.getX(), enemy.getY() - 31);
             if(enemy.getHp() == 0)
             {
                 xp += enemy.giveXp();
