@@ -16,6 +16,7 @@ public class Generate
     private boolean doneOnce = false;
     private int maxEnemies = 0;
     private int floor = 1;
+    private boolean genOnce = false;
 
     /*
      *   Main class to create a grid
@@ -23,6 +24,20 @@ public class Generate
      *   @return String[][][]    returns the full grid of the created map
      */
     public String[][][] generateMap(){
+        if(genOnce == true){
+            rooms.removeAll(rooms);
+            doors.removeAll(doors);
+            floor++;
+            for(int i = 0; i < 58; i++){
+                for(int j = 0; j < 56; j++){
+                    for(int k = 0; k < 6 ;k++){
+                        array[i][j][k] = null;
+                    }
+                }
+            }
+            noSpace = false;
+            doneOnce = false;
+        }
         generateBorder();
         generateStartRoom();
         generateEndRoom();
@@ -30,6 +45,7 @@ public class Generate
         generateRoom(10);
         floodGrid();
         checkDoors();
+        genOnce = true;
         return array;
     }
 
@@ -58,6 +74,7 @@ public class Generate
             noSpace = true;
             rooms.add(coor);
         }
+        noSpace = false;
     }
 
     public void generateEndRoom(){
@@ -74,6 +91,7 @@ public class Generate
                 noSpace = true;
                 rooms.add(coor);
             }
+            noSpace = false;
         }
         while(doneOnce == false);
         doneOnce = false;
@@ -106,6 +124,7 @@ public class Generate
                     noSpace = true;
                     rooms.add(coor);
                 }
+                noSpace = false;
             }
             while(doneOnce == false);
             doneOnce = false;
@@ -171,9 +190,7 @@ public class Generate
         int amtWalls;
         boolean r, l, u, d;
         for(int[] ds : doors){
-            //System.out.println(ds[0] + " " + ds[1]);
             if(ds[0] == 5 || ds[0] == 52 || ds[1] == 5 || ds[1] == 51){
-                //System.out.println("wall change");
                 array[ds[0]][ds[1]][0] = "wall";
             }
             else{
@@ -183,40 +200,22 @@ public class Generate
                 u = false;
                 d = false;
                 if(array[ds[0]+1][ds[1]][0] == "wall"){
-                    //System.out.println("right");
                     amtWalls++;
                     r = true;
                 }
                 if(array[ds[0]-1][ds[1]][0] == "wall"){
-                    //System.out.println("left");
                     amtWalls++;
                     l = true;
                 }
                 if(array[ds[0]][ds[1]+1][0] == "wall"){
-                    //System.out.println("up");
                     amtWalls++;
                     u = true;
                 }
                 if(array[ds[0]][ds[1]-1][0] == "wall"){
-                    //System.out.println("down");
                     amtWalls++;
                     d = true;
                 }
                 if(amtWalls >= 2){
-                    //System.out.println("blocked");
-                    //                     if(r == true && l != true){
-                    //                         array[ds[0]+1][ds[1]][0] = "door";
-                    //                     }
-                    //                     if(l == true && r != true){
-                    //                         array[ds[0]-1][ds[1]][0] = "door";
-                    //                     }
-                    //                     if(u == true && d != true){
-                    //                         array[ds[0]][ds[1]+1][0] = "door";
-                    //                     }
-                    //                     if(d == true && u != true){
-                    //                         array[ds[0]][ds[1]-1][0] = "door";
-                    //                     }
-                    //array[ds[0]][ds[1]][0] = null;
                     array[ds[0]][ds[1]][0] = "wall";
                 }
             }
