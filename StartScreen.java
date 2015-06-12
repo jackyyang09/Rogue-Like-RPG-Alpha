@@ -16,6 +16,7 @@ public class StartScreen extends World
     private Button player; 
     private Button sword;
     private boolean spawn = false;
+    private GreenfootSound title;
     /**
      * Constructor for objects of class StartScreen.
      * 
@@ -24,7 +25,8 @@ public class StartScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(946, 774, 1, false);
-
+        title = new GreenfootSound("title.mp3");
+        title.play();
         beginButton = new Button("BEGIN", 150); beginHover = new Button();
         settingsButton = new Button(); settingsHover = new Button();
         helpButton = new Button(); helpHover = new Button();
@@ -59,6 +61,7 @@ public class StartScreen extends World
         {
             if (Greenfoot.mouseClicked(beginButton) || Greenfoot.mouseClicked(beginHover))
             {
+                title.stop();
                 Greenfoot.setWorld(new CharacterSelection());
             }
             else if (Greenfoot.mouseClicked(settingsButton) || Greenfoot.mouseClicked(settingsHover))
