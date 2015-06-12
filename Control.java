@@ -33,6 +33,13 @@ public class Control extends Actor
             ((ScrollingMap)getWorld()).removeTarget();
             Greenfoot.delay(3);
         }
+
+        if (Greenfoot.isKeyDown("z"))
+        {
+            List<Player> player = getWorld().getObjects(Player.class);
+            for (Player p : player){p.pickupItem();}
+        }
+
         if(!((ScrollingMap)getWorld()).isSpawned()){
             if(Greenfoot.isKeyDown("right")){
                 ((ScrollingMap)getWorld()).moveTarget(1);
@@ -50,11 +57,6 @@ public class Control extends Actor
                 ((ScrollingMap)getWorld()).moveTarget(4);
                 Greenfoot.delay(5);
             }
-            if (Greenfoot.isKeyDown("z"))
-            {
-                List<Player> player = getWorld().getObjects(Player.class);
-                for (Player p : player){p.pickupItem();}
-            }
             if(Greenfoot.isKeyDown("space")){
                 if(((ScrollingMap)getWorld()).returnActorInTarget() == null){
                     ((ScrollingMap)getWorld()).interact(false);
@@ -67,6 +69,7 @@ public class Control extends Actor
         } else if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("up")){
             ((ScrollingMap)getWorld()).spawnTargetIn();
         }
+
         if(getPlayerMove() <= 0){
             Greenfoot.delay(3);
             moveEnemy();
