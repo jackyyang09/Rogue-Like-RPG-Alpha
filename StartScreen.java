@@ -44,7 +44,7 @@ public class StartScreen extends World
             addObject (settingsButton, 468, 695); settingsButton.setImage("Settings.png"); Greenfoot.delay(5);
             addObject (helpButton, 847, 102); helpButton.setImage("Help.png"); Greenfoot.delay(5);
             addObject (sword, 242,420); sword.setImage("Sword.png"); Greenfoot.delay(5);
-            addObject(player, 766, 371); player.setImage("Player.png"); Greenfoot.delay(5);
+            addObject(player, 766, 371); player.setImage("PlayerMain.png"); Greenfoot.delay(5);
             addObject (system, 372, 316); system.setImage("System.png"); Greenfoot.delay(5);
             addObject (down, 656, 437); down.setImage("Down.png"); 
             spawn = true;
