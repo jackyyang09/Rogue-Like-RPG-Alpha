@@ -25,15 +25,14 @@ public class StartScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(946, 774, 1, false);
 
-        beginButton = new Button("BEGIN", 150); beginHover = new Button("");
-        settingsButton = new Button(""); settingsHover = new Button("");
-        helpButton = new Button(""); helpHover = new Button("");
-        system = new Button(""); systemHover = new Button("");
-        down = new Button(""); downHover = new Button("");
-        player = new Button("");
-        sword = new Button("");
+        beginButton = new Button("BEGIN", 150); beginHover = new Button();
+        settingsButton = new Button(); settingsHover = new Button();
+        helpButton = new Button(); helpHover = new Button();
+        system = new Button(); systemHover = new Button();
+        down = new Button(); downHover = new Button();
+        player = new Button();
+        sword = new Button();
 
-        prepare();
     }
 
     public void act()
@@ -123,13 +122,5 @@ public class StartScreen extends World
         {
             removeObject(settingsHover);
         }
-    }
-
-    /**
-     * Prepare the world for the start of the program. That is: create the initial
-     * objects and add them to the world.
-     */
-    private void prepare()
-    {
     }
 }
