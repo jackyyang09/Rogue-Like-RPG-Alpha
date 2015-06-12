@@ -303,6 +303,7 @@ public class ScrollingMap extends World
                     }
                     if(data[x][y][5] != null && data[x][y][5].equals("chest")){
                         field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                        grid[x][y] = false;
                     }
                 }
             }
