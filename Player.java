@@ -135,6 +135,8 @@ public class Player extends Mobs
             }
             if (pickup) 
             {//If you actually had an available slot in your inventory and put it inside, remove the item from the world
+                GreenfootSound pickupSnd = new GreenfootSound("pickup.wav");
+                pickupSnd.play();
                 List<Inventory> inv = getWorld().getObjects(Inventory.class);
                 for (Inventory i :inv){i.update();}
                 List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
@@ -236,7 +238,12 @@ public class Player extends Mobs
 
     public void consumeItem(int item)
     {
-        if (items[item].getItemID() == 11){healMe(getBaseHp() * 0.2);} //Heal 20% HP if Health Kit is used
+        if (items[item].getItemID() == 11)
+        { //Heal 20% HP if Health Kit is used
+            GreenfootSound heal = new GreenfootSound("medkitSmall.wav   ");
+            heal.play();
+            healMe(getBaseHp() * 0.2);
+        }
         if (items[item].getItemID() == 12){armorBuff += 5;} //Increase defense by 5 permanently if Armor Tuneup is used
         if (items[item].getItemID() == 13){healMe(getBaseHp() * 0.6);} //Heal 60% HP if Big Health Kit is used
         if (items[item].getItemID() == 14){armorBuff += 15;} //Increase defense by 15 permanently if Engineer Toolbox is used
