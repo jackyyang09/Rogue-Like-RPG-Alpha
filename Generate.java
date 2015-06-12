@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Generate
 {
     String array[][][] = new String[58][56][6]; //3D array of the grid (56x58x4)
-    ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=width, 1=h, 2=x, 3=y)
+    ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=w, 1=h, 2=x, 3=y)
     ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
     private boolean noSpace = false;
     private boolean doneOnce = false;
@@ -28,15 +28,17 @@ public class Generate
             rooms.removeAll(rooms);
             doors.removeAll(doors);
             floor++;
-            for(int i = 0; i < 58; i++){
-                for(int j = 0; j < 56; j++){
-                    for(int k = 0; k < 6 ;k++){
+            for(int i = 4; i < 54; i++){
+                for(int j = 4; j < 52; j++){
+                    for(int k = 2; k < 6 ;k++){
                         array[i][j][k] = null;
                     }
+                    array[i][j][0] = "floorTile";
                 }
             }
             noSpace = false;
             doneOnce = false;
+            Greenfoot.stop();
         }
         generateBorder();
         generateStartRoom();
@@ -49,6 +51,9 @@ public class Generate
         return array;
     }
 
+    /*
+    * Creates the border of walls to prevent player from escaping the world
+    */
     public void generateBorder(){
         // 4x3, 4x52, 53x3, 53x52
         for(int i = 4; i < 52; i++){
@@ -61,6 +66,9 @@ public class Generate
         }
     }
 
+    /*
+    * Creates the player start room
+    */
     public void generateStartRoom(){
         int coor[] = new int[4];
         coor[0] = getRandWidth();
@@ -77,6 +85,9 @@ public class Generate
         noSpace = false;
     }
 
+    /*
+    * Creates the player end room
+    */
     public void generateEndRoom(){
         int coor[] = new int[4];
         do{
@@ -97,6 +108,9 @@ public class Generate
         doneOnce = false;
     }
 
+    /*
+    * Create a starting portal inside the starting room and the ending portal in the ending room
+    */
     public void generatePortals(){
         int sX = getStartingCoorX();
         int sY = getStartingCoorY();
@@ -106,6 +120,10 @@ public class Generate
         array[eX][eY][0] = "ePortal";
     }
 
+    /*
+    * Create a number of rooms
+    * @param amtOfRooms   Number of rooms being created
+    */
     public void generateRoom(int amtOfRooms){
         int coor[] = new int[4];
         int r = amtOfRooms+1;
@@ -131,6 +149,10 @@ public class Generate
         }
     }
 
+    /*
+    * Creates the actual room with coordinates
+    * @param coor array of coordinates (0=w, 1=h, 2=x, 3=y)
+    */
     public void room(int[] coor){
         for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
             array[i][coor[3]][0] = "wall";
@@ -146,6 +168,7 @@ public class Generate
                 array[k][l][0] = "floorTile";
             }
         }
+        //Create first door
         int d1 = coor[2]+(coor[0]/2);
         array[d1][coor[3]][0] = null;
         array[d1][coor[3]][0] = "door";
@@ -153,7 +176,7 @@ public class Generate
         array[d1+1][coor[3]][0] = null;
         array[d1+1][coor[3]][0] = "door";
         putDoors(d1+1, coor[3]);
-
+        //Create second door
         int d2 = coor[3]+(coor[1]/2);
         array[coor[2]][d2][0] = null;
         array[coor[2]][d2][0] = "door";
@@ -161,7 +184,7 @@ public class Generate
         array[coor[2]][d2+1][0] = null;
         array[coor[2]][d2+1][0] = "door";
         putDoors(coor[2], d2+1);
-
+        //Create third door
         int d3 = coor[2]+(coor[0]/2);
         array[d3][coor[3]+coor[1]+1][0] = null;
         array[d3][coor[3]+coor[1]+1][0] = "door";
@@ -169,7 +192,7 @@ public class Generate
         array[d3+1][coor[3]+coor[1]+1][0] = null;
         array[d3+1][coor[3]+coor[1]+1][0] = "door";
         putDoors(d3+1, coor[3]+coor[1]+1);
-
+        //Create fourth door
         int d4 = coor[3]+(coor[1]/2);
         array[coor[2]+coor[0]+1][d4][0] = null;
         array[coor[2]+coor[0]+1][d4][0] = "door";
@@ -179,6 +202,11 @@ public class Generate
         putDoors(coor[2]+coor[0]+1, d4+1);
     }
 
+    /*
+    * Add doors with coordinates into array list
+    * @param x   x coordinate of door
+    * @param y   y coordinate of door
+    */
     public void putDoors(int x, int y){
         int dc[] = new int[2];
         dc[0] = x;
@@ -186,6 +214,9 @@ public class Generate
         doors.add(dc);
     }
 
+    /*
+    * Check all the doors if they are accessible
+    */
     public void checkDoors(){
         int amtWalls;
         boolean r, l, u, d;
@@ -222,6 +253,12 @@ public class Generate
         }
     }
 
+    /*
+    * Spawn enemy in room with coordinates
+    * @param room   array of coordinates of the room (0=w, 1=h, 2=x, 3=y)
+    * @param ePerR   max enemies per room
+    * @param floor   floor number
+    */
     public void spawnEnemy (int[] room, int ePerR, int floor){
         int amt = Greenfoot.getRandomNumber(ePerR);
         for(int i = 0; i < amt; i++){
@@ -244,12 +281,20 @@ public class Generate
         }
     }
 
+    /*
+    * Spawn a chest in room with coordinates
+    * @param room   array of coordinates of the room (0=w, 1=h, 2=x, 3=y)
+    */
     public void spawnChest(int[] room){
         int xCor = room[2]+(room[0]/2)+1;
         int yCor = room[3]+(room[1]/2)+1;
         array[xCor][yCor][5] = "chest";
     }
 
+    /*
+    * Checks coordinates if its empty
+    * @param (w, h, x, y)   coordinates
+    */
     public boolean checkSpaces (int w, int h, int x, int y){
         for(int a = x; a < x + w + 1; a++){
             for(int b = y; b < y + h + 1; b++){
@@ -261,6 +306,9 @@ public class Generate
         return false;
     }
 
+    /*
+    * Insert floor tile in every empty space
+    */
     public void floodGrid(){
         for(int i = 5; i<54; i++){
             for(int j = 5; j<53;j++){
@@ -271,6 +319,10 @@ public class Generate
         }
     }
 
+    /*
+    * Returns the entire grid
+    * @param String[][][] entire grid
+    */
     public String[][][] returnMap(){
         return array;
     }
@@ -344,6 +396,10 @@ public class Generate
         maxEnemies = max;
     }
     
+    /*
+    * Chooses enemy to create based on level of floor
+    * @param floor   floor number
+    */
     public String pickEnemy(int floor){
         int num = Greenfoot.getRandomNumber(100)+1;
         if(floor>=1 && floor<=5){
