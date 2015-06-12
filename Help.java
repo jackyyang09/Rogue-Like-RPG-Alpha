@@ -39,34 +39,32 @@ public class Help extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(946, 774, 1); 
 
-        armor = new Button(""); 
+        armor = new Button(); 
 
-        rust = new Button(""); serpent = new Button(""); camo = new Button(""); 
-        spectral = new Button(""); plated = new Button("");
+        rust = new Button(); serpent = new Button(); camo = new Button(); 
+        spectral = new Button(); plated = new Button();
 
-        rustInfo = new Button(""); serpentInfo = new Button(""); camoInfo = new Button("");
-        spectralInfo = new Button(""); platedInfo = new Button("");
+        rustInfo = new Button(); serpentInfo = new Button(); camoInfo = new Button();
+        spectralInfo = new Button(); platedInfo = new Button();
 
-        weapons = new Button(""); 
-        monsters = new Button("");
-        items = new Button(""); itemScreen = new Button("");
+        weapons = new Button(); 
+        monsters = new Button();
+        items = new Button(); itemScreen = new Button();
 
-        back = new Button(""); armorBack = new Button(""); mainBack = new Button(""); rustBack = new Button(""); 
-        serpentBack = new Button("");
-        camoBack = new Button(""); spectralBack = new Button(""); platedBack = new Button("");
+        back = new Button(); armorBack = new Button(); mainBack = new Button(); rustBack = new Button(); 
+        serpentBack = new Button();
+        camoBack = new Button(); spectralBack = new Button(); platedBack = new Button();
         addObject(mainBack, 836, 745); mainBack.setImage("BackButton.png");
 
-        armorScreen = new Button("");
-        weaponScreen = new Button("");
-        mobScreen = new Button("");
-        itemScreen = new Button("");
+        armorScreen = new Button();
+        weaponScreen = new Button();
+        mobScreen = new Button();
+        itemScreen = new Button();
 
     }
 
     public void act()
     {
-
-        hoverDetect();
         mouseDetect();
         if(!spawn)
         {
