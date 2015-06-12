@@ -88,8 +88,10 @@ public class Chest extends Actor
         }
         if (rarity == 6)
         {
-            if (type < 15){item = 2;} //15% chance of Electric Edge
-            else if (type >= 15 && type < 20){item = 9;} //5% chance of Striking Serpent
+            if (type < 14){item = 2;} //14% chance of Electric Edge
+            else if (type == 14){item = 5;} //1% chance of Soulless Sabre
+            else if (type >= 15 && type < 19){item = 9;} //4% chance of Striking Serpent
+            else if (type == 19){item = 10;} //1% chance of Plated Patriot
             else if (type >= 20 && type < 25){item = 7;} //5% chance of Coloured Camo
             else if (type >= 25 && type < 30){item = 8;} //5% chance of Spectral Screen
             else if (type >= 30 && type < 70){item = 11;} //40% chance of Health Kit
@@ -99,11 +101,17 @@ public class Chest extends Actor
         }
         if (rarity == 7)
         {
-            if (type < 10){item = 1;} //15% chance of Beam Blade
+            if (type < 10){item = 1;} //10% chance of Beam Blade
             else if (type >= 10 && type < 15){item = 5;} //5% chance of Soulless Sabre
-            else if (type >= 15 && type < 30){item = 9;} //15% chance of Striking Serpent
-            else if (type >= 30 && type < 80){item = 11;} //40% chance of Health Kit
-            else if (type >= 85){item = 15;} //15% chance of Sanic Soda
+            else if (type >= 15 && type < 20){item = 9;} //5% chance of Striking Serpent
+            else if (type >= 20 && type < 25){item = 7;} //5% chance of Coloured Camo
+            else if (type >= 25 && type < 30){item = 8;} //5% chance of Spectral Screen
+            else if (type >= 30 && type < 35){item = 10;} //5% chance of Plated Patriot
+            else if (type >= 35 && type < 60){item = 11;} //25% chance of Health Kit
+            else if (type >= 60 && type < 75){item = 13;} //15% chance of Big Health Kit
+            else if (type >= 75 && type < 90){item = 15;} //15& chance of Sanic Soda
+            else if (type >= 90 && type < 97){item = 12;} //7% chance of Armor Tuneup
+            else if (type >= 97){item = 14;} //3% chance of Engineer Toolbox
         }
         return item;
     }
