@@ -12,9 +12,13 @@ public class ItemInventory extends Actor
     private boolean drag = false; //True if item is currently being dragged by the mouse
     private boolean secure = true;//True if the item has left it's slot, useful if the item glitches into the air
     private InfoTab info;
-    private int equipType = 0;
+    private GreenfootSound moveSnd, dropSnd;
+    private int equipType = 0; //0 is an item, 1 is a weapon, 2 is armor
     private int prevX, prevY;
     private int id;
+    /**
+     * Sets the images and equiptype depending on the item ID given
+     */
     public ItemInventory(int num)
     {
         id = num;
@@ -129,6 +133,8 @@ public class ItemInventory extends Actor
             List objects = getWorld().getObjectsAt(mouse.getX(), mouse.getY(), ItemInventory.class);
             if (Greenfoot.mouseDragged(this) && mouse.getButton() == 1){ //Enables ability to drag this object around
                 setLocation(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+                moveSnd = new GreenfootSound("move.wav");
+                if (secure == true){moveSnd.play();} //Assures sound only plays once
                 secure = false;
                 drag = true;
             }
@@ -140,6 +146,8 @@ public class ItemInventory extends Actor
                     if (inv.switchSlot(this, (ItemInventory)getOneIntersectingObject(ItemInventory.class)) == true)//Switch slots
                     {
                         setLocation(prevX, prevY);
+                        dropSnd = new GreenfootSound("drop.wav");
+                        dropSnd.play();
                         secure = true;
                     }
                     else
@@ -153,6 +161,8 @@ public class ItemInventory extends Actor
                     {
                         List<Inventory> inventory = getWorld().getObjects(Inventory.class);
                         for (Inventory i :inventory){i.itemInteract(this, 1);}
+                        dropSnd = new GreenfootSound("drop.wav");
+                        dropSnd.play();
                         getWorld().removeObject(this);
                     }
                     else
@@ -161,6 +171,8 @@ public class ItemInventory extends Actor
                         {
                             setLocation(prevX, prevY);
                             secure = true;
+                            dropSnd = new GreenfootSound("drop.wav");
+                            dropSnd.play();
                         }
                     }
                 }
