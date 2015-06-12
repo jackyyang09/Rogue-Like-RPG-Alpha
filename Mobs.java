@@ -180,7 +180,13 @@ public class Mobs extends Actor
         }
         else
         {
-            double lucky = attack + Greenfoot.getRandomNumber(11);
+            // double random = Greenfoot.getRandomNumber(3);
+            //if(Greenfoot.getRandomNumber(2)==0)
+            //{
+             //   random = -random;
+            //}
+            //double lucky = attack + random;
+            double lucky = attack;
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
                 lucky = 2*attack;
