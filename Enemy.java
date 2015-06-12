@@ -82,6 +82,7 @@ public class Enemy extends Mobs
             ((ScrollingMap)getWorld()).removeMe(mapX,mapY);
             convertToPixel();
             getWorld().removeObject(this);
+            enemyTurn = false;
         }
         if(enemyTurn && move > 0){
             move--;
