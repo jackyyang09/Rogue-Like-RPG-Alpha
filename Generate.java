@@ -99,7 +99,7 @@ public class Generate
                 noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
                 if(noSpace == false){
                     room(coor);
-                    spawnEnemy(coor, 1);
+                    spawnEnemy(coor, 4);
                     spawnChest(coor);
                     doneOnce = true;
                     noSpace = true;
