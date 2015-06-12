@@ -63,7 +63,7 @@ public class ScrollingMap extends World
             for(int j = 0; j < 56; j++){
                 if(field[i][j][1] != null){
                     if(((Tile)field[i][j][0]) != null){
-                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall && (Enemy)field[i][j + 1][2] == null && (Chest)field[i][j + 1][2] == null){
+                        if (dir == 1 && !((Tile)field[i][j + 1][0]).isAWall && (Enemy)field[i][j + 1][2] == null && (Chest)field[i][j + 1][5] == null){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() + 86);
                             field[playerX][playerY+1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -72,7 +72,7 @@ public class ScrollingMap extends World
                             dir = 0;
                             return true;
                         }
-                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall && (Enemy)field[i][j - 1][2] == null && (Chest)field[i][j - 1][2] == null){
+                        if (dir == 2 && !((Tile)field[i][j - 1][0]).isAWall && (Enemy)field[i][j - 1][2] == null && (Chest)field[i][j - 1][5] == null){
                             ((Player)field[i][j][1]).setMapY(((Player)field[i][j][1]).getMapY() - 86);
                             field[playerX][playerY-1][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -81,7 +81,7 @@ public class ScrollingMap extends World
                             dir = 0;
                             return true;
                         }
-                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall && (Enemy)field[i + 1][j][2] == null && (Chest)field[i + 1][j][2] == null){
+                        if (dir == 3 && !((Tile)field[i + 1][j][0]).isAWall && (Enemy)field[i + 1][j][2] == null && (Chest)field[i + 1][j][5] == null){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() + 86);
                             field[playerX+1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
@@ -90,7 +90,7 @@ public class ScrollingMap extends World
                             dir = 0;
                             return true;
                         }
-                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall && (Enemy)field[i - 1][j][2] == null && (Chest)field[i - 1][j][2] == null){
+                        if (dir == 4 && !((Tile)field[i - 1][j][0]).isAWall && (Enemy)field[i - 1][j][2] == null && (Chest)field[i - 1][j][5] == null){
                             ((Player)field[i][j][1]).setMapX(((Player)field[i][j][1]).getMapX() - 86);
                             field[playerX-1][playerY][1] = field[playerX][playerY][1];
                             field[playerX][playerY][1] = null;
