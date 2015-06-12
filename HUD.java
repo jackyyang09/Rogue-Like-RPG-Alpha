@@ -21,6 +21,7 @@ public class HUD extends Actor
     private Button bp;
     private Button profile;
     private Inventory inv;
+    private MoveCount movecount;
     private ProfileWindow pro;
     public HUD()
     {
@@ -29,6 +30,7 @@ public class HUD extends Actor
         box = new ValueBox();
         bp = new Button();
         profile = new Button();
+        movecount = new MoveCount();
     }
     
     /**
@@ -41,6 +43,7 @@ public class HUD extends Actor
         getWorld().addObject(profile, 56, 644);
         getWorld().addObject(bp, 835, 644);
         getWorld().addObject(box, 253, 735);
+        getWorld().addObject(movecount, 56, 556);
         begin = true;
     }
 
