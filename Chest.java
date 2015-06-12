@@ -44,7 +44,7 @@ public class Chest extends Actor
             int valX = (mapX - 43) / 86;
             int valY = (mapY - 43) / 86;
             map.inputItem(valX, valY, generate(1)); //Adds item to an array in Scrolling Map
-            map.removeMe(mapX, mapY, 4);
+            map.removeMe(valX, valY, 4);
             getWorld().removeObject(this);
         }
     }
