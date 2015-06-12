@@ -41,7 +41,7 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, Button.class, ValueBox.class, HUD.class, Inventory.class, Target.class, Player.class, Items.class, Mobs.class, Tile.class);
+        setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, Button.class, ValueBox.class, HUD.class, Inventory.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
         playerX = generate.getStartingCoorX();
         playerY = generate.getStartingCoorY();
@@ -138,6 +138,7 @@ public class ScrollingMap extends World
                         field[targetX][targetY][4] = null;
                         targetX--;
                     }
+                    dir = 0;
                 }
             }
         }
@@ -246,9 +247,6 @@ public class ScrollingMap extends World
         if(object == 2){
             field[xC][yC][d] = new Enemy(xCo, yCo, 1);
         }
-        if(object == 3){
-            field[xC][yC][d] = new Chest(xCo, yCo);
-        }
         update();
     }
 
@@ -299,12 +297,12 @@ public class ScrollingMap extends World
                         else if(data[x][y][0].equals("ePortal")){
                             field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 5);
                         }
-                        if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
-                            inputObject(2, x, y, 2);
-                        }
-                        if(data[x][y][5] != null && data[x][y][5].equals("chest")){
-                            inputObject(3, x, y, 5);
-                        }
+                    }
+                    if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
+                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    }
+                    if(data[x][y][5] != null && data[x][y][2].equals("chest")){
+                        field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                     }
                 }
             }
@@ -393,8 +391,8 @@ public class ScrollingMap extends World
                             blockX = ((Target)field[x][y][i]).getMapY();
                             blockY = ((Target)field[x][y][i]).getMapX();
                         } else if(i == 5){
-                            blockX = ((Chest)field[x][y][i]).getMapY();
-                            blockY = ((Chest)field[x][y][i]).getMapX();
+                            blockX = ((Chest)field[x][y][i]).mapY;
+                            blockY = ((Chest)field[x][y][i]).mapX;
                         } else {
                             blockX = -1;
                             blockY = -1;
