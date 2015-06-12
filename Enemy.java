@@ -19,6 +19,9 @@ public class Enemy extends Mobs
     //boolean[][] grid2;
     boolean enemyTurn = false;
 
+    public Enemy(){
+    }
+    
     /**
      * Constructor for Enemy
      * <p>
@@ -82,25 +85,20 @@ public class Enemy extends Mobs
             enemyTurn = false;
             ((ScrollingMap)getWorld()).removeMe(mapX,mapY,2);
             convertToPixel();
+            this.dropStuff();
             getWorld().removeObject(this);
         }
         if(enemyTurn && move > 0){
             move--;
             convertToTile();
-
-            //             Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
-            //             boolean[][] grid2 = ((ScrollingMap)getWorld()).getGrid();
             for(int i = 0; i < 58; i++){
                 for(int j = 0; j < 56; j++){
                     if(((ScrollingMap)getWorld()).field[i][j][1] != null){
                         playerX = i;
                         playerY = j;
-                        //System.out.println(playerX + "p" + playerY);
-                        //System.out.println(grid2[mapX][mapY]);
                     }
                 }
             }
-            //System.out.println(mapX + "x" + mapY);
             moveTo = bfs.BFSPathFinding(mapY, mapX, playerY, playerX, ((ScrollingMap)getWorld()).grid);
             bfs.reset();
             if(moveTo.size() == 2){
@@ -144,5 +142,9 @@ public class Enemy extends Mobs
             enemyTurn = false;
             move = 0;
         }
+    }
+    
+    public void dropStuff(){
+        
     }
 }
