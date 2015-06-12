@@ -15,12 +15,12 @@ public class Generate
     private boolean noSpace = false;
     private boolean doneOnce = false;
     private int maxEnemies = 0;
-    
+
     /*
-    *   Main class to create a grid
-    *
-    *   @return String[][][]    returns the full grid of the created map
-    */
+     *   Main class to create a grid
+     *
+     *   @return String[][][]    returns the full grid of the created map
+     */
     public String[][][] generateMap(){
         generateBorder();
         generateStartRoom();
@@ -77,7 +77,7 @@ public class Generate
         while(doneOnce == false);
         doneOnce = false;
     }
-    
+
     public void generatePortals(){
         int sX = getStartingCoorX();
         int sY = getStartingCoorY();
@@ -126,37 +126,37 @@ public class Generate
                 array[k][l][0] = "floorTile";
             }
         }
-                int d1 = coor[2]+(coor[0]/2);
-                array[d1][coor[3]][0] = null;
-                array[d1][coor[3]][0] = "door";
-                putDoors(d1, coor[3]);
-                array[d1+1][coor[3]][0] = null;
-                array[d1+1][coor[3]][0] = "door";
-                putDoors(d1+1, coor[3]);
+        int d1 = coor[2]+(coor[0]/2);
+        array[d1][coor[3]][0] = null;
+        array[d1][coor[3]][0] = "door";
+        putDoors(d1, coor[3]);
+        array[d1+1][coor[3]][0] = null;
+        array[d1+1][coor[3]][0] = "door";
+        putDoors(d1+1, coor[3]);
 
-                int d2 = coor[3]+(coor[1]/2);
-                array[coor[2]][d2][0] = null;
-                array[coor[2]][d2][0] = "door";
-                putDoors(coor[2], d2);
-                array[coor[2]][d2+1][0] = null;
-                array[coor[2]][d2+1][0] = "door";
-                putDoors(coor[2], d2+1);
-                
-                int d3 = coor[2]+(coor[0]/2);
-                array[d3][coor[3]+coor[1]+1][0] = null;
-                array[d3][coor[3]+coor[1]+1][0] = "door";
-                putDoors(d3, coor[3]+coor[1]+1);
-                array[d3+1][coor[3]+coor[1]+1][0] = null;
-                array[d3+1][coor[3]+coor[1]+1][0] = "door";
-                putDoors(d3+1, coor[3]+coor[1]+1);
+        int d2 = coor[3]+(coor[1]/2);
+        array[coor[2]][d2][0] = null;
+        array[coor[2]][d2][0] = "door";
+        putDoors(coor[2], d2);
+        array[coor[2]][d2+1][0] = null;
+        array[coor[2]][d2+1][0] = "door";
+        putDoors(coor[2], d2+1);
 
-                int d4 = coor[3]+(coor[1]/2);
-                array[coor[2]+coor[0]+1][d4][0] = null;
-                array[coor[2]+coor[0]+1][d4][0] = "door";
-                putDoors(coor[2]+coor[0]+1, d4);
-                array[coor[2]+coor[0]+1][d4+1][0] = null;
-                array[coor[2]+coor[0]+1][d4+1][0] = "door";
-                putDoors(coor[2]+coor[0]+1, d4+1);
+        int d3 = coor[2]+(coor[0]/2);
+        array[d3][coor[3]+coor[1]+1][0] = null;
+        array[d3][coor[3]+coor[1]+1][0] = "door";
+        putDoors(d3, coor[3]+coor[1]+1);
+        array[d3+1][coor[3]+coor[1]+1][0] = null;
+        array[d3+1][coor[3]+coor[1]+1][0] = "door";
+        putDoors(d3+1, coor[3]+coor[1]+1);
+
+        int d4 = coor[3]+(coor[1]/2);
+        array[coor[2]+coor[0]+1][d4][0] = null;
+        array[coor[2]+coor[0]+1][d4][0] = "door";
+        putDoors(coor[2]+coor[0]+1, d4);
+        array[coor[2]+coor[0]+1][d4+1][0] = null;
+        array[coor[2]+coor[0]+1][d4+1][0] = "door";
+        putDoors(coor[2]+coor[0]+1, d4+1);
     }
 
     public void putDoors(int x, int y){
@@ -244,7 +244,7 @@ public class Generate
             }
         }
     }
-    
+
     public void spawnChest(int[] room){
         int xCor = room[2]+(room[0]/2);
         int yCor = room[3]+(room[1]/2);
@@ -309,11 +309,11 @@ public class Generate
     public int getStartingCoorY(){
         return rooms.get(0)[3]+(rooms.get(0)[1]/2);
     }
-    
+
     public int getEndingCoorX(){
         return rooms.get(1)[2]+(rooms.get(1)[0]/2);
     }
-    
+
     public int getEndingCoorY(){
         return rooms.get(1)[3]+(rooms.get(1)[1]/2);
     }
@@ -340,7 +340,7 @@ public class Generate
     public int getRandNum(int s, int e){
         return Greenfoot.getRandomNumber(e-s)+s;
     }
-    
+
     public void setMaxEnemies(int max){
         maxEnemies = max;
     }
