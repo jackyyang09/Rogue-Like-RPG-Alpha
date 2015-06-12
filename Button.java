@@ -1,6 +1,6 @@
 
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.awt.Color;
 /**
  * Write a description of class Button here.
  * 
@@ -9,6 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Button extends Actor
 {
+  private String buttonText;
+  private GreenfootImage myImage;
   /**
      * Construct a Button with a given String at the default size
      * 
