@@ -2,21 +2,26 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Font;
 import java.awt.Color;
 /**
- * Write a description of class fadingWord here.
+ * Creates pop up messages that float up and fade away
  * 
  * @author (Kajamugesh) 
- * @version (a version number or a date)
+ * @version (12/06/2015)
  */
 public class FadingWord extends Actor
 {
-    private int transparency;
+    private int transparency;//transparency level of image from 0 to 255
     private GreenfootImage image;
-    private int timer = 0;
+    private int timer = 0;//used for as counter for increasing transparency
+    /**
+     * constructor for the FadingWord class
+     * 
+     * @param text word that will pop up
+     */
     public FadingWord (String text)
     {
-        Color transparent = new Color(0,0,0,0);
+        Color transparent = new Color(0,0,0,0);//background must be transparent
         Font font = new Font("OCR A Extended", 3, 20);
-        transparency = 255;
+        transparency = 255;//starts opaque
         GreenfootImage image = new GreenfootImage (text, 12, Color.RED, transparent);
         setImage(image);
     }
@@ -28,14 +33,14 @@ public class FadingWord extends Actor
     public void act() 
     {
         if (timer%4 == 0){
-            setLocation(getX(), getY() -2);
+            setLocation(getX(), getY() -2);//movess position of word
         }
         timer+=2;
         if (timer >= 100){
-            getImage().setTransparency(getImage().getTransparency() - 2);
+            getImage().setTransparency(getImage().getTransparency() - 2);//quickly make the image fade
         }
         if (timer >= 195){
-            getWorld().removeObject(this);
+            getWorld().removeObject(this);//removes object when faded enough
         }
     }    
 }
