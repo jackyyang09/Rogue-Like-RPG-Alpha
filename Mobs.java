@@ -10,7 +10,7 @@ public class Mobs extends Actor
 {
     protected int level;
     protected int xp;
-    protected int value;
+    protected int value;//value of the object for xp point gain
     protected double baseHp;
     protected double baseAtt;
     protected double baseDef;
@@ -30,6 +30,11 @@ public class Mobs extends Actor
     protected int playerX;
     protected int playerY;
 
+    /**
+     * decreases movement speed
+     * 
+     * @param amt value of move you want to decrease
+     */
     public void decreaseMove(int amt){
         if(move - amt <= 0){
             move = 0;
@@ -38,12 +43,17 @@ public class Mobs extends Actor
         }
     }
 
+    /**
+     * resets movement speed to default
+     */
     public void resetMove(){
         move = baseMove;
     }
 
     /**
+     * returns defense
      * 
+     * @return defense the defense stat
      */
     public double getDefense() 
     {
@@ -51,7 +61,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * returns attack
      * 
+     * @return defense the attack stat
      */
     public double getAttack() 
     {
@@ -59,7 +71,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * returns  currentHp
      * 
+     * @return currentHp the currentHp stat
      */
     public double getHp() 
     {
@@ -67,7 +81,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * returns  baseHp
      * 
+     * @return baseHp the baseHp stat
      */
     public double getBaseHp() 
     {
@@ -75,7 +91,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * returns  dexterity
      * 
+     * @return dexterity the dexterity stat
      */
     public double getDexterity() 
     {
@@ -83,7 +101,9 @@ public class Mobs extends Actor
     } 
 
     /**
+     * returns  hit
      * 
+     * @return hit the hit stat
      */
     public double getHit() 
     {
@@ -91,7 +111,9 @@ public class Mobs extends Actor
     } 
 
     /**
+     * returns  move
      * 
+     * @return move the move stat
      */
     public int getMove() 
     {
@@ -99,20 +121,19 @@ public class Mobs extends Actor
     }
 
     /**
+     * returns  luk
      * 
+     * @return luk the luk stat
      */
     public double getLuk() 
     {
         return luck;
     }
-    
-    public double getXp() 
-    {
-        return xp;
-    }
-    
+
     /**
+     * returns  level
      * 
+     * @return level the level stat
      */
     public int getLevel() 
     {
@@ -120,7 +141,7 @@ public class Mobs extends Actor
     }
 
     /**
-     * 
+     * only here so that levelGenerate() will work for subclasses
      */
     public void levelUp() 
     {
@@ -128,7 +149,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * decreases the currentHp, minimum 0
      * 
+     * @param dmg the currentHp that will be decreases
      */
     public void hurtMe(double dmg) 
     {
@@ -142,7 +165,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * increases the currentHp, max baseHp stat
      * 
+     * @param heal the currentHp that will be increases
      */
     public void healMe(double heal) 
     {
@@ -156,7 +181,9 @@ public class Mobs extends Actor
     }
 
     /**
+     * generates the level of a character
      * 
+     * @param level the level the object will reach
      */
     public void levelGenerate(int level) 
     {
@@ -166,15 +193,22 @@ public class Mobs extends Actor
         }
     } 
 
-   /**
+    /**
+     * gives total xp value of character
      * 
      */
     public int giveXp() 
     {
-        return value*level/6;
+        return value*level/7;
     }  
 
-   public void attack(Mobs enemy)
+    
+    /**
+     * this unit attacks other unit with calculations
+     * 
+     * @param enemy the unit that is being attacked
+     */
+    public void attack(Mobs enemy)
     {
         FadingWord text;
         FadingWord critical;
@@ -182,27 +216,22 @@ public class Mobs extends Actor
         if (Greenfoot.getRandomNumber(100) + 1 <= chance)
         {
             text = new FadingWord("Miss!");
+            getWorld().addObject(text, enemy.getX(), enemy.getY() - 31);//decides whether atacked unit dodges
         }
         else
         {
-            // double random = Greenfoot.getRandomNumber(3);
-            //if(Greenfoot.getRandomNumber(2)==0)
-            //{
-             //   random = -random;
-            //}
-            //double lucky = attack + random;
-            double lucky = attack;
+            double lucky = attack
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
                 lucky = 2*attack;
                 critical = new FadingWord("Critical!");
-                getWorld().addObject(critical, enemy.getX(), enemy.getY() - 31);
+                getWorld().addObject(critical, enemy.getX(), enemy.getY() - 31);//decides critical hit
             } 
             if(lucky > enemy.getDefense())
             {
                 enemy.hurtMe(lucky-enemy.getDefense());
                 String damage = "Dmg " + (lucky-enemy.getDefense());
-                text = new FadingWord(damage);
+                text = new FadingWord(damage);//damages enemy
             }
             else
             {
@@ -212,25 +241,7 @@ public class Mobs extends Actor
             if(enemy.getHp() == 0)
             {
                 xp += enemy.giveXp();
-               getWorld().removeObject(enemy);
+                getWorld().removeObject(enemy);//gives xp and removes enemy from world
             }
         }
     }
-    public void convertToTile(){
-        mapX = (mapX - 43) / 86;
-        mapY = (mapY - 43) / 86;
-    }
-
-    public void convertToPixel(){
-        mapX = (mapX * 86) + 43;
-        mapY = (mapY * 86) + 43;
-    }
-
-    public int getMapX(){
-        return this.mapX;
-    }
-
-    public int getMapY(){
-        return this.mapY;
-    }
-}
