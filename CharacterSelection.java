@@ -55,8 +55,8 @@ public class CharacterSelection extends World
         else if(Greenfoot.mouseClicked(begin))
         {
             removeObject(marineInfo);
-            addObject(story, 472, 387); story.setImage("Story.png");Greenfoot.delay(700);
-            removeObject(story); addObject(instructions,472, 387); instructions.setImage("Instructions.png"); Greenfoot.delay(100);
+            addObject(story, 472, 387); story.setImage("Story.png");Greenfoot.delay(5);
+            removeObject(story); addObject(instructions,472, 387); instructions.setImage("Instructions.png"); Greenfoot.delay(5);
             Greenfoot.setWorld(new ScrollingMap());
         }
         else if(Greenfoot.mouseClicked(back))
