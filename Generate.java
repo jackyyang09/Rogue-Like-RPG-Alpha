@@ -15,6 +15,7 @@ public class Generate
     private boolean noSpace = false;
     private boolean doneOnce = false;
     private int maxEnemies = 0;
+    private int floor = 1;
 
     /*
      *   Main class to create a grid
@@ -99,7 +100,7 @@ public class Generate
                 noSpace = checkSpaces(coor[0], coor[1], coor[2], coor[3]);
                 if(noSpace == false){
                     room(coor);
-                    spawnEnemy(coor, 4);
+                    spawnEnemy(coor, 4, floor);
                     spawnChest(coor);
                     doneOnce = true;
                     noSpace = true;
@@ -222,7 +223,7 @@ public class Generate
         }
     }
 
-    public void spawnEnemy (int[] room, int ePerR){
+    public void spawnEnemy (int[] room, int ePerR, int floor){
         int amt = Greenfoot.getRandomNumber(ePerR);
         for(int i = 0; i < amt; i++){
             if(maxEnemies > 0){
@@ -230,9 +231,8 @@ public class Generate
                     int xCor = getRandNum(room[2]+1, room[2]+room[0]+1);
                     int yCor = getRandNum(room[3]+1, room[3]+room[1]+1);
                     if(array[xCor][yCor][2] == null){
-                        //int enemyType = Greenfoot.getRandomNumber(5)+1;
-                        array[xCor][yCor][2] = "enemy"; //+ enemyType;
-                        //System.out.println("enemy" + enemyType);
+                        int enemyType = Greenfoot.getRandomNumber(5)+1;
+                        array[xCor][yCor][2] = pickEnemy(floor);
                         maxEnemies--;
                         doneOnce = true;
                     }
