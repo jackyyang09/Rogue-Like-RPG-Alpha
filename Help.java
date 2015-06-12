@@ -20,6 +20,7 @@ public class Help extends World
     private Button monsters; 
     private Button items;
 
+   
     private Button back; private Button rustBack; 
     private Button serpentBack; private Button camoBack; 
     private Button spectralBack; private Button platedBack;
@@ -51,6 +52,7 @@ public class Help extends World
         monsters = new Button();
         items = new Button(); itemScreen = new Button();
 
+        
         back = new Button(); armorBack = new Button(); mainBack = new Button(); rustBack = new Button(); 
         serpentBack = new Button();
         camoBack = new Button(); spectralBack = new Button(); platedBack = new Button();
@@ -65,7 +67,7 @@ public class Help extends World
 
     public void act()
     {
-        mouseDetect();
+        checkMouse();
         if(!spawn)
         {
             Greenfoot.delay(5);
@@ -79,7 +81,7 @@ public class Help extends World
         }
     }
 
-    private void mouseDetect()
+    private void checkMouse()
     {
         if(Greenfoot.mouseClicked(mainBack))
         {
@@ -92,7 +94,7 @@ public class Help extends World
             addObject(rust, 129, 191); rust.setImage("RusticRampart.png");
             addObject(serpent, 479, 184); serpent.setImage("Striking Serpent.png");
             addObject(camo, 787, 198); camo.setImage("ColouredCamo.png");
-            addObject(spectral, 297, 515); spectral.setImage("SpectralScreen.png");
+            addObject(spectral, 297, 515); spectral.setImage("SpectralScreenBig.png");
             addObject(plated, 647, 518); plated.setImage("PlatedPatriot.png"); 
             addObject(armorBack, 836, 745); armorBack.setImage("BackButton.png");  
         }
@@ -154,22 +156,25 @@ public class Help extends World
         if(Greenfoot.mouseClicked(weapons))
         {
             addObject(weaponScreen, 472, 387); weaponScreen.setImage("Weapon Screen.png");
+            addObject(back, 836,745);
 
         }
         else if(Greenfoot.mouseClicked(back))
         {
             removeObject(weaponScreen);
             removeObject(back);
-            addObject(back, 836, 745);
+            
         }
 
         if(Greenfoot.mouseClicked(monsters))
         {
-
+            addObject(mobScreen, 472, 387); mobScreen.setImage("MonsterScreen.png");
+            addObject(back, 836,745);
         }
-        else if(Greenfoot.mouseClicked(null))
+        else if(Greenfoot.mouseClicked(back))
         {
-
+            removeObject(mobScreen);
+            removeObject(back);
         }
 
         if(Greenfoot.mouseClicked(items))
