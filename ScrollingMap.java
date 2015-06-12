@@ -450,6 +450,28 @@ public class ScrollingMap extends World
                 }
             }
         }
+        int x2 = generate.getEndingCoorX();
+        int y2 = generate.getEndingCoorY();
+        if(field[x2][y2][1] != null){
+            int b = JOptionPane.showConfirmDialog(null, "Enter the Portal?", "Warning", JOptionPane.YES_NO_OPTION);
+            if(b == JOptionPane.YES_OPTION){
+                //Reset the thing
+                increaseFloor();
+                generate.setMaxEnemies(20);
+                createMap(generate.generateMap());
+                playerX = generate.getStartingCoorX();
+                playerY = generate.getStartingCoorY();
+                spawnPlayer();
+                centerOnPlayer();
+                update();
+                String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
+                JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
+            }
+            else if (b== JOptionPane.NO_OPTION){
+                //Stop an infinite loop
+                movePlayer(4);
+            }
+        }
     }
 
     public Actor[][][] getField(){
