@@ -25,26 +25,23 @@ public class Chest extends Actor
         this.mapY = mapY;
         this.rarity = rarity;
     }
-    
+
     /**
      * Called by the Player when they interact with the chest
      */
     public void open()
     {
-        if (open = false)
+        if (open)
         {
-            open = true;
+            open = false;
             setImage("chest2.png");
         }
         else
         {
-            ScrollingMap map = (ScrollingMap)getWorld();
-            //Converts x and y values to values useable by ScrollingMap
-            //Potentially unnecessary
             int valX = (mapX - 43) / 86;
             int valY = (mapY - 43) / 86;
-            map.inputItem(valX, valY, generate(1)); //Adds item to an array in Scrolling Map
-            map.removeMe(valX, valY, 4);
+            ((ScrollingMap)getWorld()).inputItem(mapX, mapY, generate(1)); //Adds item to an array in Scrolling Map
+            ((ScrollingMap)getWorld()).removeMe(valX, valY, 4);
             getWorld().removeObject(this);
         }
     }
@@ -95,12 +92,15 @@ public class Chest extends Actor
             else if (type >= 15 && type < 20){item = 9;} //5% chance of Striking Serpent
             else if (type >= 20 && type < 25){item = 7;} //5% chance of Coloured Camo
             else if (type >= 25 && type < 30){item = 8;} //5% chance of Spectral Screen
-            else if (type >= 30 && type < 80){item = 11;} //50% chance of Health Kit
-            else if (type >= 80){item = 15;} //20% chance of Sanic Soda
+            else if (type >= 30 && type < 70){item = 11;} //40% chance of Health Kit
+            else if (type >= 70 && type < 80){item = 15;} //10% chance of Sanic Soda
+            else if (type >= 80 && type < 95){item = 13;} //15% chance of Large Health Kit
+            else if (type >= 95){item = 12;} //5% chance of Armor Tuneup
         }
         if (rarity == 7)
         {
-            if (type < 15){item = 1;} //15% chance of Beam Blade
+            if (type < 10){item = 1;} //15% chance of Beam Blade
+            else if (type >= 10 && type < 15){item = 5;} //5% chance of Soulless Sabre
             else if (type >= 15 && type < 30){item = 9;} //15% chance of Striking Serpent
             else if (type >= 30 && type < 80){item = 11;} //40% chance of Health Kit
             else if (type >= 85){item = 15;} //15% chance of Sanic Soda
