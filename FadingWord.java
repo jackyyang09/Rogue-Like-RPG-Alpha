@@ -17,7 +17,7 @@ public class FadingWord extends Actor
         Color transparent = new Color(0,0,0,0);
         Font font = new Font("OCR A Extended", 3, 20);
         transparency = 255;
-        GreenfootImage image = new GreenfootImage (text, 12, Color.BLACK, transparent);
+        GreenfootImage image = new GreenfootImage (text, 12, Color.RED, transparent);
         setImage(image);
     }
 
@@ -27,14 +27,14 @@ public class FadingWord extends Actor
      */
     public void act() 
     {
-               if (timer%4 == 0){
-            move(1);
+        if (timer%4 == 0){
+            setLocation(getX(), getY() -2);
         }
-        timer++;
+        timer+=2;
         if (timer >= 100){
             getImage().setTransparency(getImage().getTransparency() - 2);
         }
-        if (timer == 195){
+        if (timer >= 195){
             getWorld().removeObject(this);
         }
     }    
