@@ -64,7 +64,36 @@ public class Player extends Mobs
 
     public void levelUp()
     {
+        FadingWord levelUp = new FadingWord("Level Up!");
+        getWorld().addObject(levelUp,getX(),getY() -31);
         level++;
+        if(level%5 == 0)
+        {
+            baseDex += 1;
+            baseLuk += 1;
+        }
+        else if(level%4 == 0)
+        {
+            baseDef += 1;
+            baseLuk += 1;
+        }
+        else if(level%3 == 0)
+        {
+            baseAtt += 1;
+            baseLuk += 1;
+        }
+        else if(level%2 == 0)
+        {
+            baseAtt += 1;
+            baseDex += 1;
+        }
+        else 
+        {
+            baseAtt += 1;
+            baseDef += 1;
+        }
+        baseHp += 10;
+        currentHp = baseHp;
     }
 
     /**
