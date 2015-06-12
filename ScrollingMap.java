@@ -43,10 +43,10 @@ public class ScrollingMap extends World
     {    
         super(946, 774, 1, false);
         setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
+        generate.setMaxEnemies(20);
         createMap(generate.generateMap());
         playerX = generate.getStartingCoorX();
         playerY = generate.getStartingCoorY();
-        generate.setMaxEnemies(20);
         spawnPlayer();
         centerOnPlayer();
         update();
