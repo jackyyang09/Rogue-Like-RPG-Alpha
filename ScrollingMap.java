@@ -29,6 +29,7 @@ public class ScrollingMap extends World
     private int targetX = -1;
     private int targetY = -1;
     private boolean spawnTarget = true;
+    private int maxY = 0, minY = 0, maxX = 0, minX = 0;
 
     private Generate generate = new Generate();
 
@@ -41,7 +42,7 @@ public class ScrollingMap extends World
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
-        setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
+        setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, Button.class, ValueBox.class, HUD.class, Inventory.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
         createMap(generate.generateMap());
         playerX = generate.getStartingCoorX();
         playerY = generate.getStartingCoorY();
@@ -51,12 +52,11 @@ public class ScrollingMap extends World
         prepare();
         Control c = new Control();
         addObject(c,0,0);
-        //         inputObject(2,6,6,2);
     }
 
     /**
      * moves the player in the desired direction by one tile
-     * @param dir 1 = move down, 2 = move up, 3 = move right, 4 = move left
+     * @param dir 1 = move right, 2 = move left, 3 = move down, 4 = move up
      */
     public boolean movePlayer(int dir){
         for(int i = 0; i < 58; i++){
@@ -109,7 +109,10 @@ public class ScrollingMap extends World
         return true;
     }
 
-    int maxY = 0, minY = 0, maxX = 0, minX = 0;
+    /**
+     * moves the target in the desired direction by one tile
+     * @param dir 1 = move right, 2 = move left, 3 = move down, 4 = move up
+     */
     public void moveTarget(int dir){
         for(int i = 0; i < 58; i++){
             for(int j = 0; j < 56; j++){
@@ -144,6 +147,9 @@ public class ScrollingMap extends World
         }
     }
 
+    /**
+     * removes the target from the map;
+     */
     public void removeTarget(){
         for(int x = 0; x < MAPIMGWIDTH; x++){
             for(int y = 0; y < MAPIMGHEIGHT; y++){
@@ -156,22 +162,47 @@ public class ScrollingMap extends World
         }
     }
 
-    public void interact(){
-        if(!spawnTarget){
-            try{
-                for(int x = 0; x < MAPIMGWIDTH; x++){
-                    for(int y = 0; y < MAPIMGHEIGHT; y++){
-                        if((Player)field[x][y][1] != null){
-                            ((Player)field[x][y][1]).attack((Enemy)field[targetX][targetY][2]);
+    /**
+     * call to interact with objects that the target is currently on
+     * @param attackOpen attack that tile if true open chest if otherwise
+     */
+    public void interact(boolean attackOpen){
+        if(attackOpen){
+            if(!spawnTarget){
+                try{
+                    for(int x = 0; x < MAPIMGWIDTH; x++){
+                        for(int y = 0; y < MAPIMGHEIGHT; y++){
+                            if((Player)field[x][y][1] != null){
+                                ((Player)field[x][y][1]).attack((Enemy)field[targetX][targetY][2]);
+                            }
                         }
                     }
+                } catch(Exception e){
+                    System.out.println("NOT AN ENEMY");
                 }
-            } catch(Exception e){
-                System.out.println("NOT AN ENEMY");
             }
+        } else {
+            try{
+                    for(int x = 0; x < MAPIMGWIDTH; x++){
+                        for(int y = 0; y < MAPIMGHEIGHT; y++){
+                            if((Chest)field[x][y][5] != null){
+                                ((Chest)field[targetX][targetY][5]).open();
+                            }
+                        }
+                    }
+                } catch(Exception e){
+                    System.out.println("NOT A CHEST");
+                }
         }
     }
 
+    public Actor returnActorInTarget(){
+        return (Enemy)field[targetX][targetY][2];
+    }
+
+    /**
+     * spawns in target checks to see if target is there already if true then don's spawn target
+     */
     public void spawnTargetIn(){
         for(int x = 0; x < MAPIMGWIDTH; x++){
             for(int y = 0; y < MAPIMGHEIGHT; y++){
@@ -192,14 +223,23 @@ public class ScrollingMap extends World
         }
     }
 
+    /**
+     * return true if target has been spawned false otherwise
+     */
     public boolean isSpawned(){
         return spawnTarget;
     }
 
+    /**
+     * removes object from 2D array
+     * @param x the x coordinate of object
+     * @param y the y coordinate of object
+     * @param z the z coordinate of object (layer/depth)
+     */
     public void removeMe(int x, int y, int z){
         field[x][y][z] = null;
     }
-    
+
     public void spawnPlayer(){
         int xCo = playerX * TILESIZE + TILESIZE/2;
         int yCo = playerY * TILESIZE + TILESIZE/2;
@@ -219,6 +259,9 @@ public class ScrollingMap extends World
         }
         if(object == 2){
             field[xC][yC][d] = new Enemy(xCo, yCo, 1);
+        }
+        if(object == 3){
+            field[xC][yC][d] = new Chest(xCo, yCo, 1);
         }
         update();
     }
@@ -394,25 +437,6 @@ public class ScrollingMap extends World
             }
         }
     }
-
-    //     /**
-    //      * Manual testing controls
-    //      */
-    //     public void act() 
-    //     {
-    //         if(Greenfoot.isKeyDown("k")){
-    //             move(1);
-    //         }
-    //         if(Greenfoot.isKeyDown("i")){
-    //             move(2);
-    //         }
-    //         if(Greenfoot.isKeyDown("l")){
-    //             move(3);
-    //         }
-    //         if(Greenfoot.isKeyDown("j")){
-    //             move(4);
-    //         }
-    //     }
 
     public Actor[][][] getField(){
         return field;
