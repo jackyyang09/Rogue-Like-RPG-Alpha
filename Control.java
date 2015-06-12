@@ -51,7 +51,11 @@ public class Control extends Actor
                 Greenfoot.delay(5);
             }
             if(Greenfoot.isKeyDown("space")){
-                ((ScrollingMap)getWorld()).interact();
+                if(((ScrollingMap)getWorld()).returnActorInTarget() == null){
+                    ((ScrollingMap)getWorld()).interact(false);
+                } else {
+                    ((ScrollingMap)getWorld()).interact(true);
+                }
                 decreasePlayerMove(getPlayerMove());
                 Greenfoot.delay(5);
             }
