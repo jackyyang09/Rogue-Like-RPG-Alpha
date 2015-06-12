@@ -196,8 +196,8 @@ public class ScrollingMap extends World
         return spawnTarget;
     }
 
-    public void removeMe(int x, int y){
-        field[x][y][2] = null;
+    public void removeMe(int x, int y, int z){
+        field[x][y][z] = null;
     }
     
     public void spawnPlayer(){
