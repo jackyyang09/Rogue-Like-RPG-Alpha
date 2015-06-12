@@ -225,11 +225,22 @@ public class Generate
     public void spawnEnemy (int[] room, int ePerR){
         int amt = Greenfoot.getRandomNumber(ePerR);
         for(int i = 0; i < amt; i++){
-            int xCor = getRandNum(room[2]+1, room[2]+room[0]+1);
-            int yCor = getRandNum(room[3]+1, room[3]+room[1]+1);
-            if(array[xCor][yCor][2] == null){
-                array[xCor][yCor][2] = "enemy";
-                maxEnemies--;
+            if(maxEnemies > 0){
+                do{
+                    int xCor = getRandNum(room[2]+1, room[2]+room[0]+1);
+                    int yCor = getRandNum(room[3]+1, room[3]+room[1]+1);
+                    if(array[xCor][yCor][2] == null){
+                        //int enemyType = Greenfoot.getRandomNumber(5)+1;
+                        array[xCor][yCor][2] = "enemy"; //+ enemyType;
+                        //System.out.println("enemy" + enemyType);
+                        maxEnemies--;
+                        doneOnce = true;
+                    }
+                }while(doneOnce == false);
+                doneOnce = false;
+            }
+            else{
+                break;
             }
         }
     }
