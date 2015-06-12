@@ -147,7 +147,7 @@ public class Enemy extends Mobs
     }
 
     /**
-     * 
+     * enemy levels up each stat per level at a moderate pacce
      */
     public void levelUp() 
     {
