@@ -246,8 +246,8 @@ public class Generate
     }
 
     public void spawnChest(int[] room){
-        int xCor = room[2]+(room[0]/2);
-        int yCor = room[3]+(room[1]/2);
+        int xCor = room[2]+(room[0]/2)+1;
+        int yCor = room[3]+(room[1]/2)+1;
         array[xCor][yCor][5] = "chest";
     }
 
