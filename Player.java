@@ -48,6 +48,8 @@ public class Player extends Mobs
     {
         GreenfootImage image = new GreenfootImage(144, 86);
         setImage("player2.png");
+        GreenfootSound bgm = new GreenfootSound("bgm2.mp3");
+        bgm.playLoop();
         image.drawImage(getImage(), 29, 0);
         setImage(image);
     }
