@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Generate
 {
-    String array[][][] = new String[58][56][4]; //3D array of the grid (56x58x4)
+    String array[][][] = new String[58][56][6]; //3D array of the grid (56x58x4)
     ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=width, 1=h, 2=x, 3=y)
     ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
     private boolean noSpace = false;
@@ -99,6 +99,7 @@ public class Generate
                 if(noSpace == false){
                     room(coor);
                     spawnEnemy(coor, 1);
+                    spawnChest(coor);
                     doneOnce = true;
                     noSpace = true;
                     rooms.add(coor);
@@ -228,19 +229,11 @@ public class Generate
             array[xCor][yCor][2] = "enemy";
         }
     }
-
-    public void returnRooms(int a){
-        int w, h, x, y;
-        //for(int a =0; a< rooms.size();a++){
-        w = rooms.get(a)[0];
-        h = rooms.get(a)[1];
-        x = rooms.get(a)[2];
-        y = rooms.get(a)[3];
-        System.out.println(w);
-        System.out.println(h);
-        System.out.println(x);
-        System.out.println(y);
-        //}
+    
+    public void spawnChest(int[] room){
+        int xCor = room[2]+(room[0]/2);
+        int yCor = room[3]+(room[1]/2);
+        array[xCor][yCor][5] = "chest";
     }
 
     public boolean checkSpaces (int w, int h, int x, int y){
