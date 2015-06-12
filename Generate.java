@@ -14,6 +14,7 @@ public class Generate
     ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
     private boolean noSpace = false;
     private boolean doneOnce = false;
+    private int maxEnemies = 0;
     
     /*
     *   Main class to create a grid
@@ -221,12 +222,15 @@ public class Generate
         }
     }
 
-    public void spawnEnemy (int[] room, int maxEnemies){
-        int times = Greenfoot.getRandomNumber(maxEnemies)+1;
-        for(int i = 0; i < times; i++){
+    public void spawnEnemy (int[] room, int ePerR){
+        int amt = Greenfoot.getRandomNumber(ePerR);
+        for(int i = 0; i < amt; i++){
             int xCor = getRandNum(room[2]+1, room[2]+room[0]+1);
             int yCor = getRandNum(room[3]+1, room[3]+room[1]+1);
-            array[xCor][yCor][2] = "enemy";
+            if(array[xCor][yCor][2] == null){
+                array[xCor][yCor][2] = "enemy";
+                maxEnemies--;
+            }
         }
     }
     
@@ -324,5 +328,9 @@ public class Generate
 
     public int getRandNum(int s, int e){
         return Greenfoot.getRandomNumber(e-s)+s;
+    }
+    
+    public void setMaxEnemies(int max){
+        maxEnemies = max;
     }
 }
