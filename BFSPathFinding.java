@@ -1,7 +1,12 @@
 import java.awt.Point;
 import java.util.Scanner;
 import java.util.LinkedList;
-
+/**
+ * PathFinder, giving a list of the coordinates to go to.
+ * 
+ * @author Sean Cao
+ * @date ICS4U Final Project June 2015
+ */
 public class BFSPathFinding {
     private final int MAXR = 1000, MAXC = 1000;
     private int R,C;
@@ -12,6 +17,16 @@ public class BFSPathFinding {
     private final int [][] dir = {{1,0},{-1,0},{0,1},{0,-1}};
     LinkedList<Point> path;
 
+    /**
+     * Main Pathfinder
+     * 
+     * @param startX current x coordinate
+     * @param startY current y coordinate
+     * @param endX target x coordinate
+     * @param endY target y coordinate
+     * @param grid2 grid of walls
+     * @return path path to take given in a LinkedList of Points
+     */
     public LinkedList<Point> BFSPathFinding(int startX, int startY, int endX, int endY, boolean[][] grid2){
         C = 56;
         R = 58;
@@ -47,12 +62,20 @@ public class BFSPathFinding {
         return path;
     }
 
+    /**
+     * Pathfinder Resetter
+     * 
+     * Resets the pathfinder to be used again
+     */
     public void reset(){
         grid = new boolean[MAXR+2][MAXC+2];
         dist = new int[MAXR+2][MAXC+2];
         vis = new boolean[MAXR+2][MAXC+2];
     }
 
+    /**
+     * Prepares the grid for pathfinding
+     */
     private void bfs(){
         LinkedList<Point> q = new LinkedList<Point>();
         q.addLast(new Point(sX,sY));
