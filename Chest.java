@@ -3,14 +3,14 @@ import greenfoot.*;
 /**
  * Write a description of class Chest here.
  * 
- * @author Jacky Yang
+ * @author Jacky Yang, Ryan Huang
  * @version (a version number or a date)
  */
 public class Chest extends Actor
 {
     int mapX, mapY;
     int rarity;
-    private boolean open = false;
+    private boolean open;
     /**
      * Constructor for chest
      * 
@@ -20,6 +20,7 @@ public class Chest extends Actor
      */
     public Chest(int mapX, int mapY, int rarity)
     {
+        open = false;
         setImage("chest.png");
         this.mapX = mapX;
         this.mapY = mapY;
@@ -31,24 +32,24 @@ public class Chest extends Actor
      */
     public void open()
     {
-        setImage("chest2.png");
-        Greenfoot.delay(10);
-        if (open)
+        if (open == false)
         {
-            open = false;
+            setImage("chest2.png");
+            Greenfoot.delay(30);
+            open = true;
         }
         else
         {
             int valX = (mapX - 43) / 86;
             int valY = (mapY - 43) / 86;
             ((ScrollingMap)getWorld()).inputItem(valX, valY, generate(1)); //Adds item to an array in Scrolling Map
-            ((ScrollingMap)getWorld()).removeMe(valX, valY, 5);
+            ((ScrollingMap)getWorld()).removeMe(valX, valY, 5); //Removes chest from ScrollingMap's database
             getWorld().removeObject(this);
         }
     }
 
     /**
-     * Creates an item according to the rarity (1-15)
+     * Creates an item according to the rarity (1-7)
      */
     private int generate(int rarity)
     {
