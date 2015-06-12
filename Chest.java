@@ -31,9 +31,9 @@ public class Chest extends Actor
      */
     public void open()
     {
-        if (open)
+        if (open = false)
         {
-            open = false;
+            open = true;
             setImage("chest2.png");
         }
         else
