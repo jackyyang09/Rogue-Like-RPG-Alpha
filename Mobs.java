@@ -89,6 +89,15 @@ public class Mobs extends Actor
     {
         return baseHp;
     }
+    /**
+     * returns  xp
+     * 
+     * @return xp the xp stat
+     */
+    public double getXp() 
+    {
+        return xp;
+    } 
 
     /**
      * returns  dexterity
