@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class CharacterSelection here.
  * 
  * @author Aingharan Uthayakumar 
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class CharacterSelection extends World
 {
