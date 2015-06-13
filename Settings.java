@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
  * KEYBINDINGS and other settings
  * 
  * @author Aingharan Uthayakumar
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class Settings extends World
 {
