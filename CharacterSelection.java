@@ -44,6 +44,10 @@ public class CharacterSelection extends World
         checkMouse();
     }
 
+   /**
+     * checks if mouse is clicked
+     * 
+     */
     private void checkMouse()
     {
         if(Greenfoot.mouseClicked(marine))
