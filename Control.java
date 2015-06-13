@@ -10,6 +10,11 @@ public class Control extends Actor
 {    
     GreenfootSound step, slash, targetSnd;
     private boolean pressed;
+    
+    /**
+     * Control class constructor
+     *
+     */
     public Control()
     {
         step = new GreenfootSound("step.wav");
@@ -101,6 +106,11 @@ public class Control extends Actor
         ((ScrollingMap)getWorld()).update();
     }
 
+   /**
+     * decreases player movement 
+     * 
+     * @param amt movement speed to decrease of player
+     */
     public void decreasePlayerMove(int amt){
         Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
         for(int x = 0; x < 58; x++){
@@ -112,6 +122,9 @@ public class Control extends Actor
         }
     }
 
+   /**
+     * returns player movement 
+     */
     public int getPlayerMove(){
         Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
         for(int x = 0; x < 58; x++){
@@ -123,7 +136,11 @@ public class Control extends Actor
         }
         return -1;
     }
-
+    
+   /**
+     * resets player movement to default 
+     *
+     */
     public void resetPlayerMove(){
         Actor[][][] grid = ((ScrollingMap)getWorld()).getField();
         for(int x = 0; x < 58; x++){
