@@ -276,6 +276,9 @@ public class ScrollingMap extends World
         field[x][y][z] = null;
     }
 
+   /**
+     * spawns player into world
+     */
     public void spawnPlayer(){
         int xCo = playerX * TILESIZE + TILESIZE/2;
         int yCo = playerY * TILESIZE + TILESIZE/2;
@@ -283,6 +286,12 @@ public class ScrollingMap extends World
         update();
     }
     
+    /**
+     * spawns player at certain cooordinate on map
+     * @param x the x coordinate of object
+     * @param y the y coordinate of object
+     * @param play the player to be spawned
+     */
     public void spawnPlayer(Player play, int x, int y){
         field[x][y][1] = play;
         x = playerX;
@@ -291,6 +300,12 @@ public class ScrollingMap extends World
         update();
     }
 
+   /**
+     * spawns item onto map
+     * @param xC the x coordinate of object
+     * @param yC the y coordinate of object
+     * @param id id number of item
+     */
     public void inputItem(int xC, int yC, int id)
     {
         int xCo = xC * TILESIZE + TILESIZE/2;
@@ -299,6 +314,11 @@ public class ScrollingMap extends World
         update();
     }
 
+/**
+     * removes item  from 2D array
+     * @param x the x coordinate of object
+     * @param y the y coordinate of object
+     */
     public void removeItem(int xC, int yC)
     {
         xC = (xC - 43) / 86;
@@ -399,7 +419,9 @@ public class ScrollingMap extends World
         }
         update();
     }
-
+   /**
+     * centers player on map
+     */
     public void centerOnPlayer(){
         int pMapX, pMapY;
         for(int i = 0; i < 58; i++){
@@ -485,7 +507,10 @@ public class ScrollingMap extends World
             reset();
         }
     }
-
+   
+   /**
+     * resets the entire map
+     */
     private void reset(){
         //         if(playerX == endX && playerY == endY){
         int b = JOptionPane.showConfirmDialog(null, "Enter the Portal?", "Warning", JOptionPane.YES_NO_OPTION);
@@ -506,7 +531,11 @@ public class ScrollingMap extends World
             //             }
         }
     }
-    
+    /**
+     * creates save to use in next play
+     * 
+     * @param values values that will be written to text
+     */
     public void writeToFile(int[] values){
         for(int a : values){
             try{
@@ -519,6 +548,9 @@ public class ScrollingMap extends World
         }
     }
     
+    /**
+     * empties map
+     */
     public void resetField(){
         for(int x = 0; x < MAPIMGWIDTH; x++){
             for(int y = 0 ; y < MAPIMGHEIGHT;y++){
@@ -531,6 +563,12 @@ public class ScrollingMap extends World
         }
     }
 
+   /**
+     * set position of player
+     * 
+     * @param x the x coordinate of object
+     * @param y the y coordinate of object
+     */
     public void placePlayer(int x, int y){
         field[x][y][1] = field[playerX][playerY][1];
         field[playerX][playerY][1] = null;
