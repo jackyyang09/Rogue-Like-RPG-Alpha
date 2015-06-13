@@ -9,6 +9,11 @@ import greenfoot.*;
 public class AttackEffect extends Actor
 {
     private int animTimer = 0;
+    
+    /**
+     * constructor for the AttackEffect class
+     */
+    
     public AttackEffect()
     {
         setImage("transparent.png");
