@@ -10,7 +10,7 @@ import java.awt.Font;
  * - Minimap(?)
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class HUD extends Actor
 {
