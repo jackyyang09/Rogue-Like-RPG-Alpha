@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Chest here.
+ * chest that contains item
  * 
  * @author Jacky Yang, Ryan Huang
  * @version (June 12 2015)
