@@ -2,7 +2,7 @@ import greenfoot.*;
 import java.util.Random;
 
 /**
- * Write a description of class HolyDriver here.
+ * Holy Driver Enemy
  * 
  * @author (Kajamugesh Raneethran) 
  * @version (a version number or a date)
