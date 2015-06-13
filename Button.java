@@ -11,10 +11,8 @@ public class Button extends Actor
 {
   private String buttonText;
   private GreenfootImage myImage;
-  /**
+   /**
      * Construct a Button with a given String at the default size
-     * 
-     * @param text  String value to display
      * 
      */
     public Button ()
@@ -22,6 +20,13 @@ public class Button extends Actor
         
     }
     
+    /**
+     * Construct a Button with a given String at the default size
+     * 
+     * @param text  String value to display
+     * @param textSize  size of String to display
+     * 
+     */
   public Button (String text, int textSize)
     {
         buttonText = text;
