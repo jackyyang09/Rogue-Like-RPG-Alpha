@@ -5,8 +5,8 @@ import java.awt.Color;
 /**
  * Displays the current
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jacky Yang) 
+ * @version (June 12 2015)
  */
 public class FloorCount extends Actor
 {
