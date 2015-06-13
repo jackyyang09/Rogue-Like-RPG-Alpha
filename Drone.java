@@ -16,9 +16,9 @@ public class Drone extends Enemy
         {
             setImage("arrowsmith.png");
             level = 1;
-            value = 39;
+            value = 15;
             xp = 0;
-            baseHp = 10;
+            baseHp = 20;
             currentHp = baseHp;
             baseAtt = 3;
             attack = baseAtt;
@@ -26,12 +26,12 @@ public class Drone extends Enemy
             defense = baseDef;
             baseDex = 0;
             dexterity = baseDex;
-            baseHit = 3;
-            baseLuk = 5;
+            baseHit = 4;
+            baseLuk = 7;
             luck = baseLuk;
-            baseMove = 2;
+            baseMove = 4;
             move = 0;
-            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+            levelGenerate(getWorld().getFloor());
         }
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
