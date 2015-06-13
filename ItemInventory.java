@@ -18,6 +18,8 @@ public class ItemInventory extends Actor
     private int id;
     /**
      * Sets the images and equiptype depending on the item ID given
+     * 
+     * @param num the iD number of the item
      */
     public ItemInventory(int num)
     {
