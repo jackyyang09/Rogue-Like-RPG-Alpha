@@ -8,6 +8,13 @@ import java.util.List;
  */
 public class Control extends Actor
 {    
+    GreenfootSound step, slash;
+    public Control()
+    {
+        step = new GreenfootSound("step.wav");
+        slash = new GreenfootSound("slash.wav");
+    }
+    
     /**
      * Manual testing controls
      */
@@ -15,31 +22,34 @@ public class Control extends Actor
     {
         if(Greenfoot.isKeyDown("d") && ((ScrollingMap)getWorld()).movePlayer(1)){
             decreasePlayerMove(1);
+            step.stop();
+            step.play();
             ((ScrollingMap)getWorld()).removeTarget();
             Greenfoot.delay(3);
         }
         if(Greenfoot.isKeyDown("a") && ((ScrollingMap)getWorld()).movePlayer(2)){
             decreasePlayerMove(1);
+            step.play();
             ((ScrollingMap)getWorld()).removeTarget();
             Greenfoot.delay(3);
         }
         if(Greenfoot.isKeyDown("s") && ((ScrollingMap)getWorld()).movePlayer(3)){
             decreasePlayerMove(1);
+            step.play();
             ((ScrollingMap)getWorld()).removeTarget();
             Greenfoot.delay(3);
         }
         if(Greenfoot.isKeyDown("w") && ((ScrollingMap)getWorld()).movePlayer(4)){
             decreasePlayerMove(1);
+            step.play();
             ((ScrollingMap)getWorld()).removeTarget();
             Greenfoot.delay(3);
         }
-
         if (Greenfoot.isKeyDown("z"))
         {
             List<Player> player = getWorld().getObjects(Player.class);
             for (Player p : player){p.pickupItem();}
         }
-
         if(!((ScrollingMap)getWorld()).isSpawned()){
             if(Greenfoot.isKeyDown("right")){
                 ((ScrollingMap)getWorld()).moveTarget(1);
@@ -62,6 +72,7 @@ public class Control extends Actor
                     ((ScrollingMap)getWorld()).interact(false);
                 } else {
                     ((ScrollingMap)getWorld()).interact(true);
+                    slash.play();
                 }
                 decreasePlayerMove(getPlayerMove());
                 Greenfoot.delay(5);
@@ -69,7 +80,6 @@ public class Control extends Actor
         } else if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("up")){
             ((ScrollingMap)getWorld()).spawnTargetIn();
         }
-
         if(getPlayerMove() <= 0){
             Greenfoot.delay(3);
             moveEnemy();
