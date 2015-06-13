@@ -329,16 +329,16 @@ public class ScrollingMap extends World
                     field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy2")){
-                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy3")){
-                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy4")){
-                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 4);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy5")){
-                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 5);
                 }
                 if(data[x][y][5] != null && data[x][y][5].equals("chest")){
                     field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
