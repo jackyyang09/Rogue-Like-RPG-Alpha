@@ -11,9 +11,8 @@ public class Drone extends Enemy
 {
     Random r;
 
-    public Drone(int getMapX, int getMapY, int IDnum){
-        if (IDnum ==1)
-        {
+    public Drone(int getMapX, int getMapY)
+    {
             setImage("arrowsmith.png");
             level = 1;
             value = 15;
@@ -26,13 +25,13 @@ public class Drone extends Enemy
             defense = baseDef;
             baseDex = 0;
             dexterity = baseDex;
-            baseHit = 4;
-            baseLuk = 7;
+            baseHit = 8;
+            baseLuk = 5;
             luck = baseLuk;
             baseMove = 4;
-            move = 0;
+            move = baseMove;
             levelGenerate(getWorld().getFloor());
-        }
+
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
