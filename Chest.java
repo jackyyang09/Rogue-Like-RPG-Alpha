@@ -4,7 +4,7 @@ import greenfoot.*;
  * Write a description of class Chest here.
  * 
  * @author Jacky Yang, Ryan Huang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class Chest extends Actor
 {
