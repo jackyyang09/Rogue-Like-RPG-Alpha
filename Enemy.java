@@ -8,7 +8,7 @@ import java.awt.Point;
  * @author Sean Cao, Ryan Huang, Kajamugesh Raneethran
  * @version (a version number or a date)
  */
-public class Enemy extends Mobs
+public abstract class Enemy extends Mobs
 {
     BFSPathFinding bfs = new BFSPathFinding();
     int middle;
@@ -105,7 +105,5 @@ public class Enemy extends Mobs
         }
     }
     
-    public void dropStuff(){
-        
-    }
+    public abstract void dropStuff();
 }
