@@ -54,7 +54,7 @@ public class ScrollingMap extends World
         super(946, 774, 1, false);
         setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, Inventory.class, ExperienceBar.class, HUD.class, FloorCount.class, FadingWord.class, AttackEffect.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
         generate.setMaxEnemies(20);
-        createMap(generate.generateMap());
+        createMap(generate.generateMap(1));
         playerX = generate.getStartingCoorX();
         playerY = generate.getStartingCoorY();
         endX = generate.getEndingCoorX();
@@ -82,7 +82,7 @@ public class ScrollingMap extends World
         setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, FloorCount.class, ExperienceBar.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
         generate.setMaxEnemies(20);
         setFloorR();
-        createMap(generate.generateMap());
+        createMap(generate.generateMap(fl));
         int playerX2 = generate.getStartingCoorX();
         int playerY2 = generate.getStartingCoorY();
         playerX = playerX2;
