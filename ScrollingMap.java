@@ -559,6 +559,7 @@ public class ScrollingMap extends World
             playstat.add((int)p.getHp());
             playstat.add((int)p.getAtk());
             playstat.add((int)p.getDef());
+            playstat.add(2);
             playstat.add((int)p.getDex());
             playstat.add((int)p.getLuk());
 //             playstat.add((int)p.getArmorBuff());
