@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * The player character
  * 
- * @author Jacky Yang
+ * @author Jacky Yang, Kajamugesh
  * @version (a version number or a date)
  */
 public class Player extends Mobs
