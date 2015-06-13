@@ -18,9 +18,9 @@ public class BaneSlime extends Enemy
             level = 1;
             value = 39;
             xp = 0;
-            baseHp = 10;
+            baseHp = 15.5;
             currentHp = baseHp;
-            baseAtt = 3;
+            baseAtt = 5;
             attack = baseAtt;
             baseDef = 5;
             defense = baseDef;
