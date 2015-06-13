@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.util.List;
 /**
- * Write a description of class Control here.
+ * player controls
  * 
  * @author Ryan Huang
  * @version June 2015
