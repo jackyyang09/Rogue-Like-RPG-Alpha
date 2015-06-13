@@ -25,7 +25,7 @@ public class Ambulancer extends Enemy
             defense = baseDef;
             baseDex = 0;
             dexterity = baseDex;
-            baseHit = 3;
+            baseHit = 7;
             baseLuk = 7;
             luck = baseLuk;
             baseMove = 3;
