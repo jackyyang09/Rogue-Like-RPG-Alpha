@@ -4,7 +4,7 @@ import greenfoot.*;
  * An attack animation that plays once and disappears
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class AttackEffect extends Actor
 {
