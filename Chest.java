@@ -16,7 +16,7 @@ public class Chest extends Actor
      * 
      * @param mapX The x Location of the chest used by ScrollingMap
      * @param mapY The y Location of the chest used by ScrollingMap
-     * @param 
+     * @param rarity rarity of item in chest
      */
     public Chest(int mapX, int mapY, int rarity)
     {
@@ -120,18 +120,38 @@ public class Chest extends Actor
         return item;
     }
 
+   /**
+     * sets x position of chest
+     * 
+     * @param newMapX The x Location of the chest used by ScrollingMap
+     */
     public void setMapX(int newMapX){
         mapX = newMapX;
     }
 
+   /**
+     * sets y position of chest
+     * 
+     * @param newMapY The y Location of the chest used by ScrollingMap
+     */
     public void setMapY(int newMapY){
         mapY = newMapY;
     }
 
+   /**
+     * returns x position of chest
+     * 
+     * @return mapX The x Location of the chest used by ScrollingMap
+     */
     public int getMapX(){
         return mapX;
     }
 
+   /**
+     * returns y position of chest
+     * 
+     * @return mapY The y Location of the chest used by ScrollingMap
+     */
     public int getMapY(){
         return mapY;
     }
