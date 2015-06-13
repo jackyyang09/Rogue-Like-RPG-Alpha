@@ -238,7 +238,7 @@ public class Player extends Mobs
     {
         if (items[item].getItemID() == 11)
         { //Heal 20% HP if Health Kit is used
-            GreenfootSound heal = new GreenfootSound("medkitSmall.wav   ");
+            GreenfootSound heal = new GreenfootSound("medkitSmall.wav");
             heal.play();
             healMe(getBaseHp() * 0.2);
         }
