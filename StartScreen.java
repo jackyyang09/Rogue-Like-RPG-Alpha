@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class StartScreen here.
+ * the start screen of the game
  * 
  * @author Aingharan Uthayakumar
  * @version June 10
