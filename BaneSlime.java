@@ -11,9 +11,7 @@ public class BaneSlime extends Enemy
 {
     Random r;
     
-    public BaneSlime(int getMapX, int getMapY, int IDnum){
-        if (IDnum ==1)
-        {
+    public BaneSlime(int getMapX, int getMapY){
             setImage(".png");
             level = 1;
             value = 10;
@@ -30,7 +28,7 @@ public class BaneSlime extends Enemy
             baseLuk = 5;
             luck = baseLuk;
             baseMove = 2;
-            move = 0;
+            move = baseMove;
             levelGenerate(getWorld().getFloor());
         }
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
