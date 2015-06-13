@@ -105,7 +105,7 @@ public class Mobs extends Actor
      */
     public double getNeededXp() 
     {
-        return (6/5 * Math.pow(level,3) - 15 * Math.pow(level,2) + 100*level - 140);
+        return (5*Math.pow(level,3)/4);
     } 
     /**
      * returns  dexterity
