@@ -16,7 +16,7 @@ public class BaneSlime extends Enemy
         {
             setImage(".png");
             level = 1;
-            value = 39;
+            value = 25;
             xp = 0;
             baseHp = 15.5;
             currentHp = baseHp;
