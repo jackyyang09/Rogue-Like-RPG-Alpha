@@ -11,6 +11,12 @@ public class HolyDriver extends Enemy
 {
      Random r;
      
+   /** 
+     * constructor for the HolyDriver class
+     * 
+     * @param getMapX x-coordinate to be spawned
+     * @param getMapY y-coordinate to be spawned 
+     */
      public HolyDriver(int getMapX, int getMapY){
             setImage("beefbot.png");
             level = 1;
