@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.Random;
 /**
- * Write a description of class Dirt here.
+ * tiles of the map
  * 
  * @author Ryan Huang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class Tile extends Actor
 {
