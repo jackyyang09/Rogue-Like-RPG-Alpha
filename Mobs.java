@@ -89,7 +89,6 @@ public class Mobs extends Actor
     {
         return baseHp;
     }
-
     /**
      * returns  xp
      * 
@@ -99,7 +98,15 @@ public class Mobs extends Actor
     {
         return xp;
     } 
-
+    /**
+     * returns  xp needed to lvl up
+     * 
+     * @return xp the xp stat
+     */
+    public double getNeededXp() 
+    {
+        return (6/5 * Math.pow(level,3) - 15 * Math.pow(level,2) + 100*level - 140);
+    } 
     /**
      * returns  dexterity
      * 
@@ -212,6 +219,7 @@ public class Mobs extends Actor
         return value*level/7;
     }  
 
+    
     /**
      * this unit attacks other unit with calculations
      * 
@@ -229,7 +237,7 @@ public class Mobs extends Actor
         }
         else
         {
-            double lucky = attack;
+            double lucky = attack
             if (Greenfoot.getRandomNumber(100) + 1 <= luck)
             {
                 lucky = 2*attack;
@@ -254,9 +262,7 @@ public class Mobs extends Actor
                 getWorld().removeObject(enemy);//gives xp and removes enemy from world
             }
         }
-    }
-
-    public void convertToTile(){
+           public void convertToTile(){
         mapX = (mapX - 43) / 86;
         mapY = (mapY - 43) / 86;
     }
@@ -273,4 +279,4 @@ public class Mobs extends Actor
     public int getMapY(){
         return this.mapY;
     } 
-}
+    }
