@@ -2,6 +2,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.ArrayList;
+
 /**
  * the 2d array grid based map in which everything exists
  * 
@@ -590,7 +596,7 @@ public class ScrollingMap extends World
      * 
      * @param values values that will be written to text
      */
-    public void writeToFile(int[] values){
+    public void writeToFile(ArrayList<Integer> values){
         for(int a : values){
             try{
                 WriteFile data = new WriteFile ("playerMemory.txt", true);
