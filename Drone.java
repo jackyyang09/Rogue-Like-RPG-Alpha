@@ -2,10 +2,10 @@ import greenfoot.*;
 import java.util.Random;
 
 /**
- * Write a description of class Drone here.
+ * Drone enemy
  * 
  * @author (Kajamugesh Raneethran) 
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class Drone extends Enemy
 {
