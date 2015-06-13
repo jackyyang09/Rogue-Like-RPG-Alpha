@@ -2,7 +2,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 /**
- * Write a description of class Button here.
+ * Buttons for title screen and other
  * 
  * @author (Jacky Yang & Aingharan Uthayakumar) 
  * @version (June 12 2015)
