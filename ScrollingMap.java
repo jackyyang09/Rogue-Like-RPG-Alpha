@@ -560,25 +560,26 @@ public class ScrollingMap extends World
             playstat.add((int)p.getDef());
             playstat.add((int)p.getDex());
             playstat.add((int)p.getLuk());
-            playstat.add((int)p.getArmorBuff());
-            for(int i = 0; i < 9; i++){
-                try{
-                    playstat.add(p.getItems()[i].getItemID());
-                }catch(NullPointerException e){
-                    playstat.add(0);
-                }
-            }
-            for(int i = 0; i < 2; i++){
-                try{
-                    playstat.add(p.getEquips()[i].getItemID());
-                }catch(NullPointerException e){
-                    playstat.add(0);
-                }
-            }
-            playstat.add((int)p.getMapX());
-            playstat.add((int)p.getMapY());
+//             playstat.add((int)p.getArmorBuff());
+//             for(int i = 0; i < 9; i++){
+//                 try{
+//                     playstat.add(p.getItems()[i].getItemID());
+//                 }catch(NullPointerException e){
+//                     playstat.add(0);
+//                 }
+//             }
+//             for(int i = 0; i < 2; i++){
+//                 try{
+//                     playstat.add(p.getEquips()[i].getItemID());
+//                 }catch(NullPointerException e){
+//                     playstat.add(0);
+//                 }
+//             }
+//             playstat.add((int)p.getMapX());
+//             playstat.add((int)p.getMapY());
+//             System.out.println((int)p.getMapX());
+//             System.out.println((int)p.getMapY());
             playstat.add((int)p.xp);
-            
 
             writeToFile(playstat);
             Greenfoot.setWorld(new ScrollingMap(p, getFloor()));
