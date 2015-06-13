@@ -12,6 +12,13 @@ public class Tile extends Actor
     int mapY;
     boolean isAWall;
     
+    /**
+     * constructor for tile
+     * 
+     * @param getMapX x coordinate of tile
+     * @param getMapY y coordinate of tile 
+     * @param tileCode type of tile
+     */
     public Tile(int getMapX, int getMapY, int tileCode)
     {
         if(tileCode == 1){
