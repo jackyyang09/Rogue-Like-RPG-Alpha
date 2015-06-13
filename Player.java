@@ -106,7 +106,10 @@ public class Player extends Mobs
     public void pickupItem()
     {
         boolean pickup = false; //Enables the pickup code if true
-        if (this.isTouching(Items.class)) //Is true when the player walks over an item on the map
+        Actor[][][] field = ((ScrollingMap)getWorld()).getField();
+        int valX = (mapX - 43) / 86;
+        int valY = (mapY - 43) / 86;
+        if ((Items)field[valX][valY][3] != null) //Is true when the player walks over an item on the map
         {
             Items drop = (Items)getOneIntersectingObject(Items.class); //Gets a reference to it
             if (equips[0] == null && drop.getEquipType() == 1) //Checks if the sword slot is empty
