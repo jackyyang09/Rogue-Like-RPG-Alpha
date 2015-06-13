@@ -638,7 +638,7 @@ public class ScrollingMap extends World
             }
         }
         return textFileContents;
-        
+    }
     /**
      * empties map
      */
