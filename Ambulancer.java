@@ -11,6 +11,12 @@ public class Ambulancer extends Enemy
 {
     Random r;
     
+    /**
+     * constructor for the Ambulancer class
+     * 
+     * @param getMapX x-coordinate to be spawned
+     * @param getMapY y-coordinate to be spawned 
+     */
     public Ambulancer(int getMapX, int getMapY)
     {
             setImage("ambulance.png");
