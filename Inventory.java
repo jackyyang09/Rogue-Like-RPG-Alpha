@@ -5,7 +5,7 @@ import java.util.List;
  * A visual representation of the Player's inventory array
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class Inventory extends Actor
 {
