@@ -9,9 +9,9 @@ import java.util.ArrayList;
  */
 public class Generate
 {
-    String array[][][] = new String[58][56][6]; //3D array of the grid (56x58x4)
-    ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=w, 1=h, 2=x, 3=y)
-    ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
+    private String array[][][] = new String[58][56][6]; //3D array of the grid (56x58x4)
+    private ArrayList<int[]> rooms = new ArrayList<int[]>(); //ArrayList of the different rooms (0=w, 1=h, 2=x, 3=y)
+    private ArrayList<int[]> doors = new ArrayList<int[]>(); //ArrayList of the doors (0=x, 1=y)
     private boolean noSpace = false;
     private boolean doneOnce = false;
     private int maxEnemies = 0;
@@ -54,7 +54,7 @@ public class Generate
     /*
     * Creates the border of walls to prevent player from escaping the world
     */
-    public void generateBorder(){
+    private void generateBorder(){
         // 4x3, 4x52, 53x3, 53x52
         for(int i = 4; i < 52; i++){
             array[4][i][0] = "wall";
@@ -69,7 +69,7 @@ public class Generate
     /*
     * Creates the player start room
     */
-    public void generateStartRoom(){
+    private void generateStartRoom(){
         int coor[] = new int[4];
         coor[0] = getRandWidth();
         coor[1] = getRandHeight();
@@ -88,7 +88,7 @@ public class Generate
     /*
     * Creates the player end room
     */
-    public void generateEndRoom(){
+    private void generateEndRoom(){
         int coor[] = new int[4];
         do{
             coor[0] = getRandWidth();
@@ -111,7 +111,7 @@ public class Generate
     /*
     * Create a starting portal inside the starting room and the ending portal in the ending room
     */
-    public void generatePortals(){
+    private void generatePortals(){
         int sX = getStartingCoorX();
         int sY = getStartingCoorY();
         array[sX][sY][0] = "sPortal";
@@ -124,7 +124,7 @@ public class Generate
     * Create a number of rooms
     * @param amtOfRooms   Number of rooms being created
     */
-    public void generateRoom(int amtOfRooms){
+    private void generateRoom(int amtOfRooms){
         int coor[] = new int[4];
         int r = amtOfRooms+1;
         for(int a = 0; a< r; a++){
@@ -153,7 +153,7 @@ public class Generate
     * Creates the actual room with coordinates
     * @param coor array of coordinates (0=w, 1=h, 2=x, 3=y)
     */
-    public void room(int[] coor){
+    private void room(int[] coor){
         for(int i = coor[2]; i < coor[2] + coor[0] + 1; i++){
             array[i][coor[3]][0] = "wall";
             array[i][coor[3]+coor[1]+1][0] = "wall";
@@ -207,7 +207,7 @@ public class Generate
     * @param x   x coordinate of door
     * @param y   y coordinate of door
     */
-    public void putDoors(int x, int y){
+    private void putDoors(int x, int y){
         int dc[] = new int[2];
         dc[0] = x;
         dc[1] = y;
@@ -217,7 +217,7 @@ public class Generate
     /*
     * Check all the doors if they are accessible
     */
-    public void checkDoors(){
+    private void checkDoors(){
         int amtWalls;
         boolean r, l, u, d;
         for(int[] ds : doors){
@@ -259,7 +259,7 @@ public class Generate
     * @param ePerR   max enemies per room
     * @param floor   floor number
     */
-    public void spawnEnemy (int[] room, int ePerR, int floor){
+    private void spawnEnemy (int[] room, int ePerR, int floor){
         int amt = Greenfoot.getRandomNumber(ePerR);
         for(int i = 0; i < amt; i++){
             if(maxEnemies > 0){
@@ -285,7 +285,7 @@ public class Generate
     * Spawn a chest in room with coordinates
     * @param room   array of coordinates of the room (0=w, 1=h, 2=x, 3=y)
     */
-    public void spawnChest(int[] room){
+    private void spawnChest(int[] room){
         int xCor = room[2]+(room[0]/2)+1;
         int yCor = room[3]+(room[1]/2)+1;
         array[xCor][yCor][5] = "chest";
@@ -295,7 +295,7 @@ public class Generate
     * Checks coordinates if its empty
     * @param (w, h, x, y)   coordinates
     */
-    public boolean checkSpaces (int w, int h, int x, int y){
+    private boolean checkSpaces (int w, int h, int x, int y){
         for(int a = x; a < x + w + 1; a++){
             for(int b = y; b < y + h + 1; b++){
                 if(array[a][b][0] != null){
@@ -309,7 +309,7 @@ public class Generate
     /*
     * Insert floor tile in every empty space
     */
-    public void floodGrid(){
+    private void floodGrid(){
         for(int i = 5; i<54; i++){
             for(int j = 5; j<53;j++){
                 if(array[i][j][0] == null){
