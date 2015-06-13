@@ -10,6 +10,13 @@ import java.util.Random;
 public class SanicRobot extends Enemy
 {
     Random r;
+    
+   /**
+     * constructor for the SanicRobot class
+     * 
+     * @param getMapX x-coordinate to be spawned
+     * @param getMapY y-coordinate to be spawned 
+     */
     public SanicRobot(int getMapX, int getMapY){
             setImage("sanicsrobot.png");
             level = 1;
