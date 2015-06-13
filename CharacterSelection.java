@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class CharacterSelection here.
+ * option to choose character in menu
  * 
  * @author Aingharan Uthayakumar 
  * @version (June 12 2015)
