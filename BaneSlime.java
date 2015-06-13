@@ -31,7 +31,7 @@ public class BaneSlime extends Enemy
             luck = baseLuk;
             baseMove = 2;
             move = 0;
-            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
+            levelGenerate(getWorld().getFloor());
         }
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
