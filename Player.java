@@ -305,6 +305,38 @@ public class Player extends Mobs
         if (equips[1] != null){buff2 = equips[1].getLukBuff();}
         return baseLuk + buff1 + buff2;
     }
+    
+    /**
+     * Returns the player's items as an int array
+     */
+    public ArrayList<Integer> getInventory()
+    {
+        ArrayList<Integer> item = new ArrayList(11);
+        for (int i = 0; i < 9; i++)
+        {
+            if (item.get(i) != null){item.set(i, items[i].getItemID());}
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            if (item.get(i) != null){item.set(i, items[i + 9].getItemID());}
+        }
+        return item;
+    }
+
+    /**
+     * Sets the player's inventory accoring to an int array
+     */
+    public void setInventory(ArrayList<Integer> item)
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            items[i] = new Items(item.get(i));
+        }
+        for (int i = 0; i < 13; i++)
+        {
+            items[i + 9] = new Items(item.get(i));
+        }
+    }
 
     /**
      * Returns an array of items within Player
