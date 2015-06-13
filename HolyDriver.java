@@ -29,7 +29,7 @@ public class HolyDriver extends Enemy
             luck = baseLuk;
             baseMove = 2;
             move = baseMove;
-            levelGenerate(getWorld().getFloor());
+            levelGenerate(((ScrollingMap)getWorld()).getFloor());
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
@@ -39,14 +39,19 @@ public class HolyDriver extends Enemy
         r = new Random();
         int random = r.nextInt(100);
         
+        
         if(random < 5){
+            convertToTile();
             ((ScrollingMap)getWorld()).inputItem(this.mapX, this.mapY, 12);
+            convertToPixel();
         }
         
         random = r.nextInt(100);
         
         if(random == 26){
+            convertToTile();
             ((ScrollingMap)getWorld()).inputItem(this.mapX, this.mapY, 14);
+            convertToPixel();
         }
     }
 }
