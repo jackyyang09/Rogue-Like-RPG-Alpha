@@ -11,6 +11,12 @@ public class InfoTab extends Actor
     ItemInventory items;
     private boolean begin = false;
     private Font fontName, fontDesc, fontNums;
+    
+    /**
+     * constructor for InfoTab class
+     * 
+     * @param iteminventory the iteminvetory item info is taken from
+     */
     public InfoTab(ItemInventory iteminventory)
     {
         setImage("Info.png");
