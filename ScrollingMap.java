@@ -398,19 +398,19 @@ public class ScrollingMap extends World
                         //System.out.print("e ");
                     }
                 }
-                if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
+                if(data[x][y][2] != null && data[x][y][2].equals("enemy1")){
                     field[x][y][2] = new BaneSlime(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
-                else if(data[x][y][2] != null && data[x][y][2].equals("enemy1")){
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy2")){
                     field[x][y][2] = new Ambulancer(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
-                else if(data[x][y][2] != null && data[x][y][2].equals("enemy2")){
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy3")){
                     field[x][y][2] = new Drone(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
-                else if(data[x][y][2] != null && data[x][y][2].equals("enemy3")){
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy4")){
                     field[x][y][2] = new SanicRobot(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
-                else if(data[x][y][2] != null && data[x][y][2].equals("enemy4")){
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy5")){
                     field[x][y][2] = new HolyDriver(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 if(data[x][y][5] != null && data[x][y][5].equals("chest")){
