@@ -36,7 +36,6 @@ public class Ambulancer extends Enemy
             luck = baseLuk;
             baseMove = 3;
             move = baseMove;
-        //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
     }
