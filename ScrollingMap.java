@@ -38,6 +38,7 @@ public class ScrollingMap extends World
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     boolean[][] grid = new boolean[58][56];
     private int floor = 1;
+    private int floorR = 1;
     private GreenfootSound bgm = new GreenfootSound("bgm2.mp3");
     /**
      * Constructor for objects of class ScrollingMap.
