@@ -3,10 +3,10 @@ import java.util.LinkedList;
 import java.awt.Point;
 
 /**
- * Write a description of class Enemy here.
+ * enemy unit that attacks player
  * 
  * @author Sean Cao, Ryan Huang, Kajamugesh Raneethran
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public abstract class Enemy extends Mobs
 {
