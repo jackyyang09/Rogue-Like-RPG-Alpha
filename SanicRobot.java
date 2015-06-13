@@ -35,7 +35,6 @@ public class SanicRobot extends Enemy
             luck = baseLuk;
             baseMove = 5;
             move = baseMove;
-            levelGenerate(((ScrollingMap)getWorld()).getFloor());
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
