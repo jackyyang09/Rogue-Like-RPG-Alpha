@@ -23,9 +23,9 @@ public class Ambulancer extends Enemy
             level = 1;
             value = 39;
             xp = 0;
-            baseHp = 25;
+            baseHp = 50;
             currentHp = baseHp;
-            baseAtt = 5;
+            baseAtt = 10;
             attack = baseAtt;
             baseDef = 6;
             defense = baseDef;
