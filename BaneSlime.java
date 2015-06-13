@@ -5,7 +5,7 @@ import java.util.Random;
  * BaneSlime enemy
  * 
  * @author (Kajamugesh Raneethran) 
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class BaneSlime extends Enemy
 {
