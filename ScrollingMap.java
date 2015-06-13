@@ -327,6 +327,24 @@ public class ScrollingMap extends World
     }
 
 
+    public void setFloorR(){
+        if(floor < 3){
+            floorR = 1;
+        } else if(floor < 6 && floor >= 3){
+            floorR = 2;
+        } else if(floor < 10 && floor >= 6){
+            floorR = 3;
+        } else if(floor < 15 && floor >= 10){
+            floorR = 4;
+        } else if(floor < 18 && floor >= 15){
+            floorR = 5;
+        } else if(floor < 20 && floor >= 18){
+            floorR = 6;
+        } else if(floor >= 20){
+            floorR = 7;
+        }
+    }
+
     /**
      * Reads Image File
      */
@@ -380,11 +398,10 @@ public class ScrollingMap extends World
                     field[x][y][2] = new HolyDriver(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 if(data[x][y][5] != null && data[x][y][5].equals("chest")){
-                    field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, floorR);
                     grid[x][y] = false;
                 }
             }
-            //System.out.println("");
         }
     }
 
