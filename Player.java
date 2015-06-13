@@ -63,11 +63,11 @@ public class Player extends Mobs
         items = new Items[9];
         for (int i = 0; i < 9; i++)
         {
-            items[i] = new Items(list.get[i + 9]);
+            items[i] = new Items(list.get(i + 9));
         }
         for (int i = 0; i < 2; i++)
         {
-            equips[i] = new Items(list.get[i + 17]);
+            equips[i] = new Items(list.get(i + 17));
         }        
         mapX = list.get(19);
         mapY = list.get(20);
