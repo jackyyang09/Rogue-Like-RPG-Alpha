@@ -267,13 +267,13 @@ public class Mobs extends Actor
     }
 
     public void convertToTile(){
-        mapX = (mapX - 43) / 86;
-        mapY = (mapY - 43) / 86;
+        this.mapX = (this.mapX - 43) / 86;
+        this.mapY = (this.mapY - 43) / 86;
     }
 
     public void convertToPixel(){
-        mapX = (mapX * 86) + 43;
-        mapY = (mapY * 86) + 43;
+        this.mapX = (this.mapX * 86) + 43;
+        this.mapY = (this.mapY * 86) + 43;
     }
 
     public int getMapX(){
