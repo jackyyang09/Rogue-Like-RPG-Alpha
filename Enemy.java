@@ -16,7 +16,6 @@ public abstract class Enemy extends Mobs
     int tempX;
     int tempY;
     int ID;
-    //boolean[][] grid2;
     boolean enemyTurn = false;
 
    /**
