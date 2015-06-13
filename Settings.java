@@ -57,7 +57,9 @@ public class Settings extends World
 
         }
     }
-
+   /**
+     * master checkMouse method
+     */
     private void checkMouse()
     {
         checkMouseMovementKeys();
@@ -69,6 +71,9 @@ public class Settings extends World
         }
     }
 
+   /**
+     * checks mouse movement for keys and reacts
+     */
     private void checkMouseMovementKeys()
     {
         if(Greenfoot.mouseClicked(up))
@@ -93,6 +98,9 @@ public class Settings extends World
         }
     }
 
+  /**
+     * checks mouse movement for cross hairs and reacts
+     */
     private void checkMouseCrosshairMovement()
     {
         if(Greenfoot.mouseClicked(chUp))
@@ -117,6 +125,9 @@ public class Settings extends World
         }
     }
 
+   /**
+     * checks mouse movement for other keys and reacts
+     */
     private void checkMouseOtherKeys()
 
     {
