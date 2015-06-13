@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.Color;
 
 /**
- * Write a description of class TextField here.
+ * input button
  * 
  * @author Gevater_Tod4711 modified by Aingharan Uthayakumar
  * @version 2015
