@@ -19,7 +19,11 @@ public abstract class Enemy extends Mobs
     //boolean[][] grid2;
     boolean enemyTurn = false;
 
+   /**
+     * constructor for Enemy class
+     */
     public Enemy(){
+        
     }
     
     /**
