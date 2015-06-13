@@ -30,7 +30,6 @@ public class BaneSlime extends Enemy
             baseMove = 2;
             move = baseMove;
             levelGenerate(getWorld().getFloor());
-        }
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
