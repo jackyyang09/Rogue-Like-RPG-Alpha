@@ -23,7 +23,7 @@ public class Generate
      *
      *   @return String[][][]    returns the full grid of the created map
      */
-    public String[][][] generateMap(){
+    public String[][][] generateMap(int fl){
         if(genOnce == true){
             rooms.removeAll(rooms);
             doors.removeAll(doors);
@@ -40,6 +40,7 @@ public class Generate
             doneOnce = false;
             Greenfoot.stop();
         }
+        floor = fl;
         generateBorder();
         generateStartRoom();
         generateEndRoom();
