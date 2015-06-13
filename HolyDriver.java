@@ -11,28 +11,25 @@ public class HolyDriver extends Enemy
 {
      Random r;
      
-     public HolyDriver(int getMapX, int getMapY, int IDnum){
-        if (IDnum ==1)
-        {
+     public HolyDriver(int getMapX, int getMapY){
             setImage("beefbot.png");
             level = 1;
-            value = 39;
+            value = 45;
             xp = 0;
-            baseHp = 10;
+            baseHp = 40;
             currentHp = baseHp;
-            baseAtt = 3;
+            baseAtt = 6;
             attack = baseAtt;
             baseDef = 5;
             defense = baseDef;
-            baseDex = 0;
+            baseDex = 1;
             dexterity = baseDex;
-            baseHit = 3;
+            baseHit = 5;
             baseLuk = 5;
             luck = baseLuk;
             baseMove = 2;
-            move = 0;
-            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
-        }
+            move = baseMove;
+            levelGenerate(getWorld().getFloor());
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
