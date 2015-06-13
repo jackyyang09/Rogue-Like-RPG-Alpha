@@ -3,10 +3,10 @@ import java.awt.Font;
 import java.awt.Color;
 import java.util.List;
 /**
- * Write a description of class ExperienceBar here.
+ * bar that show progress until next level
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jacky Yang) 
+ * @version (June 12 2015)
  */
 public class ExperienceBar extends Actor
 {
