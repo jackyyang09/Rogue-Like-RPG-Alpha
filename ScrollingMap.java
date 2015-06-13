@@ -176,6 +176,7 @@ public class ScrollingMap extends World
                     for(int x = 0; x < MAPIMGWIDTH; x++){
                         for(int y = 0; y < MAPIMGHEIGHT; y++){
                             if((Player)field[x][y][1] != null){
+                                addObject(new AttackEffect(), ((Enemy)field[targetX][targetY][2]).getX(), ((Enemy)field[targetX][targetY][2]).getY());
                                 ((Player)field[x][y][1]).attack((Enemy)field[targetX][targetY][2]);
                             }
                         }
