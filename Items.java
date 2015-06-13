@@ -4,7 +4,7 @@ import greenfoot.*;
  * Also functions as a database for items
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class Items extends Actor
 {
