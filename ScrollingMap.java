@@ -34,7 +34,7 @@ public class ScrollingMap extends World
     private int maxY = 0, minY = 0, maxX = 0, minX = 0;
 
     private Generate generate = new Generate();
-
+    Scanner scan;
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     boolean[][] grid = new boolean[58][56];
     private int floor = 1;
@@ -80,7 +80,7 @@ public class ScrollingMap extends World
         playerY = playerY2;
         endX = generate.getEndingCoorX();
         endY = generate.getEndingCoorY();
-        spawnPlayer();
+        spawnPlayer(getFileBack());
         //spawnPlayer(player, playerX2, playerY2);
         centerOnPlayer();
         update();
@@ -284,6 +284,13 @@ public class ScrollingMap extends World
         int xCo = playerX * TILESIZE + TILESIZE/2;
         int yCo = playerY * TILESIZE + TILESIZE/2;
         field[playerX][playerY][1] = new Player(xCo, yCo);
+        update();
+    }
+    
+    public void spawnPlayer(ArrayList<Integer> file){
+        int xCo = playerX * TILESIZE + TILESIZE/2;
+        int yCo = playerY * TILESIZE + TILESIZE/2;
+        field[playerX][playerY][1] = new Player(file);
         update();
     }
     
@@ -531,13 +538,41 @@ public class ScrollingMap extends World
      */
     private void reset(){
         //         if(playerX == endX && playerY == endY){
+        ArrayList<Integer> playstat = new ArrayList<Integer>();
         int b = JOptionPane.showConfirmDialog(null, "Enter the Portal?", "Warning", JOptionPane.YES_NO_OPTION);
         if(b == JOptionPane.YES_OPTION){
             //Reset the thing
             increaseFloor();
             //             resetField();
             Player p = (Player)field[endX][endY][1];
-            writeToFile(p.getInventory());
+            playstat.add((int)p.getLevel());
+            playstat.add((int)p.getBaseHp());
+            playstat.add((int)p.getHp());
+            playstat.add((int)p.getAtk());
+            playstat.add((int)p.getDef());
+            playstat.add((int)p.getDex());
+            playstat.add((int)p.getLuk());
+            playstat.add((int)p.getArmorBuff());
+            for(int i = 0; i < 9; i++){
+                try{
+                    playstat.add(p.getItems()[i].getItemID());
+                }catch(NullPointerException e){
+                    playstat.add(0);
+                }
+            }
+            for(int i = 0; i < 2; i++){
+                try{
+                    playstat.add(p.getEquips()[i].getItemID());
+                }catch(NullPointerException e){
+                    playstat.add(0);
+                }
+            }
+            playstat.add((int)p.getMapX());
+            playstat.add((int)p.getMapY());
+            playstat.add((int)p.xp);
+            
+
+            writeToFile(playstat);
             Greenfoot.setWorld(new ScrollingMap(p, getFloor()));
             //String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
             //JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
@@ -549,6 +584,7 @@ public class ScrollingMap extends World
             //             }
         }
     }
+    
     /**
      * creates save to use in next play
      * 
@@ -566,6 +602,35 @@ public class ScrollingMap extends World
         }
     }
     
+    public ArrayList<Integer> getFileBack(){
+        ArrayList<Integer> textFileContents = new ArrayList<Integer>();
+        try {
+            scan = new Scanner (new File ("playerMemory.txt"));
+            // Make use of two interesting new methods found on the Scanner API
+            while (scan.hasNext())
+            {
+                // Use the ArrayList's add() method and the Scanner's nextLine() method
+                int a = Integer.parseInt(scan.nextLine());
+                textFileContents.add(a); 
+            }
+        }
+        //         catch (FileNotFoundException e)
+        //         {
+        //             System.out.println("File not found");
+        //         }
+        catch (IOException e)
+        {
+            //System.out.println("Error reading data");
+        }
+
+        // ADD A FINALLY BLOCK HERE TO CLOSE THE SCANNER
+        finally{
+            if(scan != null){
+                scan.close();
+            }
+        }
+        return textFileContents;
+        
     /**
      * empties map
      */
