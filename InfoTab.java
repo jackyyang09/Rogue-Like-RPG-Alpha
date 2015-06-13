@@ -4,7 +4,7 @@ import java.awt.Font;
  * Displays a window showing detailed information when hovering over an item
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class InfoTab extends Actor
 {
