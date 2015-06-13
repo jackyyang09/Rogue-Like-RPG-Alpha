@@ -6,7 +6,7 @@ import java.util.List;
  * Displays values in a bar like thing
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class ValueBox extends Actor
 {
