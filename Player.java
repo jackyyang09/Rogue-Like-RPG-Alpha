@@ -66,6 +66,9 @@ public class Player extends Mobs
         }
     }
 
+  /**
+     * levels up player and increases stats
+     */
     public void levelUp()
     {
         FadingWord levelUp = new FadingWord("Level Up!");
