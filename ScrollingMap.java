@@ -75,6 +75,8 @@ public class ScrollingMap extends World
         createMap(generate.generateMap());
         int playerX2 = generate.getStartingCoorX();
         int playerY2 = generate.getStartingCoorY();
+        playerX = playerX2;
+        playerY = playerY2;
         endX = generate.getEndingCoorX();
         endY = generate.getEndingCoorY();
         spawnPlayer();
