@@ -44,7 +44,7 @@ public class Player extends Mobs
     /**
      * Constructor to create a new player with custom values
      */
-    public Player(ArrayList<Integer> list)
+    public Player(int x, int y, ArrayList<Integer> list)
     {
         level = list.get(0);
         baseHp = list.get(1);
@@ -58,20 +58,21 @@ public class Player extends Mobs
         baseDex = list.get(6);
         dexterity = baseDex;
         baseLuk = list.get(7);
-        armorBuff = list.get(8);
+        //         armorBuff = list.get(8);
         equips = new Items[2];
         items = new Items[9];
-        for (int i = 0; i < 9; i++)
-        {
-            items[i] = new Items(list.get(i + 9));
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            equips[i] = new Items(list.get(i + 17));
-        }        
-        mapX = list.get(19);
-        mapY = list.get(20);
-        xp = list.get(21);
+        //         for (int i = 0; i < 9; i++)
+        //         {
+        //             items[i] = new Items(list.get(i + 9));
+        //         }
+        //         for (int i = 0; i < 2; i++)
+        //         {
+        //             equips[i] = new Items(list.get(i + 17));
+        //         }        
+        xp = list.get(8);
+        this.mapX = x;
+        this.mapY = y;
+
         begin();
     }
 
