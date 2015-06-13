@@ -30,7 +30,7 @@ public class Ambulancer extends Enemy
             luck = baseLuk;
             baseMove = 3;
             move = baseMove;
-            levelGenerate(getWorld().getFloor());
+            levelGenerate(((ScrollingMap)getWorld()).getFloor());
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
@@ -41,12 +41,16 @@ public class Ambulancer extends Enemy
         
         int random = r.nextInt(100);
         if(random < 49){
+            convertToTile();
             ((ScrollingMap)getWorld()).inputItem(this.mapX, this.mapY, 11);
+            convertToPixel();
         }
 
         random = r.nextInt(100);
         if(random == 95){
+            convertToTile();
             ((ScrollingMap)getWorld()).inputItem(this.mapX, this.mapY, 13);
+            convertToPixel();
         }
     }
 }
