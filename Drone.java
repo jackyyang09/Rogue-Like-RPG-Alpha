@@ -37,7 +37,6 @@ public class Drone extends Enemy
             baseMove = 4;
             move = baseMove;
 
-        //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
     }
