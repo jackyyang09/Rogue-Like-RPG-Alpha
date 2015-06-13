@@ -36,6 +36,9 @@ public class Ambulancer extends Enemy
         mapY = getMapY;
     }
     
+    /**
+     * enemy will drop item with set drop rat 
+     */
     public void dropStuff(){
         r = new Random();
         
