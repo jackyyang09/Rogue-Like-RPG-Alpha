@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.util.Random;
 import javax.swing.JOptionPane;
 /**
- * Write a description of class ScrollingMap here.
+ * the 2d array grid based map in which everything exists
  * 
  * @author Ryan Huang, Jacky Yang
  * @version MAY 2015
