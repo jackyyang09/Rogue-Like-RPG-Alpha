@@ -34,6 +34,8 @@ public class Chest extends Actor
     {
         if (open == false)
         {
+            GreenfootSound openSnd = new GreenfootSound("open.wav");
+            openSnd.play();
             setImage("chest2.png");
             Greenfoot.delay(30);
             open = true;
