@@ -4,8 +4,8 @@ import java.awt.Color;
 /**
  * Write a description of class Button here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jacky Yang & Aingharan Uthayakumar) 
+ * @version (June 12 2015)
  */
 public class Button extends Actor
 {
