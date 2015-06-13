@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Mobs here.
+ * Every object that can move and attack
  * 
  * @author Kajamugesh Raneethran
  * @version May 2015
