@@ -11,6 +11,12 @@ public class Drone extends Enemy
 {
     Random r;
 
+   /**
+     * constructor for the Drone class
+     * 
+     * @param getMapX x-coordinate to be spawned
+     * @param getMapY y-coordinate to be spawned 
+     */
     public Drone(int getMapX, int getMapY)
     {
             setImage("arrowsmith.png");
