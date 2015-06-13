@@ -23,13 +23,13 @@ public class Drone extends Enemy
             level = 1;
             value = 15;
             xp = 0;
-            baseHp = 20;
+            baseHp = 75;
             currentHp = baseHp;
-            baseAtt = 3;
+            baseAtt = 20;
             attack = baseAtt;
-            baseDef = 5;
+            baseDef = 10;
             defense = baseDef;
-            baseDex = 0;
+            baseDex = 15;
             dexterity = baseDex;
             baseHit = 8;
             baseLuk = 5;
