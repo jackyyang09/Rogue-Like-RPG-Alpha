@@ -5,8 +5,8 @@ import java.awt.Color;
 /**
  * A counter that displays the remaining amount of moves the Player has before their turn ends
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Jacky Yang) 
+ * @version (June 12 2015)
  */
 public class MoveCount extends Actor
 {
