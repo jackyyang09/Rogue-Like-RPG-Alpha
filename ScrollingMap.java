@@ -324,24 +324,24 @@ public class ScrollingMap extends World
                 if(data[x][y][0] != null){
                     if(data[x][y][0].equals("door")){
                         field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                        System.out.print("d ");
+                        //System.out.print("d ");
                     }
                     else if(data[x][y][0].equals("floorTile")){
                         field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
-                        System.out.print("t ");
+                        //System.out.print("t ");
                     }
                     else if(data[x][y][0].equals("wall")){
                         field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                         grid[x][y] = false;
-                        System.out.print("w ");
+                        //System.out.print("w ");
                     }
                     else if(data[x][y][0].equals("sPortal")){
                         field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 4);
-                        System.out.print("s ");
+                        //System.out.print("s ");
                     }
                     else if(data[x][y][0].equals("ePortal")){
                         field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 5);
-                        System.out.print("e ");
+                        //System.out.print("e ");
                     }
                 }
                 if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
@@ -364,7 +364,7 @@ public class ScrollingMap extends World
                     grid[x][y] = false;
                 }
             }
-            System.out.println("");
+            //System.out.println("");
         }
     }
 
