@@ -4,7 +4,7 @@ import java.util.Random;
 /**
  * Write a description of class SanicRobot here.
  * 
- * @author (your name) 
+ * @author (Kajamugesh Raneethran) 
  * @version (a version number or a date)
  */
 public class SanicRobot extends Enemy
