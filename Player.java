@@ -1,6 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.ArrayList;
 /**
  * The player character
  * 
@@ -66,7 +67,7 @@ public class Player extends Mobs
         }
         for (int i = 0; i < 2; i++)
         {
-            equips[i] = new Items(list.get[i + 17);
+            equips[i] = new Items(list.get[i + 17]);
         }        
         mapX = list.get(19);
         mapY = list.get(20);
