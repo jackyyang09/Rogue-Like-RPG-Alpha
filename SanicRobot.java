@@ -22,13 +22,13 @@ public class SanicRobot extends Enemy
             level = 1;
             value = 60;
             xp = 0;
-            baseHp = 10;
+            baseHp = 100;
             currentHp = baseHp;
-            baseAtt = 6;
+            baseAtt = 15;
             attack = baseAtt;
-            baseDef = 5;
+            baseDef = 10;
             defense = baseDef;
-            baseDex = 6;
+            baseDex = 25;
             dexterity = baseDex;
             baseHit = 3;
             baseLuk = 5;
