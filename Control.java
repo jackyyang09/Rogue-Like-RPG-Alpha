@@ -3,12 +3,13 @@ import java.util.List;
 /**
  * Write a description of class Control here.
  * 
- * @author Ryan Huang
+ * @author Ryan Huang, Jacky Yang
  * @version June 2015
  */
 public class Control extends Actor
 {    
     GreenfootSound step, slash;
+    private boolean pressed;
     public Control()
     {
         step = new GreenfootSound("step.wav");
@@ -68,15 +69,20 @@ public class Control extends Actor
                 Greenfoot.delay(5);
             }
             if(Greenfoot.isKeyDown("space")){
-                if(((ScrollingMap)getWorld()).returnActorInTarget() == null){
-                    ((ScrollingMap)getWorld()).interact(false);
-                } else {
-                    ((ScrollingMap)getWorld()).interact(true);
-                    slash.play();
+                if (pressed == false)
+                {
+                    if(((ScrollingMap)getWorld()).returnActorInTarget() == null){
+                        ((ScrollingMap)getWorld()).interact(false);
+                    } else {
+                        ((ScrollingMap)getWorld()).interact(true);
+                        slash.play();
+                    }
+                    pressed = true;
+                    decreasePlayerMove(getPlayerMove());
+                    Greenfoot.delay(5);
                 }
-                decreasePlayerMove(getPlayerMove());
-                Greenfoot.delay(5);
             }
+            else{pressed = false;}
         } else if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("up")){
             ((ScrollingMap)getWorld()).spawnTargetIn();
         }
