@@ -35,7 +35,6 @@ public class HolyDriver extends Enemy
             luck = baseLuk;
             baseMove = 2;
             move = baseMove;
-            levelGenerate(((ScrollingMap)getWorld()).getFloor());
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
