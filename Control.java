@@ -32,25 +32,25 @@ public class Control extends Actor
             step.stop();
             step.play();
             ((ScrollingMap)getWorld()).removeTarget();
-            Greenfoot.delay(3);
+            Greenfoot.delay(5);
         }
         if(Greenfoot.isKeyDown("a") && ((ScrollingMap)getWorld()).movePlayer(2)){
             decreasePlayerMove(1);
             step.play();
             ((ScrollingMap)getWorld()).removeTarget();
-            Greenfoot.delay(3);
+            Greenfoot.delay(5);
         }
         if(Greenfoot.isKeyDown("s") && ((ScrollingMap)getWorld()).movePlayer(3)){
             decreasePlayerMove(1);
             step.play();
             ((ScrollingMap)getWorld()).removeTarget();
-            Greenfoot.delay(3);
+            Greenfoot.delay(5);
         }
         if(Greenfoot.isKeyDown("w") && ((ScrollingMap)getWorld()).movePlayer(4)){
             decreasePlayerMove(1);
             step.play();
             ((ScrollingMap)getWorld()).removeTarget();
-            Greenfoot.delay(3);
+            Greenfoot.delay(5);
         }
         if (Greenfoot.isKeyDown("z"))
         {
