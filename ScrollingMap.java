@@ -291,25 +291,6 @@ public class ScrollingMap extends World
         update();
     }
 
-    /**
-     * State an object at a X and Y coordinate to be added on to the map state the depth too
-     * Note: DO NOT PUT OBJECTS IN THE SAME DEPTH
-     */
-    public void inputObject(int object, int xC, int yC, int d){
-        int xCo = xC * TILESIZE + TILESIZE/2;
-        int yCo = yC * TILESIZE + TILESIZE/2;
-        if(object == 1){
-            field[xC][yC][d] = new Player(xCo, yCo);
-        }
-        if(object == 2){
-            field[xC][yC][d] = new BaneSlime(xCo, yCo, 1);
-        }
-        if(object == 3){
-            field[xC][yC][d] = new Chest(xCo, yCo, 1);
-        }
-        update();
-    }
-
     public void inputItem(int xC, int yC, int id)
     {
         int xCo = xC * TILESIZE + TILESIZE/2;
