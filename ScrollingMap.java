@@ -298,7 +298,7 @@ public class ScrollingMap extends World
     public void spawnPlayer(ArrayList<Integer> file){
         int xCo = playerX * TILESIZE + TILESIZE/2;
         int yCo = playerY * TILESIZE + TILESIZE/2;
-        field[playerX][playerY][1] = new Player(file);
+        field[playerX][playerY][1] = new Player(xCo, yCo, file);
         update();
     }
     
