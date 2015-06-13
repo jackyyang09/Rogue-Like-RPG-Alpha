@@ -30,7 +30,7 @@ public class Drone extends Enemy
             luck = baseLuk;
             baseMove = 4;
             move = baseMove;
-            levelGenerate(getWorld().getFloor());
+            levelGenerate(((ScrollingMap)getWorld()).getFloor());
 
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
@@ -42,7 +42,9 @@ public class Drone extends Enemy
         int random = r.nextInt(100);
 
         if(random < 10){
+            convertToTile();
             ((ScrollingMap)getWorld()).inputItem(this.mapX, this.mapY, 12);
+            convertToPixel();
         }
     }
 }
