@@ -55,6 +55,9 @@ public class StartScreen extends World
         hoverDetect();
     }
 
+   /**
+     * checks mouse clicks and reacts
+     */
     private void checkMouse()
     {
         if (Greenfoot.mouseClicked(null))
@@ -75,6 +78,9 @@ public class StartScreen extends World
         }
     }
 
+   /**
+     * checks mouse hover and reacts
+     */
     private void hoverDetect()
     {
         if(Greenfoot.mouseMoved(beginButton))
