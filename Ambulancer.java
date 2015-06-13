@@ -11,28 +11,26 @@ public class Ambulancer extends Enemy
 {
     Random r;
     
-    public Ambulancer(int getMapX, int getMapY, int IDnum){
-        if (IDnum ==1)
-        {
+    public Ambulancer(int getMapX, int getMapY)
+    {
             setImage("ambulance.png");
             level = 1;
             value = 39;
             xp = 0;
-            baseHp = 10;
+            baseHp = 25;
             currentHp = baseHp;
-            baseAtt = 3;
+            baseAtt = 5;
             attack = baseAtt;
-            baseDef = 5;
+            baseDef = 6;
             defense = baseDef;
             baseDex = 0;
             dexterity = baseDex;
             baseHit = 3;
-            baseLuk = 5;
+            baseLuk = 7;
             luck = baseLuk;
-            baseMove = 2;
-            move = 0;
-            levelGenerate(Greenfoot.getRandomNumber(5) + 1);
-        }
+            baseMove = 3;
+            move = baseMove;
+            levelGenerate(getWorld().getFloor());
         //grid2 = ((ScrollingMap)getWorld()).getGrid();
         mapX = getMapX;
         mapY = getMapY;
