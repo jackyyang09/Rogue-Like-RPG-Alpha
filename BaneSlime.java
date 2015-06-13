@@ -11,6 +11,12 @@ public class BaneSlime extends Enemy
 {
     Random r;
 
+   /**
+     * constructor for the BaneSlime class
+     * 
+     * @param getMapX x-coordinate to be spawned
+     * @param getMapY y-coordinate to be spawned 
+     */
     public BaneSlime(int getMapX, int getMapY){
         setImage("slime.png");
         level = 1;
