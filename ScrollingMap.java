@@ -61,7 +61,13 @@ public class ScrollingMap extends World
         Control c = new Control();
         addObject(c,0,0);
     }
-    
+        public void started(){
+        bgm.playLoop();
+    }
+
+    public void stopped(){
+        bgm.pause();
+    }
     /**
      * Constructor for objects of class ScrollingMap.
      */
