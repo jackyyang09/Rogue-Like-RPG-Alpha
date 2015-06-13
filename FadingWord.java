@@ -20,7 +20,7 @@ public class FadingWord extends Actor
     public FadingWord (String text)
     {
         Color transparent = new Color(0,0,0,0);//background must be transparent
-        Font font = new Font("OCR A Extended", 3, 20);
+        Font font = new Font("OCR A Extended", 3, 40);
         transparency = 255;//starts opaque
         GreenfootImage image = new GreenfootImage (text, 12, Color.RED, transparent);
         setImage(image);
