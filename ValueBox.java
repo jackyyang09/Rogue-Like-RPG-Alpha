@@ -17,11 +17,18 @@ public class ValueBox extends Actor
     private boolean begin;
     private int[] xCoords = new int[4];
     private int[] yCoords = new int[4];
+    
+    /**
+     * constructor for ValueBox
+     */
     public ValueBox()
     {
         begin();
     }
 
+   /**
+     * basicly the constructor
+     */
     public void begin()
     {
         begin = false;
@@ -75,6 +82,12 @@ public class ValueBox extends Actor
         setImage(bar);
     }
 
+   /**
+     * updates the bar
+     * 
+     * @param current the amount of the stat
+     * @param max the maximum of the stat
+     */
     public void changeValues(double current, double max)
     {
         double value = current/max;
