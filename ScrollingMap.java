@@ -300,7 +300,7 @@ public class ScrollingMap extends World
             field[xC][yC][d] = new Player(xCo, yCo);
         }
         if(object == 2){
-            field[xC][yC][d] = new Enemy(xCo, yCo, 1);
+            field[xC][yC][d] = new BaneSlime(xCo, yCo, 1);
         }
         if(object == 3){
             field[xC][yC][d] = new Chest(xCo, yCo, 1);
@@ -322,6 +322,7 @@ public class ScrollingMap extends World
         yC = (yC - 43) / 86;
         field[xC][yC][3] = null;
     }
+
 
     /**
      * Reads Image File
@@ -361,19 +362,19 @@ public class ScrollingMap extends World
                     }
                 }
                 if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
-                    field[x][y][2] = new BaneSlime(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new BaneSlime(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy1")){
-                    field[x][y][2] = new Ambulancer(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new Ambulancer(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy2")){
-                    field[x][y][2] = new Drone(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new Drone(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy3")){
-                    field[x][y][2] = new SanicRobot(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new SanicRobot(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 else if(data[x][y][2] != null && data[x][y][2].equals("enemy4")){
-                    field[x][y][2] = new HolyDriver(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    field[x][y][2] = new HolyDriver(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2);
                 }
                 if(data[x][y][5] != null && data[x][y][5].equals("chest")){
                     field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
