@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Target here.
+ * player uses target to "target" enemy, chest, or item
  * 
  * @author Ryan Huang
  * @version June 2015
