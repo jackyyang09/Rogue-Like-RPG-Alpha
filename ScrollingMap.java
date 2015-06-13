@@ -298,47 +298,53 @@ public class ScrollingMap extends World
         {
             for(int y = 0 ; y < MAPIMGHEIGHT;y++)
             {
-                    if(data[x][y][0] != null){
-                        if(data[x][y][0].equals("door")){
-                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                        }
-                        else if(data[x][y][0].equals("floorTile")){
-                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
-                        }
-                        else if(data[x][y][0].equals("wall")){
-                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
-                            grid[x][y] = false;
-                        }
-                        else if(data[x][y][0].equals("sPortal")){
-                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 4);
-                        }
-                        else if(data[x][y][0].equals("ePortal")){
-                            field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 5);
-                        }
+                if(data[x][y][0] != null){
+                    if(data[x][y][0].equals("door")){
+                        field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                        System.out.print("d ");
                     }
-                    if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
-                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    else if(data[x][y][0].equals("floorTile")){
+                        field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 2);
+                        System.out.print("t ");
                     }
-                    else if(data[x][y][2] != null && data[x][y][2].equals("enemy1")){
-                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                    }
-                    else if(data[x][y][2] != null && data[x][y][2].equals("enemy2")){
-                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                    }
-                    else if(data[x][y][2] != null && data[x][y][2].equals("enemy3")){
-                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                    }
-                    else if(data[x][y][2] != null && data[x][y][2].equals("enemy4")){
-                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                    }
-                    else if(data[x][y][2] != null && data[x][y][2].equals("enemy5")){
-                        field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
-                    }
-                    if(data[x][y][5] != null && data[x][y][5].equals("chest")){
-                        field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    else if(data[x][y][0].equals("wall")){
+                        field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 3);
                         grid[x][y] = false;
+                        System.out.print("w ");
+                    }
+                    else if(data[x][y][0].equals("sPortal")){
+                        field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 4);
+                        System.out.print("s ");
+                    }
+                    else if(data[x][y][0].equals("ePortal")){
+                        field[x][y][0] = new Tile(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 5);
+                        System.out.print("e ");
                     }
                 }
+                if(data[x][y][2] != null && data[x][y][2].equals("enemy")){
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                }
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy1")){
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                }
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy2")){
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                }
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy3")){
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                }
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy4")){
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                }
+                else if(data[x][y][2] != null && data[x][y][2].equals("enemy5")){
+                    field[x][y][2] = new Enemy(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                }
+                if(data[x][y][5] != null && data[x][y][5].equals("chest")){
+                    field[x][y][5] = new Chest(x * TILESIZE + TILESIZE/2, y * TILESIZE + TILESIZE/2, 1);
+                    grid[x][y] = false;
+                }
+            }
+            System.out.println("");
         }
     }
 
@@ -452,30 +458,53 @@ public class ScrollingMap extends World
                 }
             }
         }
-                if(playerX == endX && playerY == endY){
-            int b = JOptionPane.showConfirmDialog(null, "Enter the Portal?", "Warning", JOptionPane.YES_NO_OPTION);
-            if(b == JOptionPane.YES_OPTION){
-                //Reset the thing
-                increaseFloor();
-                generate.setMaxEnemies(20);
-                Generate generate2 = new Generate();
-                createMap(generate2.generateMap());
-                playerX = generate2.getStartingCoorX();
-                playerY = generate2.getStartingCoorY();
-                //spawnPlayer();
-                placePlayer(playerX, playerY);
-                centerOnPlayer();
-                update();
-                String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
-                JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
-            }
-            else if (b== JOptionPane.NO_OPTION){
-                //Stop an infinite loop
-                movePlayer(4);
-                
-            }
-        
+    }
+    
+    public void act(){
+        if(playerX == endX && playerY == endY){
+            reset();
         }
+    }
+
+    private void reset(){
+        //         if(playerX == endX && playerY == endY){
+        int b = JOptionPane.showConfirmDialog(null, "Enter the Portal?", "Warning", JOptionPane.YES_NO_OPTION);
+        if(b == JOptionPane.YES_OPTION){
+            //Reset the thing
+            increaseFloor();
+            setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, FloorCount.class, ExperienceBar.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
+            generate.setMaxEnemies(20);
+            Generate generate2 = new Generate();
+            createMap(generate2.generateMap());
+            int playerX2 = generate2.getStartingCoorX();
+            int playerY2 = generate2.getStartingCoorY();
+            System.out.println(playerX2);
+            System.out.println(playerY2);
+            endX = generate2.getEndingCoorX();
+            endY = generate2.getEndingCoorY();
+            System.out.println(endX);
+            System.out.println(endY);
+            //spawnPlayer();
+            placePlayer(playerX2, playerY2);
+            centerOnPlayer();
+            update();
+            
+            String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
+            JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
+        }
+        else if (b== JOptionPane.NO_OPTION){
+            //Stop an infinite loop
+            movePlayer(4);
+
+            //             }
+        }
+    }
+
+    public void placePlayer(int x, int y){
+        field[x][y][1] = field[playerX][playerY][1];
+        field[playerX][playerY][1] = null;
+        x = playerX;
+        y = playerY;
     }
 
     public Actor[][][] getField(){
