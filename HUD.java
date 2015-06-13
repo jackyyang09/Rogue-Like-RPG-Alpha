@@ -84,7 +84,7 @@ public class HUD extends Actor
             else
             {
                 inv = new Inventory();
-                getWorld().addObject(pro, 271, 542);
+                getWorld().addObject(inv, 704, 302);
                 bp.setImage("SackOpen.png");
                 sackopen = true;
             }
