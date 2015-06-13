@@ -70,12 +70,12 @@ public class ExperienceBar extends Actor
             GreenfootImage image = new GreenfootImage("exp.png");
             bar.drawImage(image, 0, 0);
             bar.setColor(yellow); //Temporarily changes colour to red
-            changeValues(p.getXp(), p.getNeededXp);
+            changeValues(p.getXp(), p.getNeededXp());
             bar.fillPolygon(xCoords, yCoords, 4);
 
             //Draws the text
             bar.setColor(white);
-            bar.drawString("EXP: " + Double.toString(p.getXp()) + "/" +  Double.toString(p.getNeededXp, 263, 14);
+            bar.drawString("EXP: " + Double.toString(p.getXp()) + "/" +  Double.toString(p.getNeededXp()), 263, 14);
         }
         setImage(bar);
     }
