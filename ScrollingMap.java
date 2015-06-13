@@ -494,6 +494,7 @@ public class ScrollingMap extends World
             increaseFloor();
             //             resetField();
             Player p = (Player)field[endX][endY][1];
+            writeToFile(p.getInventory());
             Greenfoot.setWorld(new ScrollingMap(p, getFloor()));
             //String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
             //JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
@@ -503,6 +504,18 @@ public class ScrollingMap extends World
             movePlayer(4);
 
             //             }
+        }
+    }
+    
+    public void writeToFile(int[] values){
+        for(int a : values){
+            try{
+                WriteFile data = new WriteFile ("playerMemory.txt", true);
+                data.writeToFile(a);
+            }
+            catch(IOException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
     
