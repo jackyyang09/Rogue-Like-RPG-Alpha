@@ -37,7 +37,7 @@ public class Ambulancer extends Enemy
     }
     
     /**
-     * enemy will drop item with set drop rat 
+     * enemy will drop item when defeated, at set drop rate 
      */
     public void dropStuff(){
         r = new Random();
