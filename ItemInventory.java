@@ -4,7 +4,7 @@ import java.util.List;
  * Item that only shows up in the inventory screen
  * 
  * @author Jacky Yang
- * @version (a version number or a date)
+ * @version (June 12 2015)
  */
 public class ItemInventory extends Actor
 {
