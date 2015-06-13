@@ -38,12 +38,17 @@ public class ScrollingMap extends World
     Actor[][][] field = new Actor[MAPIMGWIDTH][MAPIMGHEIGHT][MAPDEPTH];
     boolean[][] grid = new boolean[58][56];
     private int floor = 1;
+    
+    GreenfootSound bgm; 
     /**
      * Constructor for objects of class ScrollingMap.
      */
     public ScrollingMap()
     {    
         super(946, 774, 1, false);
+        bgm = new GreenfootSound("bgm2.mp3");
+        bgm.setVolume(60);
+        bgm.playLoop();
         setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, FloorCount.class, ExperienceBar.class, FadingWord.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
         generate.setMaxEnemies(20);
         createMap(generate.generateMap());
