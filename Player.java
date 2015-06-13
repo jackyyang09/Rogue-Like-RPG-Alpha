@@ -71,6 +71,7 @@ public class Player extends Mobs
         }        
         mapX = list.get(19);
         mapY = list.get(20);
+        xp = list.get(21);
         begin();
     }
 
@@ -295,34 +296,8 @@ public class Player extends Mobs
         for (ProfileWindow p : pro){p.update();}
     }
     
-    public ArrayList<Integer> addText(){
-        textFileContents = new ArrayList<Integer>();
-        try {
-            scan = new Scanner (new File ("playerMemory.txt"));
-            // Make use of two interesting new methods found on the Scanner API
-            while (scan.hasNext())
-            {
-                // Use the ArrayList's add() method and the Scanner's nextLine() method
-                int a = Integer.parseInt(scan.nextLine());
-                textFileContents.add(a); 
-            }
-        }
-        //         catch (FileNotFoundException e)
-        //         {
-        //             System.out.println("File not found");
-        //         }
-        catch (IOException e)
-        {
-            //System.out.println("Error reading data");
-        }
-
-        // ADD A FINALLY BLOCK HERE TO CLOSE THE SCANNER
-        finally{
-            if(scan != null){
-                scan.close();
-            }
-        }
-        return textFileContents;
+    public void setXp(int exp){
+        exp = xp;
     }
 
     /**
@@ -463,5 +438,9 @@ public class Player extends Mobs
     public void count()
     {
         if(counter > 0){counter--;}
+    }
+    
+    public int getArmorBuff(){
+        return armorBuff;
     }
 }
