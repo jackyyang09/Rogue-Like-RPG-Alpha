@@ -23,15 +23,6 @@ public class Enemy extends Mobs
     }
     
     /**
-     * Constructor for Enemy
-     */
-    public Enemy()
-    {
-        
-    }
-        
-
-    /**
      * enemy levels up each stat per level at a moderate pacce
      */
     public void levelUp() 
