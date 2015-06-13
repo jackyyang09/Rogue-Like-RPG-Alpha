@@ -56,6 +56,29 @@ public class ScrollingMap extends World
         Control c = new Control();
         addObject(c,0,0);
     }
+    
+    /**
+     * Constructor for objects of class ScrollingMap.
+     */
+    public ScrollingMap(Player player, int fl)
+    {    
+        super(946, 774, 1, false);
+        setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, FloorCount.class, ExperienceBar.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
+        generate.setMaxEnemies(20);
+        createMap(generate.generateMap());
+        int playerX2 = generate.getStartingCoorX();
+        int playerY2 = generate.getStartingCoorY();
+        endX = generate.getEndingCoorX();
+        endY = generate.getEndingCoorY();
+        spawnPlayer();
+        //spawnPlayer(player, playerX2, playerY2);
+        centerOnPlayer();
+        update();
+        prepare();
+        floor = fl;
+        Control c = new Control();
+        addObject(c,0,0);
+    }
 
     /**
      * moves the player in the desired direction by one tile
@@ -248,6 +271,14 @@ public class ScrollingMap extends World
         int xCo = playerX * TILESIZE + TILESIZE/2;
         int yCo = playerY * TILESIZE + TILESIZE/2;
         field[playerX][playerY][1] = new Player(xCo, yCo);
+        update();
+    }
+    
+    public void spawnPlayer(Player play, int x, int y){
+        field[x][y][1] = play;
+        x = playerX;
+        y = playerY;
+        field[playerX][playerY][1] = null;
         update();
     }
 
@@ -470,31 +501,29 @@ public class ScrollingMap extends World
         if(b == JOptionPane.YES_OPTION){
             //Reset the thing
             increaseFloor();
-            setPaintOrder(ItemInventory.class, InfoTab.class, ProfileWindow.class, MoveCount.class, Button.class, ValueBox.class, HUD.class, Inventory.class, FloorCount.class, ExperienceBar.class, Target.class, Chest.class, Player.class, Items.class, Mobs.class, Tile.class);
-            generate.setMaxEnemies(20);
-            Generate generate2 = new Generate();
-            createMap(generate2.generateMap());
-            int playerX2 = generate2.getStartingCoorX();
-            int playerY2 = generate2.getStartingCoorY();
-            System.out.println(playerX2);
-            System.out.println(playerY2);
-            endX = generate2.getEndingCoorX();
-            endY = generate2.getEndingCoorY();
-            System.out.println(endX);
-            System.out.println(endY);
-            //spawnPlayer();
-            placePlayer(playerX2, playerY2);
-            centerOnPlayer();
-            update();
-            
-            String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
-            JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
+            //             resetField();
+            Player p = (Player)field[endX][endY][1];
+            Greenfoot.setWorld(new ScrollingMap(p, getFloor()));
+            //String message = "Thank you for playing the Lite Version of System Down. For more content, please buy our DLC pack Biogenisis or order the Full Game Online at www.systemdown.ca";
+            //JOptionPane.showMessageDialog(null, message, "Congratulations", JOptionPane.PLAIN_MESSAGE);
         }
         else if (b== JOptionPane.NO_OPTION){
             //Stop an infinite loop
             movePlayer(4);
 
             //             }
+        }
+    }
+    
+    public void resetField(){
+        for(int x = 0; x < MAPIMGWIDTH; x++){
+            for(int y = 0 ; y < MAPIMGHEIGHT;y++){
+                for(int i = 0; i < MAPDEPTH; i++){
+                    if(i != 1){
+                        field[x][y][i] = null;
+                    }
+                }
+            }
         }
     }
 
