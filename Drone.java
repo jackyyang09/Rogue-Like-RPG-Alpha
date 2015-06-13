@@ -37,6 +37,9 @@ public class Drone extends Enemy
         mapY = getMapY;
     }
 
+   /**
+     * enemy will drop item when defeated, at set drop rate 
+     */
     public void dropStuff(){
         r = new Random();
         int random = r.nextInt(100);
