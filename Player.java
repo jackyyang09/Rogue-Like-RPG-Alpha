@@ -39,6 +39,39 @@ public class Player extends Mobs
         this.mapY = mapY;
         begin();
     }
+    
+    /**
+     * Constructor to create a new player with custom values
+     */
+    public Player(ArrayList<Integer> list)
+    {
+        level = list.get(0);
+        baseHp = list.get(1);
+        currentHp = list.get(2);
+        baseAtt = list.get(3);
+        attack = baseAtt;
+        baseDef = list.get(4);
+        defense = baseDef;
+        baseMove = list.get(5);
+        move = baseMove;
+        baseDex = list.get(6);
+        dexterity = baseDex;
+        baseLuk = list.get(7);
+        armorBuff = list.get(8);
+        equips = new Items[2];
+        items = new Items[9];
+        for (int i = 0; i < 9; i++)
+        {
+            items[i] = new Items(list.get[i + 9]);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            equips[i] = new Items(list.get[i + 17);
+        }        
+        mapX = list.get(19);
+        mapY = list.get(20);
+        begin();
+    }
 
     /**
      * Code that runs only once
