@@ -257,6 +257,36 @@ public class Player extends Mobs
         List<ProfileWindow> pro = getWorld().getObjects(ProfileWindow.class);
         for (ProfileWindow p : pro){p.update();}
     }
+    
+    public ArrayList<Integer> addText(){
+        textFileContents = new ArrayList<Integer>();
+        try {
+            scan = new Scanner (new File ("playerMemory.txt"));
+            // Make use of two interesting new methods found on the Scanner API
+            while (scan.hasNext())
+            {
+                // Use the ArrayList's add() method and the Scanner's nextLine() method
+                int a = Integer.parseInt(scan.nextLine());
+                textFileContents.add(a); 
+            }
+        }
+        //         catch (FileNotFoundException e)
+        //         {
+        //             System.out.println("File not found");
+        //         }
+        catch (IOException e)
+        {
+            //System.out.println("Error reading data");
+        }
+
+        // ADD A FINALLY BLOCK HERE TO CLOSE THE SCANNER
+        finally{
+            if(scan != null){
+                scan.close();
+            }
+        }
+        return textFileContents;
+    }
 
     /**
      * Returns the a value equalling the Player's attack value after item bonus calculations
