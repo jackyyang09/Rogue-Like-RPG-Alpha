@@ -81,6 +81,10 @@ public class Help extends World
         }
     }
 
+   /**
+     * checks if mouse clicks buton and reacts
+     * 
+     */
     private void checkMouse()
     {
         if(Greenfoot.mouseClicked(mainBack))
