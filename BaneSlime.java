@@ -34,7 +34,10 @@ public class BaneSlime extends Enemy
         mapX = getMapX;
         mapY = getMapY;
     }
-
+    
+   /**
+     * enemy will drop item when defeated, at set drop rate 
+     */
     public void dropStuff(){
         r = new Random();
         int random = r.nextInt(100);
